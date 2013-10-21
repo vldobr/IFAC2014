@@ -1,7 +1,7 @@
 \documentclass{ifacconf}
 
 \usepackage{natbib}            % you should have natbib.sty
-\usepackage{graphicx}          % Include this line if your 
+\usepackage{graphicx}          % Include this line if your
                                % document contains figures,
 %\usepackage[dvips]{epsfig}    % or this line, depending on which
                                % you prefer.
@@ -20,48 +20,64 @@
 
 \begin{frontmatter}
 
-\title{Cooperative Autonomy of Multiple Solar-Powered Thermalling Gliders \thanksref{footnoteinfo}} 
+\title{Cooperative Autonomy of Multiple Solar-Powered Thermalling Gliders \thanksref{footnoteinfo}}
 
 \thanks[footnoteinfo]{This work was supported in part by the ARL contract number and the NPS CRUSER contract number.}
 
-\author[First]{Vladimir N. Dobrokhodov} 
-\author[Second]{Kevin D. Jones} 
+\author[First]{Vladimir N. Dobrokhodov,}
+\author[Second]{Kevin D. Jones,}
 \author[Third]{Isaac I. Kaminer}
 
-\address[First, Second]{Research Associate Professors at the Department  of Mechanical and Aerospace Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (e-mail: {vndobrok, kdjones}@nps.edu}                                              
+\address[First]{Research Associate Professor at the Department  of Mechanical and Aerospace Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (e-mail: vndobrok@nps.edu)}
+\address[Second]{Research Associate Professor at the Department  of Mechanical and Aerospace Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (e-mail: kdjones@nps.edu)}
 \address[Third]{Professor at the Department  of Mechanical and Aerospace Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (e-mail: kaminer@nps.edu)}
 
-          
-%\begin{keyword}                           % Five to ten keywords,  
-%Cicero; Catiline; orations.               % chosen from the IFAC 
-%\end{keyword}                             % keyword list or with the 
-                                          % help of the Automatica 
+
+\begin{keyword}                           % Five to ten keywords, chosen from the IFAC
+cooperative control; solar energy; convective thermals energy; autonomous glider.
+\end{keyword}                             % keyword list or with the
+                                          % help of the Automatica
                                           % keyword wizard
 
 
 \begin{abstract}                          % Abstract of not more than 250 words.
-These instructions give you guidelines for preparing papers for IFAC conferences. Use this document as a template to compose your paper if you are using Microsoft Word 6.0 or later. Otherwise, use this document as an instruction set. Please use this document as a “template” to prepare your manuscript. For submission guidelines, follow instructions on paper submission system as well as the Conference website. There is a very small blank line immediately above the abstract, do not delete it; it sets the footnote at the bottom of this column.
+The paper presents the multidisciplinary systematic approach to the the design of a fleet of cooperative gliders capable of extended endurance operation. The flock of fully autonomous gliders is able to harvest energy from the environment both through photo-voltaic energy generation and through exploitation of natural convective lift in the surrounded air, and acts cooperatively to meet mission requirements and to share knowledge of the local environment. The paper begins with a brief overview of the total-energy approach required for such a feat, along with a short description of key system components. This is followed by details of the evolution of a previously-developed architecture that supported autonomous thermaling, to an architecture that considers the total-energy budget in all flight segments, and optimizes the cooperative flight to maximize the  cumulative energy capture while simultaneously meeting the mission objectives.
 \end{abstract}
 
 \end{frontmatter}
 
 \section{Introduction}
-This document is a template for Microsoft Word versions 6.0 or later. If you are reading a paper version of this document, please download the electronic file, ifacconf.doc If your paper is intended for a conference, please contact your conference editor concerning acceptable word processor for-mats for your particular conference. {\bf Please do not put any running header/footer or Page number in the submitted paper}.
+Imagine a large team of gracefully soaring autonomous gliders instrumented with sensors, capable of detecting and utilizing the convective air flow, and high-efficiency solar panels which are seamlessly embedded into the wings to replenish the electrical energy of onboard avionics. The gliders are sequentially launched from a distant area and assigned to provide, for example, an extended communication network coverage or to serve as a low-orbit observation satellites for the forest fire or border protection. The gliders reach the area of operations and remain there for an extended period of time, perhaps up to a year. They can either operate in a distributed fashion to collect data and provide network support over large area of operation or fly together in a suitable formation to provide a more focused high resolution support. The latter may include cooperative distributed sensing to achieve the desired sensors resolution, tracking of weather formations, border patrol, etc. that are currently provided by much larger, heavier and more expensive systems.
 
-You can type over sections of ifacconf.doc or cut and paste from another document and then use markup styles. The pull-down style menu is at the left of the Formatting Toolbar at the top of your Word window (for example, the style at this point in the document is “Text”). Highlight a section that you want to designate with a certain style, then select the appropriate name on the style menu. The style will adjust your fonts and line spacing. {\bf Do not change the font sizes or line spacing to squeeze more text into a limited number of pages. Use italics for emphasis; do not underline}.
+Despite significant advances in a number of technologies resulting in shrinking the Size, Weight and Power (SWAP) constraints in aerospace technologies, the ability to stay aloft for extended periods of time is still remain reserved for larger systems such as AWACS and/or mid and large scale UAVs such as Predators and Global Hawks. While extremely capable either of these systems still do not provide the desired $24/7$ operational endurance and flexibility. Deployment of these assets requires large teams of ground personnel and has to be planned with significant and sufficient lead-time. Needless to say that the development and operational cost of those assets might be prohibitively expensive.
 
-\subsection{A subsection}
-Bifurcation: Plot of local maxima of $x$ with damping $a$ decreasing (Fig.~\ref{fig1}).
+What if the endurance capabilities of larger aircraft and UAVs were achieved by much smaller systems, then smaller and cheaper UAVs would be able to carry out many missions reserved today for larger, heavier long endurance systems? This is the precisely the objective that the recent development by~\cite{AKlass_JGCD:2012,AKlass_CDC:2012} has been addressing. Conceptually, the project addresses the fundamental paradigm shift from large, costly single point of failure platforms to distributed, small unmanned systems that can provide the same level of service at a significantly lower cost and with greater robustness. To achieve the goal, the project develops a system of multiple cooperating autonomous gliders that harvest thermal (convective air) and solar energy (photovoltaic) to achieve distributed collaborative sensing and dynamic network area coverage at a significantly lower operational cost and personnel requirements (training and manning) than the existing systems.
 
-To insert images in Word, position the cursor at the insertion point and either use Insert | Picture | From File or copy the image to the Windows clipboard and then Edit | Paste Special | Picture (with “Float over text” unchecked). 
 
-IFAC will not do any final formatting of your paper. Your manuscript should be ‘camera-ready.’ Page limits vary from conference to conference. Please observe the conference page limits of the conference for which your paper is intended. {\bf Please do not modify margins. If you are creating a document on your own, please observe the margins as listed in Table 1}.
+\subsection{Technical Background and Envisioned Approach}
+
+One of the most critical limiting factors impacting collaborative autonomy for small UAVs today is the lack of endurance in most of the existing autonomous aircraft. Numerous futuristic ideas and concepts will not be implemented in real life solely due to this single reason. Until $R\&D$ community realizes that the energy onboard (of either a single or a flock of agents) and the mission objectives are equally important metrics of the mission management (planning and execution), and finds a way of solving this new challenge, there will not be revolutionary advances made in the area of persistent intelligent collaborative autonomy.
+
+Despite almost two decades of significant advances in low-power and high-performance microelectronics development including CPUs, sensors, actuators, and communication circuits~\cite{Tong:1995},\cite{Singh:2010}, the only task addressed was to lower the power consumption of autonomous machines and therefore to reduce the pace of energy expenditures. On the other hand, the progress of energy renewable technologies is lagging behind. Since the loss of energy is unavoidable due to the inefficiency in energy conversion, storage, and transmission, the mission duration will always be limited. However, implementing novel approaches for the cooperative mission design and execution along with the optimal energy management can not only further reduce the rate of loss of limited energy resources but also can result in energy increase during the autonomous mission execution; this capability is not readily available today in any of the available technologies, see~\cite{Siciliano:2008},\cite{Martinez:2008},and \cite{Nonami:2013}.
+
+Despite the complexity of the energy-management task, the practical solutions of the extended duration flight do exist in nature. Millions of years of evolution enable a number of families of birds for very long duration flights; while the fundamentals of flight are the same, the effective energy management principles during the flight do differ. One of the most extraordinary birds capable of the long duration flight is the bar-tailed godwit, a large, streamlined shorebird, that performs a non-stop across the ocean flight, see\cite{USGS:2007}, of more than eight days over a distance of 7,200 miles; the distance equivalent of making a round-trip flight between New York and Paris without ever touching down. Another example is the albatross that can fly around the world with little or no flapping of their wings, see~\cite{Richardson:2011}. Remarkably, some birds can remain aloft for years at a time; the swift, for example, spends nearly its entire life in the air while landing only to breed. Along with many other animals (for example dolphins, whales), swifts evolved to be able to put one side of their brain to sleep at a time, so that they can sleep in the air while not actually being unconscious, see~\cite{Lapierre:2007}. What is common among these examples is not only the evolved capability of the high efficiency flight, but also the unique ability to manage energy that is implemented by both the optimal energy expenditures and energy harvesting.
+
+Considering the current state of the art in aerial robotics (algorithmic support, instrumentation, size weight and power constraints), it is our firm belief that the best approach to enable long duration flight would combine the collaborative mission management and energy harvesting. Collaboration is the first key capability that spans across every element of the mission. First, collaboration enables effective search of available energy. Most of the available energy sources are not visible but detectable by intelligent robots equipped with inertial sensors. Thus, multiple agents would have much better chances of finding free energy when cooperating and sharing their findings. Second, the operational utility of multiple agents equipped with complementary sensors is superior to the capability of an individual agent. Finally, robustness of the collaborative mission execution is significantly higher because partial loss of a subset of the vehicles does not lead to the loss of entire flock capability. Energy harvesting is the second complementary enabler of long endurance flight that provides accumulation of energy. The methods of energy extraction feasible for aerial application include the solar photovoltaic and airflow soaring that can be based on the convective air (thermaling) or wind shear energy extraction. While the photovoltaic boost can be achieved only during the daylight, the extraction of power of surrounded moving airflow can be utilized even during the nighttime. This combination is the ultimate solution for the "eternal" operational endurance.
+It is envisioned that enhancing mission performance while reducing its cost can be achieved by implementing energy harvesting and collaboration capabilities onboard of multiple autonomous solar powered and thermal-soaring gliders. The flock of gliders is able to harvest energy from the environment both through photo-voltaic energy generation and through exploitation of natural convective lift and/or vertical wind gradient (wind sheer) in the environment, and acts cooperatively to meet mission requirements and to share knowledge of the local environment. Thus, the triplet of (\emph{\textbf{i}}) mission management, (\emph{\textbf{ii}}) energy harvesting and (\emph{\textbf{iii}}) collaboration builds the fundamental architecture of future energy enhanced autonomy. This architecture should encapsulate the following algorithms:
+\begin{itemize}
+  \item Estimation of the total energy of the flock of gliders;
+  \item Mission planning and cooperative control as functions of mission objectives and total energy; 
+  \item Energy harvesting potential represented by environmental mathematical models representing prior and updated knowledge of the free energy density distribution in the operational environment;
+  \item Local feedback to the mission planner for timely update and correction, thus achieving optimal balance between the mission objectives and available energy;
+  \item Scale of the mission (number and strategy of multiple agents) defined by the rate of total energy expenditure;
+  \item Centralized global and distributed local environmental modeling for providing explicit means of extended endurance.
+\end{itemize}
 
 %\begin{figure}
 %\begin{center}
-%\includegraphics[height=4cm]{bifurcation.jpg}    % The printed column  
+%\includegraphics[height=4cm]{bifurcation.jpg}    % The printed column
 %\caption{Bifurcation: Plot of local maxima of $x$ with damping $a$ decreasing}  % width is 8.4 cm.
-%\label{fig1}                                 % Size the figures 
+%\label{fig1}                                 % Size the figures
 %\end{center}                                 % accordingly.
 %\end{figure}
 %
@@ -86,7 +102,7 @@ Next we see a few subsections.
 
 Note that conferences impose strict page limits, so it will be better for you to prepare your initial submission in the camera ready layout so that you will have a good estimate for the paper length. Additionally, the effort required for final submission will be minimal.
 
-Some words might be appropriate describing equation~(\ref{e1}), if 
+Some words might be appropriate describing equation~(\ref{e1}), if
 we had but time and space enough.
 \begin{equation} \label{e1}
 {{\partial F}\over {\partial t}} =
@@ -96,11 +112,11 @@ See \cite{Abl:56}, \cite{AbTaRu:54}, \cite{Keo:58} and \cite{Pow:85}.
 
 \subsubsection{A subsubsection}This equation goes far beyond the celebrated theorem ascribed to the great Pythagoras by his followers.
 \begin{thm}
-The square of the length of the hypotenuse of a right triangle equals the sum of the squares 
+The square of the length of the hypotenuse of a right triangle equals the sum of the squares
 of the lengths of the other two sides.
 \end{thm}
 \begin{pf}
-The square of the length of the hypotenuse of a right triangle equals the sum of the squares 
+The square of the length of the hypotenuse of a right triangle equals the sum of the squares
 of the lengths of the other two sides.
 \end{pf}
 
@@ -135,7 +151,7 @@ IFAC will put in place an electronic copyright transfer system in due course. Pl
 
 \section{Math}
 
-If you are using Word, use either the Microsoft Equation 
+If you are using Word, use either the Microsoft Equation
 Editor or the MathType add-on for equations in your paper (Insert | Object | Create New | Microsoft Equation or MathType Equation). “Float over text” should not be selected. Of course LaTeX manages equations through built-in macros.
 
 \section{Units}
@@ -167,7 +183,7 @@ Number equations consecutively with equation numbers in parentheses flush with t
 \begin{equation} \label{e2}
 \begin{array}{ll}
 \int_0^{r_2} & F (r, \varphi ) dr d\varphi = [\sigma r_2 / (2 \mu_0 )] \\
-& \cdot \int_0^{\inf} exp(-\lambda |z_j - z_i |) \lambda^{-1} J_1 (\lambda  r_2 ) J_0 (\lambda r_i ) d\lambda 
+& \cdot \int_0^{\inf} exp(-\lambda |z_j - z_i |) \lambda^{-1} J_1 (\lambda  r_2 ) J_0 (\lambda r_i ) d\lambda
 \end{array}
 \end{equation}
 
@@ -182,58 +198,52 @@ A parenthetical statement at the end of a sentence is punctuated outside of the 
 
 \section{Conclusion}
 
-A conclusion section is not required. Although a conclusion may review the main points of the paper, do not replicate the abstract as the conclusion. A conclusion might elaborate on the importance of the work or suggest applications and extensions. 
+A conclusion section is not required. Although a conclusion may review the main points of the paper, do not replicate the abstract as the conclusion. A conclusion might elaborate on the importance of the work or suggest applications and extensions.
 
 \begin{ack}                               % Place acknowledgements
 Partially supported by the Roman Senate.  % here.
 \end{ack}
 
-%\bibliographystyle{alpha}        % Include this if you use bibtex 
-%\bibliography{autosam}           % and a bib file to produce the 
+%\bibliographystyle{alpha}        % Include this if you use bibtex
+\bibliography{ifacconf}           % and a bib file to produce the
 %\bibliography{autosam}
                                  % bibliography (preferred). The
                                  % correct style is generated by
                                  % Elsevier at the time of printing.
 
-\begin{thebibliography}{xx}
-
-\bibitem[Able(1956)]{Abl:56}
-B.C. Able.
-\newblock Nucleic acid content of microscope.
-\newblock \emph{Nature}, 135:\penalty0 7--9, 1956.
-
-\bibitem[Able et~al.(1954)Able, Tagg, and Rush]{AbTaRu:54}
-B.C. Able, R.A. Tagg, and M.~Rush.
-\newblock Enzyme-catalyzed cellular transanimations.
-\newblock In A.F. Round, editor, \emph{Advances in Enzymology}, volume~2, pages
-  125--247. Academic Press, New York, 3rd edition, 1954.
-
-\bibitem[Keohane(1958)]{Keo:58}
-R.~Keohane.
-\newblock \emph{Power and Interdependence: World Politics in Transitions}.
-\newblock Little, Brown \& Co., Boston, 1958.
-
-\bibitem[Powers(1985)]{Pow:85}
-T.~Powers.
-\newblock Is there a way out?
-\newblock \emph{Harpers}, pages 35--47, June 1985.
-
-\bibitem[Soukhanov(1992)]{Heritage:92}
-A.~H. Soukhanov, editor.
-\newblock \emph{{The American Heritage. Dictionary of the American Language}}.
-\newblock Houghton Mifflin Company, 1992.
-
-\end{thebibliography}
-
-
-
-
-
-
+%\begin{thebibliography}{xx}
+%
+%\bibitem[Able(1956)]{Abl:56}
+%B.C. Able.
+%\newblock Nucleic acid content of microscope.
+%\newblock \emph{Nature}, 135:\penalty0 7--9, 1956.
+%
+%\bibitem[Able et~al.(1954)Able, Tagg, and Rush]{AbTaRu:54}
+%B.C. Able, R.A. Tagg, and M.~Rush.
+%\newblock Enzyme-catalyzed cellular transanimations.
+%\newblock In A.F. Round, editor, \emph{Advances in Enzymology}, volume~2, pages
+%  125--247. Academic Press, New York, 3rd edition, 1954.
+%
+%\bibitem[Keohane(1958)]{Keo:58}
+%R.~Keohane.
+%\newblock \emph{Power and Interdependence: World Politics in Transitions}.
+%\newblock Little, Brown \& Co., Boston, 1958.
+%
+%\bibitem[Powers(1985)]{Pow:85}
+%T.~Powers.
+%\newblock Is there a way out?
+%\newblock \emph{Harpers}, pages 35--47, June 1985.
+%
+%\bibitem[Soukhanov(1992)]{Heritage:92}
+%A.~H. Soukhanov, editor.
+%\newblock \emph{{The American Heritage. Dictionary of the American Language}}.
+%\newblock Houghton Mifflin Company, 1992.
+%
+%\end{thebibliography}
 
 
 \appendix
 \section{A summary of Latin grammar}    % Each appendix must have a short title.
-\section{Some Latin vocabulary}         % Sections and subsections are supported  
+\section{Some Latin vocabulary}         % Sections and subsections are supported
                                         % in the appendices.
-\end{document}
+\end{document} 
