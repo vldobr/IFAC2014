@@ -3,6 +3,7 @@
 \usepackage{natbib}            % you should have natbib.sty
 \usepackage{graphicx}          % Include this line if your
                                % document contains figures,
+\usepackage{epsfig}            % or this line, depending on which
 %\usepackage[dvips]{epsfig}    % or this line, depending on which
                                % you prefer.
 % predefined environments
@@ -75,7 +76,7 @@ Therefore, it is envisioned that enhancing mission performance while reducing it
  \item Identification of the inherent flying qualities of each glider and detection of the environmental energy excess (convective thermal or wind shear) which are based on the total mechanical energy (the sum of kinetic and potential energy);
  \item Identification of parameterized mathematical models of energy sources and estimation and ''mapping`` of their dynamic motion;
  \item Autonomous guidance to enable energy harvesting while in the vicinity of an energy source;
- \item Optimization of solar energy gain and electrical energy storage while in thermal soaring flight; 
+ \item Optimization of solar energy gain and electrical energy storage while in thermal soaring flight;
  \item Sharing of the environment knowledge and the current state of cumulative energy (stored in onboard batteries plus the total mechanical energy) of each glider;
  \end{itemize}
 %%%%%%%%
@@ -111,13 +112,47 @@ Since the number of involved algorithms and technologies is significant, the rem
 \section{Individual Gliders Algorithms}
 \label{sec:InAlgs}
 
-The algorithms of individual platforms enable identification of the inherent flight dynamics properties of the glider which are in turn used to detect the thermal updrafts. When flying in the updraft the guidance algorithm is engaged to enable the maximum harvesting of the updraft energy, and on the other hand allows for the estimation of the updraft geometry and the motion that are used to map the updraft and share its utility properties across the network of collaborative gliders. While in autonomous soaring mode, the electrical management system that consists of solar panels, batteries and the maximum energy tracking circuitry, supports the avionics and optimally recharges the batteries. At any given time each individual platform can be either in a search mode or in a soaring mode. While the soaring mode is directly defined by the energy gain objective, the search mode is driven by the intelligent algorithm that combines the goals of the distributed mission and the need to search for energy sources in the environment.
+The algorithms of individual platforms are primarily responsible for the sustainable flight of a partially uncertain glider and exploration and sharing of knowledge about the environment. The algorithms run online and enable identification of the inherent flight dynamics properties of the glider which are in turn used to detect the thermal updrafts. When flying in the updraft the guidance algorithm is engaged to enable the maximum harvesting efficiency of the updraft's energy, and on the other hand estimates the updraft geometry and motion that are used to georeference the updraft and share its utility properties across the network of collaborative gliders. Besides the collaborative mission objective and initial mission plan, the georeferenced map is the formalized knowledge used in the collaborative mission replanning phase. While in autonomous soaring mode, the electrical management system that consists of solar panels, batteries and the maximum energy tracking circuitry, supports the avionics and recharges the batteries keeping them evenly balanced. At any given time each individual platform can be either in a search or in a soaring mode. While the soaring mode is primarily defined by the energy gain objective, the search mode is driven by the intelligent algorithm that combines the goals of the distributed mission and the need to search for energy sources in the environment. Development of these intelligent algorithms that enable optimal balancing of energy gain and mission objectives is the most promising direction of the current and future research.
 
-\subsection{System identification and Updraft Detection}
+\subsection{Glider Identification and Updraft Detection}
 \label{sec:SysID}
 
-There is a number of prior efforts devoted addressing the auto-soaring capability. While enabling the desired functionality to some extent most of the algorithms implement significant heuristic in the identification of the updraft strength and the potential utility of the updraft to the specific glider at hand. While adapting the conceptual ideas, the approach used implements the algorithms of online estimation of uncertain flight dynamics of the glider and the parameterized model of the convective updraft. 
+There is a number of prior efforts devoted to the autonomous soaring capability. First demonstrated by human pilots in 1900s (see \cite{Simons:1998}) the idea of soaring in convective air became feasible for onboard autonomous implementation only in the 1990s, see \cite{Wharington:1998}. While enabling the desired functionality by primarily mimicking the birds flight and indeed achieving significant extended flight capabilities (see \cite{Edwards:2008}, \cite{Allen:2006} and \cite{Allen:2007}), most of the algorithms implemented significant portion of heuristic in the identification of the updraft strength, its potential utility in energy gain, and the decision of when and how to enter the updraft. The reason for employing heuristic approaches is obvious, since both the strength of the updraft and its efficiency are both subject to significant uncertainties. First, they result from the uncertain flight characteristics of the specific glider no matter how well the airframe is modeled and flight tested; significant advances in material and structures sciences produce novel airframes that are strong and flexible on one hand, and therefore aerodynamically uncertain when bend and twisted on the other hand. Second, when a glider is propelled through the unsteady air the updraft estimation algorithm lacks of spatial content (both in horizontal and vertical directions) in the noisy measurements of the vertical velocity of convective air. Thus, for any given altitude of flight it takes essential time before the updraft geometry is identified and the guidance algorithm is engaged. It is worth noting that when controlled by the thermal centering guidance law the estimation algorithm partially regains the spatial data in horizontal direction. To successfully identify the thermal strength in vertical direction it would take prohibitively long time for a single glider, thus to achieve rapid identification of $3D$ energy profile of any given thermal updraft it is very effective to utilize a number of collaborative platforms simultaneously sampling the same updraft in three dimensions.
 
+While adapting the conceptual ideas of autonomous soaring, the approach used in our development shifts the focus from heuristics toward the online estimation algorithms of the glider flight dynamics and the parameterized model of the convective updraft. The algorithm of detecting a thermal is based on combining two complementary approaches; however conceptually they are similar as they compare the natural metrics of the system with the same actually measured characteristics of the glider. The first approach utilizes the inherent sink rate polar and the second one is based on the total energy of the system.
+
+\emph{The sink rate polar} is the curve of the vertical speed plotted versus the true air speed (TAS). Every glider has a very specific sink polar as it reflects the glider inherent ability to descend in wings level flight in no-wind conditions; sink polar can be obtained to characterize the sink rate at various bank angles that can be used to minimize the energy loss in turning flight. Thus, if the sink polar is known then the difference between the actually measured sink rate and the point on the sink polar corresponding to the measured true air speed identifies if there is an excess of energy in the air that forces the glider away from its native sink polar; the sign of the difference defines the updraft and downdraft conditions. Implementation of this approach depends on precise characterization of the sink polar of the glider that can be practically achieved in extensive experimentation. However, experimentation can hardly provide an ideal controlled conditions, and in every flight of the same platform there are always subtle differences that are not accounted for. Based on the extensive experimental data collected an a number of flights (see \cite{AKlass_JGCD:2012} and the references herein) in close to ideal no-wind conditions the sink polar was first obtained off-line. Analysis of the measurements confirmed that the sink polar can be represented by a second order polynomial $V_s=A \cdot V_{tas}^2 + B \cdot V_{tas} +C$ with coefficients $A, B$, and $C$ defined by the least squares approximation method; similar results can be found in \cite{Reichmann:1978}, \cite{Edwards:2008}. The same method is then implemented onboard as a recursive least square (RLS) estimator, see \cite{Astrom:1995}, to account for any variations in the setup of the actual flying platform. An example of the experimental data and the resulting approximation is presented in Figure.\ref{fig:SinkPolar}.
+
+\begin{figure}[thpb]
+  \centering
+  \includegraphics[scale=1.2]{Figures/IMG_3502.eps}
+  \caption{Identifying the inherent sink polar: both the vertical and the $TAS$ are directly measured by the onboard sensors. The online RLS result is slightly different but well within the decision making bounds.}
+  \label{fig:SinkPolar}
+\end{figure}
+
+The analytical representation of the sink polar contribute significantly not only to the identification of thermal updrafts but also to the mission planning of a particular glider, see \cite{Piggott:1997} and \cite{FAA:2011}. In particular, the polar defines the minimum sink rate $V_{s.min}$ and the corresponding speed command for the autopilot to follow. While $V_{s.min}$ is too close to the stall speed $V_{stall}$ and should be avoided ($V_{stall} \approx V_{s.min}$), the effective speed commanded in thermaling mode $V_{th}$ is slightly higher. The polar also defines the optimal TAS command  $V_{cc}$ for the maximum glide ratio that is used by the navigation task in planning for the maximum range ''cross-country`` segment. While the sink polar is obtained in no-wind environment, its application to the known wind conditions is straightforward and enables calculating distances to be traveled in cross-country flight, see more details in \cite{Piggott:1997} and \cite{FAA:2011}.
+
+
+\emph{The total energy} approach is also widely used in human piloted soaring flight. It is based on the idea that at any given moment the mechanical energy $E_{tot}$ of the soaring glider combines the potential $E_p=mgh$ and kinetic $E_k=\frac{m\cdot V^2}{2}$ energy of the airframe minus the ''leakage`` of the energy due to the work of the aerodynamic drag. For a relatively ''clean``aerodynamic body the latter component can be neglected over a reasonably long period of time (tens of seconds). Therefore for the total energy and the rates of change one can consider the following:
+\begin{eqnarray}
+    && E_{tot}=mgh+\frac{m\cdot V^2}{2}, \quad E=\frac{E_{tot}}{mg}, \nonumber \\
+    && \dot{E}=\frac{V \cdot \dot{V}}{g}, \quad \ddot{E}=\frac{\dot{V}^2 + V \cdot \ddot{V}}{g} + \ddot{h},
+    \label{eq:totenergyrate}
+\end{eqnarray}
+where $m$ is the mass of the airframe, $g$ is the gravitational constant, $E$ is the normalized total mechanical energy of the system (also call specific energy), $h$ is the height, and $V$ is the inertial speed. Therefore, for highly efficient airframes the longitudinal long period oscillations represent the natural tradeoff of kinetic and potential energy while their sum remains constant. As a consequence, in no updraft conditions the rate of change of the total energy $\dot{E}\approx 0$. In turn, if there is a significant variation of the total energy, then the energy rate will be significantly away from zero thus indicating the energy increase $\dot{E} \gg 0$ due to an updraft or decrease $\dot{E} \ll 0$ due to the downward air flow; note that the inertial speed does not change so rapidly when meeting the convective vertical flows. All the components of equation (\ref{eq:totenergyrate}) are readily available in onboard autopilot. Both equations in (\ref{eq:totenergyrate}) are included into one Kalman filter along with the inertial and barometric sensors outputs. The resulting energy rate solution provides another precise indication of the updraft event. A comparison of the outputs of both approaches is presented next in Figure.\ref{fig:ThermalDetection}.
+
+\begin{figure}[thpb]
+  \centering
+  \includegraphics[scale=1.2]{Figures/IMG_3502.eps}
+  \caption{Comparison of two approaches to the detection of thermal updrafts.}
+  \label{fig:ThermalDetection}
+\end{figure}
+
+The outcomes of the total energy estimator in (\ref{eq:totenergyrate}) are used in the guidance law implementation; this will be shown in the following section.
+
+\subsection{Identification of the Updraft Geometry}
+\label{sec:UpdraftID}
+Identification of an updraft (strength and geometry) is performed online by each glider when the soaring guidance algorithm is engaged. The algorithm is based on probabilistic  approach
 
 \section{Cooperative Algorithms}
 \label{sec:CoopAlgs}
@@ -142,7 +177,6 @@ we had but time and space enough.
 {{\partial F}\over {\partial t}} =
 D{{\partial^2 F}\over {\partial x^2}}.
 \end{equation}
-See \cite{Abl:56}, \cite{AbTaRu:54}, \cite{Keo:58} and \cite{Pow:85}.
 
 \subsubsection{A subsubsection}This equation goes far beyond the celebrated theorem ascribed to the great Pythagoras by his followers.
 \begin{thm}
@@ -238,7 +272,7 @@ A conclusion section is not required. Although a conclusion may review the main 
 Partially supported by the Roman Senate.  % here.
 \end{ack}
 
-\bibliographystyle{ifacconf-harvard}        % Include this if you use bibtex
+\bibliographystyle{ifacconf}        % Include this if you use bibtex
 \bibliography{ifacconf}           % and a bib file to produce the
 
 
