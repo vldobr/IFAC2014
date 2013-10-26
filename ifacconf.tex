@@ -27,13 +27,13 @@
 
 \thanks[footnoteinfo]{This work was supported in part by the ARL contract number and the NPS CRUSER contract number.}
 
-\author[First]{Vladimir N. Dobrokhodov,}
-\author[Second]{Kevin D. Jones,}
+\author[First]{Nahum Camacho,}
+\author[Second]{Vladimir N. Dobrokhodov, Kevin D. Jones,}
 \author[Third]{Isaac I. Kaminer}
 
-\address[First]{Research Associate Professor at the Department  of Mechanical and Aerospace Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (e-mail: vndobrok@nps.edu)}
-\address[Second]{Research Associate Professor at the Department  of Mechanical and Aerospace Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (e-mail: kdjones@nps.edu)}
-\address[Third]{Professor at the Department  of Mechanical and Aerospace Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (e-mail: kaminer@nps.edu)}
+\address[First]{Graduate student at the Department  of Mechanical and Aerospace Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (\tt\small e-mail: ncamacho@nps.edu)}
+\address[Second]{Associate Professors at the Department  of Mechanical and Aerospace Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (\tt\small e-mail: vndobrok@nps.edu, kdjones@nps.edu)}
+\address[Third]{Professor at the Department  of Mechanical and Aerospace Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (\tt\small e-mail: kaminer@nps.edu)}
 
 
 \begin{keyword}                           % Five to ten keywords, chosen from the IFAC
@@ -126,7 +126,7 @@ While adapting the conceptual ideas of autonomous soaring, the approach used in 
 \begin{figure}[thpb]
   \centering
   \includegraphics[scale=1.2]{Figures/IMG_3502.eps}
-  \caption{Identifying the inherent sink polar: both the vertical and the $TAS$ are directly measured by the onboard sensors. The online RLS result is slightly different but well within the decision making bounds.}
+  \caption{Identifying the inherent sink polar: both the vertical and the TAS are directly measured by the onboard sensors. The online RLS result is slightly different but well within the decision making bounds.}
   \label{fig:SinkPolar}
 \end{figure}
 
@@ -139,20 +139,53 @@ The analytical representation of the sink polar contribute significantly not onl
     && \dot{E}=\frac{V \cdot \dot{V}}{g}, \quad \ddot{E}=\frac{\dot{V}^2 + V \cdot \ddot{V}}{g} + \ddot{h},
     \label{eq:totenergyrate}
 \end{eqnarray}
-where $m$ is the mass of the airframe, $g$ is the gravitational constant, $E$ is the normalized total mechanical energy of the system (also call specific energy), $h$ is the height, and $V$ is the inertial speed. Therefore, for highly efficient airframes the longitudinal long period oscillations represent the natural tradeoff of kinetic and potential energy while their sum remains constant. As a consequence, in no updraft conditions the rate of change of the total energy $\dot{E}\approx 0$. In turn, if there is a significant variation of the total energy, then the energy rate will be significantly away from zero thus indicating the energy increase $\dot{E} \gg 0$ due to an updraft or decrease $\dot{E} \ll 0$ due to the downward air flow; note that the inertial speed does not change so rapidly when meeting the convective vertical flows. All the components of equation (\ref{eq:totenergyrate}) are readily available in onboard autopilot. Both equations in (\ref{eq:totenergyrate}) are included into one Kalman filter along with the inertial and barometric sensors outputs. The resulting energy rate solution provides another precise indication of the updraft event. A comparison of the outputs of both approaches is presented next in Figure.\ref{fig:ThermalDetection}.
+where $m$ is the mass of the airframe, $g$ is the gravitational constant, $E$ is the normalized total mechanical energy of the system (also call specific energy), $h$ is the height, and $V$ is the inertial speed. Therefore, for highly efficient airframes the longitudinal long period oscillations represent the natural tradeoff of kinetic and potential energy while their sum remains constant. As a consequence, in no updraft conditions the rate of change of the total energy $\dot{E}\approx 0$. In turn, if there is a significant variation of the total energy, then the energy rate will be significantly away from zero thus indicating the energy increase $\dot{E} \gg 0$ due to an updraft or decrease $\dot{E} \ll 0$ due to the downward air flow; note that the inertial speed does not change so rapidly when meeting the convective vertical flows. All the components of equation (\ref{eq:totenergyrate}) are readily available in onboard autopilot. Both equations in (\ref{eq:totenergyrate}) are included into one Kalman filter along with the inertial and barometric sensors outputs. The resulting energy rate solution provides another precise indication of the updraft event. A comparison of the outputs of both approaches with the output  of the total energy compensated variometer( TEK) $\dot{h}_{TEK}$ is presented next in Figure.\ref{fig:ThermalDetection}.
 
 \begin{figure}[thpb]
   \centering
-  \includegraphics[scale=1.2]{Figures/IMG_3502.eps}
-  \caption{Comparison of two approaches to the detection of thermal updrafts.}
+  \includegraphics[scale=0.51]{Figures/ThermalDetection.eps}
+  \caption{Comparison of two approaches to the detection of thermal updrafts in mathematical model using Condor flight simulator, see~\cite{Condor:2013:Online}. Similar data is obtained in flight by utilizing the measurements of SkyAssistant TEK variometer from \cite{PitLab:2013:Online}}
   \label{fig:ThermalDetection}
 \end{figure}
 
-The outcomes of the total energy estimator in (\ref{eq:totenergyrate}) are used in the guidance law implementation; this will be shown in the following section.
+The outcomes of the total energy estimator in (\ref{eq:totenergyrate}) are used in the guidance law implementation that is presented next.
+
+\subsection{Guidance in Thermal Centering Mode}
+\label{sec:ThermGuidance}
+When a thermal updraft is detected the glider needs to perform an automatic maneuver to enable staying in the thermal with the objective of increasing the glider's potential energy through a rapid increase of the height. The theoretical development of the thermaling guidance law has been recently reported in \cite{AKlass_JGCD:2012}). The most recent experimental results and findings that motivate further refinement of the solution were discusses in \cite{AKlass_CDC:2012}. This development was recently modified to include explicitly the sign of the turn rate command that is defined by the filtered value of the body measured roll rate $p$; it was observed in a number of flights that entering the thermal induces the $p$ rate that rolls the wings away from the termal. The resulting thermaling guidance law implemented onboard of real glider enabled successful latching and effective exploitation of the thermal by rapidly raising flight altitude up to the ceiling of the updraft.
+
+The thermal centering guidance law that produces a turn rate command $\dot{\psi}_{c}$ to the autopilot is based on the feedback control law that takes into account the desire to get closer to the updraft (defined by the $\rho_d$) where its intensity (vertical speed) is the highest, while balancing the turn rate and the turn-induced sink rate by a measure proportional to the rate of change of the total energy increase (defined by the $\ddot{E}$ in (\ref{eq:totenergyrate})), see the geometry of the guidance task in Figure.\ref{fig:ThermaG} and the resulting guidance law in (\ref{eq:GuidanceLaw}):
+\begin{eqnarray}
+    && \dot{\psi}_{c}=-sign(p) \cdot (\frac{V}{\rho_d}-k_1 \cdot \ddot{E}),
+    \label{eq:GuidanceLaw}
+\end{eqnarray}
+where $\rho$ and $\rho_d$ are the current distance and the desired orbital radius around the center of the thermal updraft, and $k_1$ is the feedback gain defined by the stability and performance requirements.
+\begin{figure}[thpb]
+  \centering
+  \includegraphics[scale=0.4]{Figures/ThermalG.eps}
+  \caption{Kinematics of guidance around a thermal updraft; the desired orbit is represented by the red dashed line defined by $\rho_d$.}
+  \label{fig:ThermaG}
+\end{figure}
+For the feasibility of theoretical development the thermal center is assumed stationary with its position unknown. The desired distance ($\rho_d$) toward the center at this point is not defined, however for the stability of the control law it is assumed to be away from zero. The best value of $\rho_d$ is initially assigned based on statistical observations of the glider performance and the shapes of updrafts in the area. Later on when collaborative gliders contribute to the identification of the updraft geometry this value is updated, thus resulting in a feedback that improves the collaborative efficiency of utilizing the free energy of the updraft. For the stability analysis of the thermaling guidance law it is assumed that the intensity of the updraft can be represented by the Gaussian distribution function of the form:
+\begin{eqnarray}
+    && \omega=\omega_p \cdot e^{-[\frac{(x-x_0)^2+(y-y_0)^2}{2\sigma^2}]},
+    \label{eq:GaussUpdraft}
+\end{eqnarray}
+where $x_0, y_o$ represent the unknown coordinates of the center of updraft,
+$x, y$ represent the coordinates of the glider, $\omega_p$ is the peak intensity of the updraft,
+and $\sigma$ define the geometry of the symmetric updraft (in general case $\sigma_x \neq \sigma_y$). For a stationary updraft modeled by Gaussian distribution function with $\sigma>0,~\omega_p>0$ and the glider with $V>0, \rho_d>0$ it is proven that the feedback guidance law in (\ref{eq:GuidanceLaw}) is locally asymptotically stable with an equilibrium at $(\eta, \rho-\rho_d)=(0,0)$ and a region of attraction $\Omega=\{(\eta, \rho-\rho_d): \vert \rho-\rho_d \vert \leq \beta,  \vert \eta \vert \leq \alpha \}, $ where $\beta < \rho_d, \alpha< \pi/2$, for any
+\begin{eqnarray}
+    && k_1 > \tan \alpha \frac{\sigma^2}{\omega_p(\rho_d-\beta)^2} e^(\frac{-(\rho_d+\beta)^2}{2\sigma^2} )\nonumber
+    \label{eq:GuidanceGain}
+\end{eqnarray}
+
+The physical meaning of the guidance law (\ref{eq:GuidanceLaw}) is to increase the turn rate (typically implemented by the onboard autopilot through modifying the bank angle) till the rate of change of the increase of total energy is compensated by the sink resulted from the desire to get closer to the center of the thermal. In fact, the sink polar diagram (Figure.\ref{fig:SinkPolar}) and the discussion come handy here as they show that the sink rate gradually increases with the bank angle of the glider.
+
+It is realized however, that the thermals geometry and their motion is more complex: it is not only moving but also bending \cite{Reichmann:1978}. Identification of the thermal motion is a separate task, to be performed effectively online the solution should integrate the knowledge gained by multiple gliders. As described above, the thermal intensity model adopted in this study is the 2-dimensional Gaussian distribution, and it can be argued whether this function is a good representation of a thermal or not. However, even if a Gaussian does not encompass all the features of an actual updraft, most sources seem to agree that it does capture many of the basic characteristics of a real thermal, i.e., being strongest at the core, with a rounded shape and gradual decrease in strength towards the edges; see, for example, \cite{Wharington:1998} and \cite{Pagen:1992}. Still, the greatest uncertainty in the analysis can likely be contributed to the updraft model.
 
 \subsection{Identification of the Updraft Geometry}
 \label{sec:UpdraftID}
-Identification of an updraft (strength and geometry) is performed online by each glider when the soaring guidance algorithm is engaged. The algorithm is based on probabilistic  approach
+Identification of an updraft (strength and geometry) is performed online by each glider when the soaring guidance algorithm is engaged. The algorithm is based on probabilistic Bayesian approach, see details in \cite{Bergman:1999}.
 
 \section{Cooperative Algorithms}
 \label{sec:CoopAlgs}
