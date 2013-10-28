@@ -115,48 +115,50 @@ Since the number of involved algorithms and technologies is significant, the rem
 The algorithms of individual platforms are primarily responsible for the sustainable flight of a partially uncertain glider and exploration and sharing of knowledge about the environment. The algorithms run online and enable identification of the inherent flight dynamics properties of the glider which are in turn used to detect the thermal updrafts. When flying in the updraft the guidance algorithm is engaged to enable the maximum harvesting efficiency of the updraft's energy, and on the other hand estimates the updraft geometry and motion that are used to georeference the updraft and share its utility properties across the network of collaborative gliders. Besides the collaborative mission objective and initial mission plan, the georeferenced map is the formalized knowledge used in the collaborative mission replanning phase. While in autonomous soaring mode, the electrical management system that consists of solar panels, batteries and the maximum energy tracking circuitry, supports the avionics and recharges the batteries keeping them evenly balanced. At any given time each individual platform can be either in a search or in a soaring mode. While the soaring mode is primarily defined by the energy gain objective, the search mode is driven by the intelligent algorithm that combines the goals of the distributed mission and the need to search for energy sources in the environment. Development of these intelligent algorithms that enable optimal balancing of energy gain and mission objectives is the most promising direction of the current and future research.
 
 \subsection{Glider Identification and Updraft Detection}
-\label{sec:SysID}
+\label{subsec:SysID}
 
 There is a number of prior efforts devoted to the autonomous soaring capability. First demonstrated by human pilots in 1900s (see \cite{Simons:1998}) the idea of soaring in convective air became feasible for onboard autonomous implementation only in the 1990s, see \cite{Wharington:1998}. While enabling the desired functionality by primarily mimicking the birds flight and indeed achieving significant extended flight capabilities (see \cite{Edwards:2008}, \cite{Allen:2006} and \cite{Allen:2007}), most of the algorithms implemented significant portion of heuristic in the identification of the updraft strength, its potential utility in energy gain, and the decision of when and how to enter the updraft. The reason for employing heuristic approaches is obvious, since both the strength of the updraft and its efficiency are both subject to significant uncertainties. First, they result from the uncertain flight characteristics of the specific glider no matter how well the airframe is modeled and flight tested; significant advances in material and structures sciences produce novel airframes that are strong and flexible on one hand, and therefore aerodynamically uncertain when bend and twisted on the other hand. Second, when a glider is propelled through the unsteady air the updraft estimation algorithm lacks of spatial content (both in horizontal and vertical directions) in the noisy measurements of the vertical velocity of convective air. Thus, for any given altitude of flight it takes essential time before the updraft geometry is identified and the guidance algorithm is engaged. It is worth noting that when controlled by the thermal centering guidance law the estimation algorithm partially regains the spatial data in horizontal direction. To successfully identify the thermal strength in vertical direction it would take prohibitively long time for a single glider, thus to achieve rapid identification of $3D$ energy profile of any given thermal updraft it is very effective to utilize a number of collaborative platforms simultaneously sampling the same updraft in three dimensions.
 
 While adapting the conceptual ideas of autonomous soaring, the approach used in our development shifts the focus from heuristics toward the online estimation algorithms of the glider flight dynamics and the parameterized model of the convective updraft. The algorithm of detecting a thermal is based on combining two complementary approaches; however conceptually they are similar as they compare the natural metrics of the system with the same actually measured characteristics of the glider. The first approach utilizes the inherent sink rate polar and the second one is based on the total energy of the system.
 
-\emph{The sink rate polar} is the curve of the vertical speed plotted versus the true air speed (TAS). Every glider has a very specific sink polar as it reflects the glider inherent ability to descend in wings level flight in no-wind conditions; sink polar can be obtained to characterize the sink rate at various bank angles that can be used to minimize the energy loss in turning flight. Thus, if the sink polar is known then the difference between the actually measured sink rate and the point on the sink polar corresponding to the measured true air speed identifies if there is an excess of energy in the air that forces the glider away from its native sink polar; the sign of the difference defines the updraft and downdraft conditions. Implementation of this approach depends on precise characterization of the sink polar of the glider that can be practically achieved in extensive experimentation. However, experimentation can hardly provide an ideal controlled conditions, and in every flight of the same platform there are always subtle differences that are not accounted for. Based on the extensive experimental data collected an a number of flights (see \cite{AKlass_JGCD:2012} and the references herein) in close to ideal no-wind conditions the sink polar was first obtained off-line. Analysis of the measurements confirmed that the sink polar can be represented by a second order polynomial $V_s=A \cdot V_{tas}^2 + B \cdot V_{tas} +C$ with coefficients $A, B$, and $C$ defined by the least squares approximation method; similar results can be found in \cite{Reichmann:1978}, \cite{Edwards:2008}. The same method is then implemented onboard as a recursive least square (RLS) estimator, see \cite{Astrom:1995}, to account for any variations in the setup of the actual flying platform. An example of the experimental data and the resulting approximation is presented in Figure.\ref{fig:SinkPolar}.
+\emph{The sink rate polar} is the curve of the vertical speed plotted versus the true air speed (TAS). Every glider has a very specific sink polar as it reflects the glider inherent ability to descend in wings level flight in no-wind conditions; sink polar can be obtained to characterize the sink rate at various bank angles that can be used to minimize the energy loss in turning flight. Thus, if the sink polar is known then the difference between the actually measured sink rate and the point on the sink polar corresponding to the measured true air speed identifies if there is an excess of energy in the air that forces the glider away from its native sink polar; the sign of the difference defines the updraft and downdraft conditions. Implementation of this approach depends on precise characterization of the sink polar of the glider that can be practically achieved in extensive experimentation. However, experimentation can hardly provide an ideal controlled conditions, and in every flight of the same platform there are always subtle differences that are not accounted for. Based on the extensive experimental data collected an a number of flights (see \cite{AKlass_JGCD:2012} and the references herein) in close to ideal no-wind conditions the sink polar was first obtained off-line. Analysis of the measurements confirmed that the sink polar can be represented by a second order polynomial $V_s=A \cdot V_{tas}^2 + B \cdot V_{tas} +C$ with coefficients $A, B$, and $C$ defined by the least squares approximation method; similar results can be found in \cite{Reichmann:1978}, \cite{Edwards:2008}. The same method is then implemented onboard as a recursive least square (RLS) estimator, see \cite{Astrom:1995}, to account for any variations in the setup of the actual flying platform. A comparative example of identifying the sink polar of ASW-27 glider using the developed algorithm and the experimentally verified data  from \cite{Boermans:1994} is presented in Figure.\ref{fig:SinkPolar}. The identification algorithm was tested against the flight data  of ASW-27 acquired in high-fidelity simulation provided by the Condor software, see \cite{Condor:2013:Online}. 
 
 \begin{figure}[thpb]
   \centering
-  \includegraphics[scale=1.2]{Figures/IMG_3502.eps}
-  \caption{Identifying the inherent sink polar: both the vertical and the TAS are directly measured by the onboard sensors. The online RLS result is slightly different but well within the decision making bounds.}
+  \includegraphics[scale=0.49]{Figures/Condor_Boermans_comparison.eps}
+  \caption{Identifying the inherent sink polar: both the vertical speed and the TAS are directly measured by the onboard sensors. Minumim sink rate $V_s min$ and the optimal crusing speed $V_{cc}$ corresponding to the ''cross-country`` flight are presented.}
   \label{fig:SinkPolar}
 \end{figure}
 
 The analytical representation of the sink polar contribute significantly not only to the identification of thermal updrafts but also to the mission planning of a particular glider, see \cite{Piggott:1997} and \cite{FAA:2011}. In particular, the polar defines the minimum sink rate $V_{s.min}$ and the corresponding speed command for the autopilot to follow. While $V_{s.min}$ is too close to the stall speed $V_{stall}$ and should be avoided ($V_{stall} \approx V_{s.min}$), the effective speed commanded in thermaling mode $V_{th}$ is slightly higher. The polar also defines the optimal TAS command  $V_{cc}$ for the maximum glide ratio that is used by the navigation task in planning for the maximum range ''cross-country`` segment. While the sink polar is obtained in no-wind environment, its application to the known wind conditions is straightforward and enables calculating distances to be traveled in cross-country flight, see more details in \cite{Piggott:1997} and \cite{FAA:2011}.
 
 
-\emph{The total energy} approach is also widely used in human piloted soaring flight. It is based on the idea that at any given moment the mechanical energy $E_{tot}$ of the soaring glider combines the potential $E_p=mgh$ and kinetic $E_k=\frac{m\cdot V^2}{2}$ energy of the airframe minus the ''leakage`` of the energy due to the work of the aerodynamic drag. For a relatively ''clean``aerodynamic body the latter component can be neglected over a reasonably long period of time (tens of seconds). Therefore for the total energy and the rates of change one can consider the following:
+\emph{The total energy} approach is also widely used in human piloted soaring flight. It is based on the idea that at any given moment the mechanical energy $E_{tot}$ of the soaring glider combines the potential $E_p=mgh$ and kinetic $E_k=\frac{m\cdot V^2}{2}$ energy of the airframe minus the ''leakage`` of the energy due to the work of the parasitic aerodynamic drag. For a relatively ''clean``aerodynamic body the latter component can be neglected over a reasonably long period of time (tens of seconds). Therefore for the total energy and its rate of change one can consider the following:
 \begin{eqnarray}
     && E_{tot}=mgh+\frac{m\cdot V^2}{2}, \quad E=\frac{E_{tot}}{mg}, \nonumber \\
     && \dot{E}=\frac{V \cdot \dot{V}}{g}, \quad \ddot{E}=\frac{\dot{V}^2 + V \cdot \ddot{V}}{g} + \ddot{h},
     \label{eq:totenergyrate}
 \end{eqnarray}
-where $m$ is the mass of the airframe, $g$ is the gravitational constant, $E$ is the normalized total mechanical energy of the system (also call specific energy), $h$ is the height, and $V$ is the inertial speed. Therefore, for highly efficient airframes the longitudinal long period oscillations represent the natural tradeoff of kinetic and potential energy while their sum remains constant. As a consequence, in no updraft conditions the rate of change of the total energy $\dot{E}\approx 0$. In turn, if there is a significant variation of the total energy, then the energy rate will be significantly away from zero thus indicating the energy increase $\dot{E} \gg 0$ due to an updraft or decrease $\dot{E} \ll 0$ due to the downward air flow; note that the inertial speed does not change so rapidly when meeting the convective vertical flows. All the components of equation (\ref{eq:totenergyrate}) are readily available in onboard autopilot. Both equations in (\ref{eq:totenergyrate}) are included into one Kalman filter along with the inertial and barometric sensors outputs. The resulting energy rate solution provides another precise indication of the updraft event. A comparison of the outputs of both approaches with the output  of the total energy compensated variometer( TEK) $\dot{h}_{TEK}$ is presented next in Figure.\ref{fig:ThermalDetection}.
+where $m$ is the mass of the airframe, $g$ is the gravitational constant, $E$ is the normalized total mechanical energy of the system (also callED specific energy), $h$ is the height, and $V$ is the inertial speed. Therefore, for highly efficient airframes the longitudinal long period oscillations represent the natural tradeoff of kinetic and potential energy while their sum remains constant. As a consequence, in no updraft conditions the rate of change of the total energy $\dot{E}\approx 0$. In turn, if there is a significant variation of the total energy, then the energy rate will be significantly away from zero thus indicating the energy increase $\dot{E} \gg 0$ due to an updraft or decrease $\dot{E} \ll 0$ due to the downward air flow; note, that the inertial speed does not change so rapidly when meeting the convective vertical flows. In fact, the total energy management just presented is widely used in manned aviation being implemented in the so-called total energy compensating (TEK) variometers, see for example \cite{PitLab:2013:Online}.  
+
+All the components of equation (\ref{eq:totenergyrate}) are readily available in onboard autopilot. Both equations in (\ref{eq:totenergyrate}) are included into one Kalman filter along with the inertial and barometric sensors outputs. The resulting energy rate solution provides another precise indication of the updraft event. A comparison of the outputs of both approaches with the output  of the TEK variometer $\dot{h}_{TEK}$ is presented next in Figure.\ref{fig:ThermalDetection}.
 
 \begin{figure}[thpb]
   \centering
-  \includegraphics[scale=0.51]{Figures/ThermalDetection.eps}
-  \caption{Comparison of two approaches to the detection of thermal updrafts in mathematical model using Condor flight simulator, see~\cite{Condor:2013:Online}. Similar data is obtained in flight by utilizing the measurements of SkyAssistant TEK variometer from \cite{PitLab:2013:Online}}
+  \includegraphics[scale=0.49]{Figures/TEK_Bank.eps}
+  \caption{Comparison of two approaches to the detection of thermal updrafts in mathematical model using Condor flight simulator, see~\cite{Condor:2013:Online}. }
   \label{fig:ThermalDetection}
 \end{figure}
 
 The outcomes of the total energy estimator in (\ref{eq:totenergyrate}) are used in the guidance law implementation that is presented next.
 
 \subsection{Guidance in Thermal Centering Mode}
-\label{sec:ThermGuidance}
-When a thermal updraft is detected the glider needs to perform an automatic maneuver to enable staying in the thermal with the objective of increasing the glider's potential energy through a rapid increase of the height. The theoretical development of the thermaling guidance law has been recently reported in \cite{AKlass_JGCD:2012}). The most recent experimental results and findings that motivate further refinement of the solution were discusses in \cite{AKlass_CDC:2012}. This development was recently modified to include explicitly the sign of the turn rate command that is defined by the filtered value of the body measured roll rate $p$; it was observed in a number of flights that entering the thermal induces the $p$ rate that rolls the wings away from the termal. The resulting thermaling guidance law implemented onboard of real glider enabled successful latching and effective exploitation of the thermal by rapidly raising flight altitude up to the ceiling of the updraft.
+\label{subsec:ThermGuidance}
+When a thermal updraft is detected the glider needs to perform an automatic maneuver to enable staying in the thermal with the objective of increasing the glider's potential energy through a rapid increase of the height. The theoretical development of the thermaling guidance law has been recently reported in \cite{AKlass_JGCD:2012}). The most recent experimental results and findings that motivate further refinement of the solution were discusses in \cite{AKlass_CDC:2012}. This development was recently modified to include explicitly the sign of the turn rate command that is defined by the filtered value of the body measured roll rate $\hat{p}$; it was observed in a number of flights that entering the thermal induces the $p$ rate that rolls the wings away from the thermal thus suggesting the turn in an opposite direction. The resulting thermaling guidance law implemented onboard of real glider enabled successful latching and effective exploitation of the thermal.
 
-The thermal centering guidance law that produces a turn rate command $\dot{\psi}_{c}$ to the autopilot is based on the feedback control law that takes into account the desire to get closer to the updraft (defined by the $\rho_d$) where its intensity (vertical speed) is the highest, while balancing the turn rate and the turn-induced sink rate by a measure proportional to the rate of change of the total energy increase (defined by the $\ddot{E}$ in (\ref{eq:totenergyrate})), see the geometry of the guidance task in Figure.\ref{fig:ThermaG} and the resulting guidance law in (\ref{eq:GuidanceLaw}):
+The thermal centering guidance law that produces a turn rate command $\dot{\psi}_{c}$ to the autopilot is based on the feedback control law that takes into account the desire to get closer to the updraft (defined by the $\rho_d$) where its intensity (the vertical speed) is the highest, while balancing the turn rate and the turn-induced sink rate by a measure proportional to the rate of change of the total energy increase (defined by the $\ddot{E}$ in (\ref{eq:totenergyrate})), see the geometry of the guidance task in Figure.\ref{fig:ThermaG} and the resulting guidance law in (\ref{eq:GuidanceLaw}):
 \begin{eqnarray}
-    && \dot{\psi}_{c}=-sign(p) \cdot (\frac{V}{\rho_d}-k_1 \cdot \ddot{E}),
+    && \dot{\psi}_{c}=-sign(\hat{p}) \cdot (\frac{V}{\rho_d}-k_1 \cdot \ddot{E}),
     \label{eq:GuidanceLaw}
 \end{eqnarray}
 where $\rho$ and $\rho_d$ are the current distance and the desired orbital radius around the center of the thermal updraft, and $k_1$ is the feedback gain defined by the stability and performance requirements.
@@ -181,120 +183,85 @@ and $\sigma$ define the geometry of the symmetric updraft (in general case $\sig
 
 The physical meaning of the guidance law (\ref{eq:GuidanceLaw}) is to increase the turn rate (typically implemented by the onboard autopilot through modifying the bank angle) till the rate of change of the increase of total energy is compensated by the sink resulted from the desire to get closer to the center of the thermal. In fact, the sink polar diagram (Figure.\ref{fig:SinkPolar}) and the discussion come handy here as they show that the sink rate gradually increases with the bank angle of the glider.
 
-It is realized however, that the thermals geometry and their motion is more complex: it is not only moving but also bending \cite{Reichmann:1978}. Identification of the thermal motion is a separate task, to be performed effectively online the solution should integrate the knowledge gained by multiple gliders. As described above, the thermal intensity model adopted in this study is the 2-dimensional Gaussian distribution, and it can be argued whether this function is a good representation of a thermal or not. However, even if a Gaussian does not encompass all the features of an actual updraft, most sources seem to agree that it does capture many of the basic characteristics of a real thermal, i.e., being strongest at the core, with a rounded shape and gradual decrease in strength towards the edges; see, for example, \cite{Wharington:1998} and \cite{Pagen:1992}. Still, the greatest uncertainty in the analysis can likely be contributed to the updraft model.
-
 \subsection{Identification of the Updraft Geometry}
-\label{sec:UpdraftID}
-Identification of an updraft (strength and geometry) is performed online by each glider when the soaring guidance algorithm is engaged. The algorithm is based on probabilistic Bayesian approach, see details in \cite{Bergman:1999}.
+\label{subsec:UpdraftID}
+As described above, the thermal intensity model adopted for the stability analysis of the thermal centering guidance law is the 2-dimensional Gaussian distribution (\ref{eq:GaussUpdraft}). Although its effective application was successfully demonstrated, it is realized, that the thermals geometry and their motion is more complex: it does not only move but also bends, see \cite{Reichmann:1978} and the experimental result in  Figure.\ref{fig:ThermaShape} obtained by a single glider persistently staying in an updraft, see \cite{AKlass_JGCD:2012}.  It can be argued whether Gaussian function is a good representation of a thermal or not. However, even if a Gaussian distribution does not encompass all the features of an actual updraft, most sources seem to agree that it does capture many of the basic characteristics of a real thermal, i.e., being strongest at the core, with a rounded shape and gradual decrease in strength towards the edges; see, for example, \cite{Wharington:1998} and \cite{Pagen:1992}. At the end, the ultimate goal of the updraft identification is to develop a georeferenced map of thermals in the area to enable intelligent mission planning with an account of free energy resources.
+
+% In an exemplary mission with the goal defined by the waypoints in the area of operation the task of finding an optimal route for multiple traveling salesman to visit all waypoints can be solved by weighting the edges of the underlying graph according to the proximity to the free energy sources in the area%
+
+%%%%%%%%%%
+\begin{figure}[thpb]
+  \centering
+  \includegraphics[scale=0.3]{Figures/BendedThermal.eps}
+  \caption{The experimentally obtained shape illustrates complex geometry of an updraft; color coding represents the rate of change of the total energy of a glider guided by the control law in (\ref{eq:GuidanceLaw}).}
+  \label{fig:ThermaShape}
+\end{figure}
+%%%%%%%%%%
 
 \section{Cooperative Algorithms}
 \label{sec:CoopAlgs}
+Our initial approach to estimation of thermal geometry  ($2D$ coordinates of the center vs. the glider altitude) by utilizing the measurements of single glider in thermaling mode was based on the nonlinear filter with the ''bearings only measurements'' and the kinematics presented in Figure.\ref{fig:ThermaG}. In this formulation the bearing to the center was assumed to be constantly at $\pi/2$ ($\eta=0$)  toward the center of the turn with $\dot{\psi}$ and the speed over the ground $V$ being kinematically related through the distance to the instantaneous center of turning motion $\rho$; the solution was similar to the development in  \cite{Dobrokhodov:2008}. When entering a strong updraft without switching the direction of commanded turn ($sign(\hat{p})$ in ( \ref{eq:GuidanceLaw})) the filter performance was reasonable, resulting in a converging solution in about 2 full orbits and precision of the thermal center estimation of $~75m$; the experimental setup unfortunately does not allow for true data of the thermal, while the simulation data is not a representative metric for the comparison. Although this solution might be sufficient for application in the cooperative navigation of multiple gliders as an initial guess, the design of the filter does not naturally allow for effective fusion of measurements provided by multiple data-sharing gliders; even two gliders in the same thermal at different altitudes would require serious modification of the filter.
+
+\subsection{Bayesian Mapping of Thermals}
+\label{subsec:BayesianMapping}
+To increase efficiency of online implementation the solution should integrate not only the knowledge gained by multiple gliders but also the prior meteorological observations (see \cite{Pennycuick:1998}, \cite{Hindman:2007}) that might be available for the envisioned area of operation. Such a data can be conveniently interpreted as a map of probability of encountering thermal activity with respect to the geographic latitude and longitude coordinates of area of operation, see an example in Figure.\ref{fig:HeatMap}   .
+%%%%%%%%%%
+\begin{figure}[thpb]
+  \centering
+  \includegraphics[scale=0.38]{Figures/ProbabilityThermal.eps}
+  \caption{''Heat map`` of probability of finding a thermal over an area of operation.}
+  \label{fig:HeatMap}
+\end{figure}
+%%%%%%%%%%
+
+Therefore, as a first step toward cooperative identification and mapping of thermals over an extended area with an account of prior methodological observation, the probabilistic Bayesian approach was adopted, see details of the approach in \cite{Bergman:1999}.
+
+Consider a task where $N$ gliders cooperatively estimate the velocity $f_k=f(x_k,y_k,z_k,k)$ of flow field  at  the inertial coordinates $x_k,y_k,z_k$  of $k$-th glider, $k=1...N$. Assume that the onboard instrumentation enables measuring the lateral and vertical components of the airflow. The objective of the task is to estimate $f$ by cooperatively using noisy observations of the flow. 
+
+Let $X(t)$ be a state vector that encapsulates the convective flow velocity $f_k$ estimated at each point of the discretized space at time $t$, $s_k(t)$ denote the noisy measurement of vehicle $k$ at time $t$, and $S_k(t)=\{s_k(0),...,s_k(t)\}$ define the set of measurements up to current time $t$. Assume that $s_k(t)$ of each vehicle at location $x_k,y_k,z_k$ is corrupted by gaussian noise such that $s_k(t)=f_k(x_k,y_k,z_k)+\mu_{h,k}+\mu_{v,k}$, with $\mu_{h,k}\sim N(0,\sigma^2_h)$ and $\mu_{v,k}\sim N(0,\sigma^2_v)$.
+
+Then the conditional probability of the state $X(t)$ given the set of measurements $S_k(t)$ of $k$-th glider is
+\begin{eqnarray}
+    && P(X(t)\vert S_k(t))=\beta \cdot P(s_k(t) \vert X)\cdot P(X(t) \vert S_k(t-1)),
+    \label{eq:BayesProb}
+\end{eqnarray}
+where $\beta$ is the normalization coefficient chosen to guarantee that $P(X(t)\vert S(t))$ at every instance of $t$ has a unity integral over the state-space $X$.  The $P(s_k(t) \vert X)$ is the likelihood function represented by the conditional probability of the measurement $s_k(t)$ given the state $X=f_k$, and the $P(X(t) \vert S_k(t-1))$ is the prior probability distribution that represent any prior knowledge or intelligence about the most likely location of thermals. In our development $P(X(t) \vert S_k(t-1))$ is what encapsulates the probability ''heat map``, see Figure.\ref{fig:HeatMap}; in a verification scenario when ''true thermals`` are distributed according to the chosen ''heat map`` and the prior is initialized uniformly the recursive algorithm in (\ref{eq:BayesProb}) converges   to the ''true heat map'' asymptotically.
+
+Finally, let each point of state $X$ in the state-space be represented by the multi-variate Gaussian likelihood function:
+\begin{eqnarray*}
+    && P(s_k(t)\vert X)=\frac{1}{[2\pi diag(\mu^2_h,\mu^2_v)]^\frac{1}{2}}  exp( \frac{-[f_k(X)-s_k(t)]}{\sum [f_k(X)-s_k(t)] }),
+    \label{eq:BayesProb}
+\end{eqnarray*}
+Assuming that measurements are taken at each time step and the gliders cooperatively share the data, the conditional probability density of the state $X(t)$ is updated through the motion of the fleet of gliders ($x_k,y_k,z_k$) as
+\begin{eqnarray*}
+    && P(X(t)\vert S(t))=\beta \cdot \prod P(s_k(t) \vert X)\cdot P(X(t) \vert S(t-1)),
+    \label{eq:CondProb}
+\end{eqnarray*}
+where $S(t-1)=\{ S_1(t),...,S_N(t)\} $includes measurements from all $N$ gliders in the fleet for all times up to current time $t$. Now it is clear that the points of the parameter space corresponding to the maximum of the posterior probability density $X(t)=max P(X(t) \vert S(t))$ provide the best estimate (maximum likelihood) of the convective flow field parameters.
 
 \section{System Integration Environment}
 \label{sec:SysIntegration}
 
+%%%%%%%%%%
+\begin{figure}[thpb]
+  \centering
+  \includegraphics[scale=0.45]{Figures/paths_cooperative_flight.eps}
+  \caption{An example of cooperative flight of three gliders; starting at different locations they all converge to the same updraft when one of then finds it and shares its location.}
+  \label{fig:CoopFlightPaths}
+\end{figure}
+%%%%%%%%%%
+
+%%%%%%%%%%
+\begin{figure}[thpb]
+  \centering
+  \includegraphics[scale=0.45]{Figures/Coop_gain_altitude.eps}
+  \caption{An example of cooperative flight of three gliders; cooperative gain of altitude.}
+  \label{fig:CoopFlightHeight}
+\end{figure}
+%%%%%%%%%%
+
 \section{Future plans}
 \label{sec:Future}
-
-Next we see a few subsections.
-
-\subsection{Review Stage}
-
-{\bf Please use this document as a “template” to prepare your manuscript. For submission guidelines, follow instructions on paper submission system as well as the Conference website.}
-
-Note that conferences impose strict page limits, so it will be better for you to prepare your initial submission in the camera ready layout so that you will have a good estimate for the paper length. Additionally, the effort required for final submission will be minimal.
-
-Some words might be appropriate describing equation~(\ref{e1}), if
-we had but time and space enough.
-\begin{equation} \label{e1}
-{{\partial F}\over {\partial t}} =
-D{{\partial^2 F}\over {\partial x^2}}.
-\end{equation}
-
-\subsubsection{A subsubsection}This equation goes far beyond the celebrated theorem ascribed to the great Pythagoras by his followers.
-\begin{thm}
-The square of the length of the hypotenuse of a right triangle equals the sum of the squares
-of the lengths of the other two sides.
-\end{thm}
-\begin{pf}
-The square of the length of the hypotenuse of a right triangle equals the sum of the squares
-of the lengths of the other two sides.
-\end{pf}
-
-\subsection{Final Stage}
-
-Authors are expected to mind the margins diligently. Conference papers need to be stamped with conference data and paginated for inclusion in the proceedings. If your manuscript bleeds into margins, you will be required to resubmit and delay the proceedings preparation in the process.
-
-\subsection{Page margins}
-
-All dimensions are in {\it centimeters}.
-
-\begin{center}
-\begin{tabular}{|c|c|c|c|} \hline
-\multicolumn{4}{|c|}{Margin settings} \\
-\hline
-Page & Top & Bottom & Left/Right \\ \hline
-First & 3.5 & 2.5 & 1.5 \\ \hline
-Rest & 2.5 & 2.5 & 1.5 \\ \hline
-\end{tabular}
-\end{center}
-
-It is very important to maintain these margins. They are necessary to put conference information and page number for the proceedings.
-
-
-\subsection{Figures and PDF Creation}
-
-All figures must be embedded in the document. When you include the image, make sure to insert the actual image rather than a link to your local computer.. As far as possible, use standard PDF conversion tools Adobe Acrobat or Ghostscript give best results. {\bf It is important that all  fonts be embedded/subsetted in the resulting PDF}.
-
-\subsection{Copyright Form}
-
-IFAC will put in place an electronic copyright transfer system in due course. Please “do not” send copyright forms by mail or FAX. More information on this will be made available on IFAC website.
-
-\section{Math}
-
-If you are using Word, use either the Microsoft Equation
-Editor or the MathType add-on for equations in your paper (Insert | Object | Create New | Microsoft Equation or MathType Equation). “Float over text” should not be selected. Of course LaTeX manages equations through built-in macros.
-
-\section{Units}
-
-Use either SI as primary units. Other units may be used as secondary units (in parentheses). This applies to papers in data storage. For example, write “$15 Gb/cm^2$ ($100 Gb/in^2$).” An exception is when English units are used as identifiers in trade, such as “3.5 in disk drive.” Avoid combining SI and CGS units, such as current in amperes and magnetic field in oersteds. This often leads to confusion because equations do not balance dimensionally. If you must use mixed units, clearly state the units for each quantity in an equation.
-The SI unit for magnetic field strength H is A/m. However, if you wish to use units of $T$, either refer to magnetic flux density $B$ or magnetic field strength symbolized as $\mu_0 H$. Use the center dot to separate compound units, e.g., “$A\cdot m^2$.”
-
-\section{Helpful Hints}
-
-\subsection{Figures and Tables}
-
-Figure axis labels are often a source of confusion. Use words rather than symbols. As an example, write the quantity “Magnetization,” or “Magnetization M,” not just “M.” Put units in parentheses. Do not label axes only with units. As in Fig. 1, for example, write “Magnetization (A/m)” or “Magnetization (A m?1),” not just “A/m.” Do not label axes with a ratio of quantities and units. For example, write “Temperature (K),” not “Temperature/K.”
-
-Multipliers can be especially confusing. Write “Magnetization (kA/m)” or “Magnetization (103 A/m).” Do not write “Magnetization (A/m) ? 1000” because the reader would not know whether the top axis label in Fig. 1 meant 16000 A/m or 0.016 A/m. Figure labels should be legible, approximately 8 to 12 point type.
-
-\subsection{References}
-
-Use Harvard style references (see at the end of this document). If you are using LaTeX, you can process an external bibliography database or insert it directly into the reference section. Footnotes should be avoided as far as possible.
-Please note that the references at the end of this document are in the preferred referencing style. Papers that have not been published should be cited as “unpublished.” Capitalize only the first word in a paper title, except for proper nouns and element symbols.
-
-\subsection{Abbreviations and Acronyms}
-
-Define abbreviations and acronyms the first time they are used in the text, even after they have already been defined in the abstract. Abbreviations such as IFAC, SI, ac, and dc do not have to be defined. Abbreviations that incorporate periods should not have spaces: write “C.N.R.S.,” not “C. N. R. S.” Do not use abbreviations in the title unless they are unavoidable (for example, “IFAC” in the title of this article).
-
-\subsection{Equations}
-
-Number equations consecutively with equation numbers in parentheses flush with the right margin, as in (1). First use the equation editor to create the equation. Then select the “Equation” markup style. Press the tab key and write the equation number in parentheses. To make your equations more compact, you may use the solidus ( / ), the exp function, or appropriate exponents. Use parentheses to avoid ambiguities in denominators. Punctuate equations when they are part of a sentence, as in
-
-\begin{equation} \label{e2}
-\begin{array}{ll}
-\int_0^{r_2} & F (r, \varphi ) dr d\varphi = [\sigma r_2 / (2 \mu_0 )] \\
-& \cdot \int_0^{\inf} exp(-\lambda |z_j - z_i |) \lambda^{-1} J_1 (\lambda  r_2 ) J_0 (\lambda r_i ) d\lambda
-\end{array}
-\end{equation}
-
-Be sure that the symbols in your equation have been defined before the equation appears or immediately following. Italicize symbols (T might refer to temperature, but T is the unit tesla). Refer to “(1),” not “Eq. (1)” or “equation (1),” except at the beginning of a sentence: “Equation (1) is ... .”
-
-\subsection{Other Recommendations}
-
-Use one space after periods and colons. Hyphenate complex modifiers: “zero-field-cooled magnetization.” Avoid dangling participles, such as, “Using (1), the potential was calculated.” [It is not clear who or what used (1).] Write instead, “The potential was calculated by using (1),” or “Using (1), we calculated the potential.”
-
-A parenthetical statement at the end of a sentence is punctuated outside of the closing parenthesis (like this). (A parenthetical sentence is punctuated within the parentheses.) Avoid contractions; for example, write “do not” instead of “don’t.” The serial comma is preferred: “A, B, and C” instead of “A, B and C.”
 
 
 \section{Conclusion}
