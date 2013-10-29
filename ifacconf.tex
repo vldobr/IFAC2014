@@ -25,15 +25,15 @@
 
 \title{Cooperative Autonomy of Multiple Solar-Powered Thermalling Gliders \thanksref{footnoteinfo}}
 
-\thanks[footnoteinfo]{This work was supported in part by the ARL contract number and the NPS CRUSER contract number.}
+\thanks[footnoteinfo]{The project has been supported by a number of sponsors including the NPS Consortium for Robotics and Unmanned Systems Education and Research (grant $\#$), the Army Research Lab (grant $\#$), and the "The Multidisciplinary Studies Support for USMC Expeditionary Energy Office" program.}
 
 \author[First]{Nahum Camacho,}
 \author[Second]{Vladimir N. Dobrokhodov, Kevin D. Jones,}
 \author[Third]{Isaac I. Kaminer}
 
-\address[First]{Graduate student at the Department  of Mechanical and Aerospace Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (\tt\small e-mail: ncamacho@nps.edu)}
-\address[Second]{Associate Professors at the Department  of Mechanical and Aerospace Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (\tt\small e-mail: vndobrok@nps.edu, kdjones@nps.edu)}
-\address[Third]{Professor at the Department  of Mechanical and Aerospace Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (\tt\small e-mail: kaminer@nps.edu)}
+\address[First]{Graduate student at the Department  of Mechanical and Aerospace Engineering, Naval Postgraduate School, Monterey, CA 93943 USA ( e-mail: ncamacho@nps.edu)}
+\address[Second]{Associate Professors at the Department  of Mechanical and Aerospace Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (e-mail: {vndobrok,kdjones}@nps.edu}
+\address[Third]{Professor at the Department  of Mechanical and Aerospace Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (e-mail: kaminer@nps.edu)}
 
 
 \begin{keyword}                           % Five to ten keywords, chosen from the IFAC
@@ -44,72 +44,52 @@ cooperative control; solar energy; convective thermals energy; autonomous glider
 
 
 \begin{abstract}                          % Abstract of not more than 250 words.
-The paper presents the multidisciplinary systematic approach to the the design of a fleet of cooperative gliders capable of extended endurance operation. The flock of autonomous gliders is able to harvest energy from the environment both through photo-voltaic energy generation and through exploitation of natural convective lift in the surrounded air, and acts cooperatively to meet mission requirements and to share knowledge of the local environment. The paper begins with a brief overview of the total-energy approach required for such a feat, along with a short description of key system components. This is followed by details of the evolution of a previously-developed architecture that supported autonomous thermaling, to an architecture that considers the total-energy budget in all flight segments, and optimizes the cooperative flight to maximize the  cumulative energy capture while simultaneously meeting the mission objectives.
+The paper presents the multidisciplinary systematic approach to the the design of a fleet of cooperative gliders capable of extended endurance operation. The flock of autonomous gliders is able to harvest energy from the environment both through photo-voltaic energy generation and through exploitation of natural convective lift in the surrounded air, and acts cooperatively to meet mission requirements and to share knowledge of the local environment. The paper begins with a brief overview of the total-energy approach required for such a feat, along with a short description of key system components and the principal technologies. This is followed by details of the evolution of a previously-developed architecture that supported autonomous thermaling, to an architecture that considers the total-energy budget in all flight segments, and utilizes the cooperative flight to maximize the  cumulative energy capture while simultaneously meeting the mission objectives.
 \end{abstract}
 
 \end{frontmatter}
 
 \section{Introduction}
-Imagine a large team of gracefully soaring autonomous gliders instrumented with sensors capable of detecting and utilizing the convective air flow, and high-efficiency solar panels which are seamlessly embedded into the wings to replenish the electrical energy of onboard batteries that power avionics. The gliders are sequentially launched from a distant area and assigned to provide, for example, an extended communication network coverage or to serve as a low-orbit observation satellites for the forest fire or border protection. The gliders reach the area of operations and remain there unattended for an extended period of time, perhaps up to a year. When a need for maintenance arises the distributed intelligent algorithm then reconfigures the team of gliders and dispatches a subset of aircraft for the scheduled service; in turn, when a substitute or serviced aircraft return the same algorithm reconfigures the team to accept the new players. The distributed soaring gliders can either operate in a distributed fashion or fly together in a suitable formation to provide a more focused high-resolution support. The latter may include cooperative distributed sensing to achieve the desired sensors resolution, tracking of weather formations, border patrol, etc. that are currently provided by much larger, heavier and more expensive systems.
+Imagine a large team of gracefully soaring autonomous gliders instrumented with sensors capable of detecting the convective air flow, and high-efficiency solar panels which are seamlessly embedded into the wings to replenish the electrical energy of onboard batteries that power avionics. The gliders are sequentially launched from a distant area and assigned to provide, for example, an extended communication network coverage or to serve as a low-orbit observation satellites for the forest fire or border protection. The gliders reach the area of operations and remain there unattended for an extended period of time, perhaps up to a year. When a need for maintenance arises the distributed intelligent algorithm then reconfigures the team of gliders and dispatches a subset of aircraft for the scheduled service; in turn, when a substitute or serviced aircraft return, the same algorithm reconfigures the team to accept the new players. The distributed soaring gliders can either operate in a distributed fashion or fly together in a suitable formation to provide a more focused high-resolution support. The latter may include cooperative distributed sensing to achieve the desired sensors resolution, tracking of weather formations, border patrol, and many other tasks that are currently provided by much larger, heavier and more expensive systems.
 
-Despite significant advances in a number of technologies resulting in shrinking the size, weight and power (SWAP) constraints in aerospace technologies, the ability to stay aloft for extended periods of time is still remain reserved for larger systems such as AWACS and/or mid and large scale UAVs such as Predators and Global Hawks. While extremely capable either of these systems still do not provide the desired $24/7$ continuous operational endurance and flexibility. Deployment of these assets requires large teams of ground personnel and has to be planned with significant and sufficient lead-time. Needless to say that the development and operational cost of those assets might be prohibitively expensive.
+Despite significant advances in a number of technologies resulting in relaxing the size, weight and power (SWAP) constraints in aerospace technologies, the ability to stay aloft for extended periods of time is still remain reserved for larger systems such as AWACS and/or mid and large scale UAVs such as Predators and Global Hawks, see \cite{Best:2005}. While being very capable neither of these systems provide the desired $24/7$ continuous operational endurance and flexibility. Deployment of these assets requires large teams of ground personnel and has to be planned with significant and sufficient lead-time. Needless to say that the development and operational cost of those assets might be prohibitively expensive.
 
-What if the endurance capabilities of larger aircraft and UAVs were achieved by much smaller autonomous systems with significantly less power consumption and maintenance needs? Then these smaller and cheaper UAVs would be able to carry out many missions reserved today for larger, heavier, more expensive long endurance systems. This is the precisely the objective, that has been addressed in the recent development by~\cite{AKlass_JGCD:2012,AKlass_CDC:2012}. The project concept shifts the paradigm from large, costly single point of failure platforms to distributed, small unmanned systems that can provide the same level of service at a significantly lower cost and with greater robustness. To achieve the goal, the project develops a system of multiple cooperating autonomous gliders that harvest thermal (convective air) and solar energy (photovoltaic) to achieve distributed collaborative sensing and dynamic area coverage according to a specific task at a significantly lower operational cost and personnel requirements (training and manning) than the existing systems.
-
+What if the endurance capabilities of larger aircraft and UAVs were achieved by much smaller autonomous systems with significantly less power consumption and maintenance needs? Then these smaller and cheaper UAVs would be able to carry out many missions reserved today for larger, heavier, more expensive long endurance systems. This is the precisely the objective that has been addressed in the recent development by~\cite{AKlass_JGCD:2012,AKlass_CDC:2012}. The project concept shifts the paradigm from large, costly single point of failure platforms to distributed, small unmanned systems that can provide the same level of service at a significantly lower cost and with greater robustness. To achieve the goal, the project develops a system of multiple cooperative autonomous gliders that harvest thermal (convective air) and solar energy (photovoltaic) to achieve distributed collaborative sensing and dynamic area coverage according to a specific task at a significantly lower operational cost and personnel requirements (training and manning) than the existing systems.
 
 \subsection{Technical Background and Envisioned Approach}
 
 One of the most critical limiting factors impacting effective collaborative autonomy today is the lack of endurance that is typical in most of the existing autonomous aircraft. Numerous futuristic ideas and concepts will not be implemented in real life solely due to this single reason. Until $R\&D$ community realizes that the energy onboard (of either a single or a flock of agents) and the mission objectives are equally important metrics of the mission management (planning and execution), and finds a way of solving this challenge, there will not be revolutionary advances made in the area of persistent intelligent collaborative autonomy.
 
-Despite almost two decades of significant advances in low-power and high-performance microelectronics development including CPUs, sensors, actuators, and communication circuits~\cite{Tong:1995},\cite{Singh:2010}, the only task addressed was to lower the power consumption of autonomous machines and therefore to reduce the pace of energy expenditures. On the other hand, the progress of energy renewable technologies is lagging behind. Since the loss of energy is unavoidable due to the inefficiency in energy conversion, storage, and transmission, the mission duration will always be limited. However, implementing novel approaches for the cooperative mission design and execution along with the optimal energy management can not only further reduce the rate of loss of limited energy resources but also can result in energy increase during the autonomous mission execution; this capability is not readily available today in any of the available technologies, see~\cite{Siciliano:2008},\cite{Martinez:2008},and \cite{Nonami:2013}.
+Despite almost two decades of significant advances in low-power and high-performance microelectronics development including CPUs, sensors, actuators, and communication circuits~\cite{Tong:1995}, \cite{Singh:2010}, the only task addressed was to lower the power consumption of autonomous machines and therefore to reduce the pace of energy expenditures. On the other hand, the progress of energy renewable technologies is lagging behind. Since the loss of energy is unavoidable due to the limited efficiency of energy conversion, storage, and transmission, the mission duration will always be limited. However, implementing novel approaches for the cooperative mission design and execution along with the optimal energy management can not only further reduce the rate of loss of limited onboard energy, but also can result in energy increase during the autonomous mission execution; this capability is not readily available today in any of the available technologies, see~\cite{Siciliano:2008}, \cite{Martinez:2008}, and \cite{Nonami:2013}.
 
 Despite the complexity of the energy-management task, the practical solutions of the extended duration flight do exist in nature. Millions of years of evolution enable a number of families of birds for very long duration flights. While the fundamentals of flight are the same, the effective energy management principles during the flight do differ. One of the most extraordinary birds capable of the long duration flight is the bar-tailed godwit, a large, streamlined shorebird, that performs a non-stop across the ocean flight, see\cite{USGS:2007}, of more than eight days over a distance of 7,200 miles; the distance equivalent of making a round-trip flight between New York and Paris without ever touching down. Another example is the albatross that can fly around the world with little or no flapping of their wings, see~\cite{Richardson:2011}. Remarkably, some birds can remain aloft for years at a time; the swift, for example, spends nearly its entire life in the air while landing only to breed. Along with many other animals (for example dolphins, whales), swifts evolved to be able to put one side of their brain to sleep at a time, so that they can sleep in the air while not actually being unconscious, see~\cite{Lapierre:2007}. What is common among these examples is not only the evolved capability of the high efficiency flight, but also the unique ability to manage energy that is implemented by both the optimal energy expenditures and energy harvesting.
 
-Considering the current state of the art in aerial robotics (algorithmic support, instrumentation, SWAP constraints), it is our firm belief that the best approach to enable long duration flight would combine the collaborative mission management and energy harvesting. Collaboration is the first key capability that spans across every element of the mission. First, collaboration enables effective search of available energy. Most of the available energy sources are not visible but detectable by intelligent robots equipped with appropriate sensors. Thus, multiple agents would have much better chances of finding ''free energy`` when cooperating and sharing their findings. Second, the operational utility of multiple agents equipped with complementary sensors is superior to the capability of an individual agent. Finally, robustness of the collaborative mission execution is significantly higher because partial loss of a subset of the vehicles does not lead to the loss of entire flock capability. Energy harvesting is the second complementary enabler of long endurance flight that enables accumulation of energy. The methods of energy extraction feasible for aerial application include the solar photovoltaic and airflow soaring that can be based on the convective air (thermaling) or wind shear energy extraction. While the photovoltaic boost can be achieved only during the daylight, the extraction of power of surrounded moving airflow can be utilized even during the nighttime. This combination is the ultimate solution for the "eternal`` operational endurance.
+Considering the state of the art in aerial robotics (algorithmic support, instrumentation, SWAP constraints), it is our firm belief that the best approach to enable long duration flight would combine the collaborative mission management and energy harvesting. Collaboration is the first key capability that spans across every element of the mission. First, collaboration enables effective search for available energy sources. Most of the available energy sources are not visible but detectable by intelligent robots equipped with appropriate sensors. Thus, multiple agents would have much better chances of finding ''free energy`` when cooperating and sharing their findings. Second, the operational utility of multiple agents equipped with complementary sensors is superior to the capability of an individual agent. Finally, robustness of the collaborative mission execution is significantly higher because partial loss of a subset of the vehicles does not lead to the loss of entire flock capability. Energy harvesting and storage is the second complementary enabler of long endurance flight that allows for the accumulation of energy. The feasible methods of energy extraction in aerial application include the solar photovoltaic and airflow soaring; the soaring can be based on the convective air (thermaling) or wind shear energy extraction. While the photovoltaic boost can be achieved only during the daylight, the extraction of power of surrounded moving air can be utilized even during the nighttime. This combination is the ultimate solution for the "eternal`` operational endurance.
 
-Therefore, it is envisioned that enhancing mission performance while reducing its cost can be achieved by implementing energy harvesting and collaboration capabilities onboard of multiple autonomous solar-powered and thermal-soaring gliders. Thus, the triplet of (\emph{\textbf{i}}) mission management, (\emph{\textbf{ii}}) energy harvesting and (\emph{\textbf{iii}}) collaboration builds the fundamental architecture of future energy enhanced autonomy.  This architecture should be based on the distributed online execution of the following individual and distributed platforms' algorithms:
+Therefore, it is envisioned that enhancing mission performance while reducing its cost can be achieved by implementing the energy harvesting and collaboration capabilities onboard of multiple autonomous solar-powered and thermal-soaring gliders. Thus, the triplet of (\emph{\textbf{i}}) mission management, (\emph{\textbf{ii}}) energy harvesting and (\emph{\textbf{iii}}) collaboration builds the fundamental architecture of future energy enhanced autonomy.  This architecture should be based on the distributed execution of the following individual and distributed platforms' algorithms:
 \begin{itemize}[leftmargin=0.35cm]
 %%%%%%%%%%%
  \item Individual glider:
  \begin{itemize}[leftmargin=0.25cm]
  \item Integration of prior knowledge of the operational environment into effective collaborative search for energy;
- \item Identification of the inherent flying qualities of each glider and detection of the environmental energy excess (convective thermal or wind shear) which are based on the total mechanical energy (the sum of kinetic and potential energy);
- \item Identification of parameterized mathematical models of energy sources and estimation and ''mapping`` of their dynamic motion;
+ \item Identification of the inherent flying qualities of each glider and detection of the environmental energy excess (convective thermal or wind shear);
+ \item Identification of parameterized mathematical models of energy sources and estimation of their dynamic motion;
  \item Autonomous guidance to enable energy harvesting while in the vicinity of an energy source;
- \item Optimization of solar energy gain and electrical energy storage while in thermal soaring flight;
- \item Sharing of the environment knowledge and the current state of cumulative energy (stored in onboard batteries plus the total mechanical energy) of each glider;
+ \item Optimization of solar energy gain and electrical energy storage while in the thermal soaring flight;
+ \item Sharing of the environment knowledge and the current state of cumulative energy of each glider;
  \end{itemize}
 %%%%%%%%
 \item Flock of gliders:
 \begin{itemize}[leftmargin=0.25cm]
   \item Distributed mission planning and cooperative control of the flock as functions of mission objectives and the reported cumulative energy of the flock; local feedback to the mission planner allows for timely update and adjustment;
-  \item Estimation of the free energy density distribution in the operational environment;
+  \item Cooperative estimation of the free energy density distribution in the operational environment;
   \item Adjustment of the scale of the mission (number and strategy of multiple agents) defined by the rate of total energy expenditure.
 \end{itemize}
 \end{itemize}
 
-Since the number of involved algorithms and technologies is significant, the remainder of the paper briefly outlines the core ideas implemented to date in both the high-fidelity simulation and the real onboard hardware environments. Therefore, Section \ref{sec:InAlgs} describes the ''individual gliders`` algorithms as outline above. The following section \ref{sec:CoopAlgs}  outlines the development of the collaborative autonomy algorithms. Section \ref{sec:SysIntegration} provides necessary details of the system integration including the environment for verification and validation of the developed algorithms in high-fidelity simulation and experimental flight testing. The paper ends with a brief outline of the future development steps.
+Since the number of involved algorithms and technologies is significant, the remainder of the paper briefly outlines the core ideas implemented to date in both the high-fidelity simulation and the real onboard hardware environments. Therefore, the section \ref{sec:InAlgs} describes the ''individual gliders`` algorithms as outline above. The following section \ref{sec:CoopAlgs}  outlines the development of the collaborative autonomy algorithms. Section \ref{sec:SimEnv} provides details of the developed high-fidelity simulation environment used for verification and validation of the algorithms. The paper ends with a brief outline of the future development steps.
 
-%\begin{figure}
-%\begin{center}
-%\includegraphics[height=4cm]{bifurcation.jpg}    % The printed column
-%\caption{Bifurcation: Plot of local maxima of $x$ with damping $a$ decreasing}  % width is 8.4 cm.
-%\label{fig1}                                 % Size the figures
-%\end{center}                                 % accordingly.
-%\end{figure}
-%
-% OR
-%\iffalse
-%\begin{figure}
-%\begin{center}
-%\epsfig{file=jcaesar,width=7cm}
-%\caption{Gaius Julius Caesar, 100--44 B.C.}
-%\label{fig1}
-%\end{center}
-%\end{figure}
-%\fi
-
-\section{Individual Gliders Algorithms}
+\section{Individual Algorithms}
 \label{sec:InAlgs}
 
 The algorithms of individual platforms are primarily responsible for the sustainable flight of a partially uncertain glider and exploration and sharing of knowledge about the environment. The algorithms run online and enable identification of the inherent flight dynamics properties of the glider which are in turn used to detect the thermal updrafts. When flying in the updraft the guidance algorithm is engaged to enable the maximum harvesting efficiency of the updraft's energy, and on the other hand estimates the updraft geometry and motion that are used to georeference the updraft and share its utility properties across the network of collaborative gliders. Besides the collaborative mission objective and initial mission plan, the georeferenced map is the formalized knowledge used in the collaborative mission replanning phase. While in autonomous soaring mode, the electrical management system that consists of solar panels, batteries and the maximum energy tracking circuitry, supports the avionics and recharges the batteries keeping them evenly balanced. At any given time each individual platform can be either in a search or in a soaring mode. While the soaring mode is primarily defined by the energy gain objective, the search mode is driven by the intelligent algorithm that combines the goals of the distributed mission and the need to search for energy sources in the environment. Development of these intelligent algorithms that enable optimal balancing of energy gain and mission objectives is the most promising direction of the current and future research.
@@ -121,25 +101,25 @@ There is a number of prior efforts devoted to the autonomous soaring capability.
 
 While adapting the conceptual ideas of autonomous soaring, the approach used in our development shifts the focus from heuristics toward the online estimation algorithms of the glider flight dynamics and the parameterized model of the convective updraft. The algorithm of detecting a thermal is based on combining two complementary approaches; however conceptually they are similar as they compare the natural metrics of the system with the same actually measured characteristics of the glider. The first approach utilizes the inherent sink rate polar and the second one is based on the total energy of the system.
 
-\emph{The sink rate polar} is the curve of the vertical speed plotted versus the true air speed (TAS). Every glider has a very specific sink polar as it reflects the glider inherent ability to descend in wings level flight in no-wind conditions; sink polar can be obtained to characterize the sink rate at various bank angles that can be used to minimize the energy loss in turning flight. Thus, if the sink polar is known then the difference between the actually measured sink rate and the point on the sink polar corresponding to the measured true air speed identifies if there is an excess of energy in the air that forces the glider away from its native sink polar; the sign of the difference defines the updraft and downdraft conditions. Implementation of this approach depends on precise characterization of the sink polar of the glider that can be practically achieved in extensive experimentation. However, experimentation can hardly provide an ideal controlled conditions, and in every flight of the same platform there are always subtle differences that are not accounted for. Based on the extensive experimental data collected an a number of flights (see \cite{AKlass_JGCD:2012} and the references herein) in close to ideal no-wind conditions the sink polar was first obtained off-line. Analysis of the measurements confirmed that the sink polar can be represented by a second order polynomial $V_s=A \cdot V_{tas}^2 + B \cdot V_{tas} +C$ with coefficients $A, B$, and $C$ defined by the least squares approximation method; similar results can be found in \cite{Reichmann:1978}, \cite{Edwards:2008}. The same method is then implemented onboard as a recursive least square (RLS) estimator, see \cite{Astrom:1995}, to account for any variations in the setup of the actual flying platform. A comparative example of identifying the sink polar of ASW-27 glider using the developed algorithm and the experimentally verified data  from \cite{Boermans:1994} is presented in Figure.\ref{fig:SinkPolar}. The identification algorithm was tested against the flight data  of ASW-27 acquired in high-fidelity simulation provided by the Condor software, see \cite{Condor:2013:Online}. 
+\emph{The sink rate polar} is the curve of the vertical speed plotted versus the true air speed (TAS). Every glider has a very specific sink polar as it reflects the glider inherent ability to descend in wings level flight in no-wind conditions; sink polar can be obtained to characterize the sink rate at various bank angles that can be used to minimize the energy loss in turning flight. Thus, if the sink polar is known then the difference between the actually measured sink rate and the point on the sink polar corresponding to the measured true air speed identifies if there is an excess of energy in the air that forces the glider away from its native sink polar; the sign of the difference defines the updraft and downdraft conditions. Implementation of this approach depends on precise characterization of the sink polar of the glider that can be practically achieved in extensive experimentation. However, experimentation can hardly provide an ideal controlled conditions, and in every flight of the same platform there are always subtle differences that are not accounted for. Based on the extensive experimental data collected an a number of flights (see \cite{AKlass_JGCD:2012} and the references herein) in close to ideal no-wind conditions the sink polar was first obtained off-line. Analysis of the measurements confirmed that the sink polar can be represented by a second order polynomial $V_s=A \cdot V_{tas}^2 + B \cdot V_{tas} +C$ with coefficients $A, B$, and $C$ defined by the least squares approximation method; similar results can be found in \cite{Reichmann:1978}, \cite{Edwards:2008}. The same method is then implemented onboard as a recursive least square (RLS) estimator, see \cite{Astrom:1995}, to account for any variations in the setup of the actual flying platform. A comparative example of identifying the sink polar of ASW-27 glider using the developed algorithm and the experimentally verified data  from \cite{Boermans:1994} is presented in Figure.\ref{fig:SinkPolar}. The identification algorithm was tested against the flight data  of ASW-27 acquired in high-fidelity simulation provided by the Condor software (\cite{Condor:2013:Online}), see details in Section.\ref{sec:SimEnv}.
 
 \begin{figure}[thpb]
   \centering
   \includegraphics[scale=0.49]{Figures/Condor_Boermans_comparison.eps}
-  \caption{Identifying the inherent sink polar: both the vertical speed and the TAS are directly measured by the onboard sensors. Minumim sink rate $V_s min$ and the optimal crusing speed $V_{cc}$ corresponding to the ''cross-country`` flight are presented.}
+  \caption{Identifying the inherent sink polar: both the vertical speed and the TAS are directly measured by the onboard sensors. Minimum sink rate $V_s min$ and the optimal crusing speed $V_{cc}$ corresponding to the maximum glide ratio ( typical for the ''cross-country`` flight) are presented.}
   \label{fig:SinkPolar}
 \end{figure}
 
 The analytical representation of the sink polar contribute significantly not only to the identification of thermal updrafts but also to the mission planning of a particular glider, see \cite{Piggott:1997} and \cite{FAA:2011}. In particular, the polar defines the minimum sink rate $V_{s.min}$ and the corresponding speed command for the autopilot to follow. While $V_{s.min}$ is too close to the stall speed $V_{stall}$ and should be avoided ($V_{stall} \approx V_{s.min}$), the effective speed commanded in thermaling mode $V_{th}$ is slightly higher. The polar also defines the optimal TAS command  $V_{cc}$ for the maximum glide ratio that is used by the navigation task in planning for the maximum range ''cross-country`` segment. While the sink polar is obtained in no-wind environment, its application to the known wind conditions is straightforward and enables calculating distances to be traveled in cross-country flight, see more details in \cite{Piggott:1997} and \cite{FAA:2011}.
 
 
-\emph{The total energy} approach is also widely used in human piloted soaring flight. It is based on the idea that at any given moment the mechanical energy $E_{tot}$ of the soaring glider combines the potential $E_p=mgh$ and kinetic $E_k=\frac{m\cdot V^2}{2}$ energy of the airframe minus the ''leakage`` of the energy due to the work of the parasitic aerodynamic drag. For a relatively ''clean``aerodynamic body the latter component can be neglected over a reasonably long period of time (tens of seconds). Therefore for the total energy and its rate of change one can consider the following:
+\emph{The total energy} approach is also widely used in human piloted soaring flight. It is based on the concept that at any given time the mechanical energy $E_{tot}$ of the soaring glider combines the potential $E_p=mgh$ and kinetic $E_k=\frac{m\cdot V^2}{2}$ energy of the airframe minus the ''leakage`` of the energy due to the work of the parasitic aerodynamic drag. For a relatively ''clean``aerodynamic body the latter component can be neglected over a reasonably long period of time (tens of seconds). Therefore for the total energy and its rate of change one can consider the following:
 \begin{eqnarray}
     && E_{tot}=mgh+\frac{m\cdot V^2}{2}, \quad E=\frac{E_{tot}}{mg}, \nonumber \\
     && \dot{E}=\frac{V \cdot \dot{V}}{g}, \quad \ddot{E}=\frac{\dot{V}^2 + V \cdot \ddot{V}}{g} + \ddot{h},
     \label{eq:totenergyrate}
 \end{eqnarray}
-where $m$ is the mass of the airframe, $g$ is the gravitational constant, $E$ is the normalized total mechanical energy of the system (also callED specific energy), $h$ is the height, and $V$ is the inertial speed. Therefore, for highly efficient airframes the longitudinal long period oscillations represent the natural tradeoff of kinetic and potential energy while their sum remains constant. As a consequence, in no updraft conditions the rate of change of the total energy $\dot{E}\approx 0$. In turn, if there is a significant variation of the total energy, then the energy rate will be significantly away from zero thus indicating the energy increase $\dot{E} \gg 0$ due to an updraft or decrease $\dot{E} \ll 0$ due to the downward air flow; note, that the inertial speed does not change so rapidly when meeting the convective vertical flows. In fact, the total energy management just presented is widely used in manned aviation being implemented in the so-called total energy compensating (TEK) variometers, see for example \cite{PitLab:2013:Online}.  
+where $m$ is the mass of the airframe, $g$ is the gravitational constant, $E$ is the normalized total mechanical energy of the system (also called the specific energy), $h$ is the height, and $V$ is the inertial speed. Therefore, for highly efficient airframes the longitudinal long period oscillations represent the natural tradeoff of kinetic and potential energy while their sum remains constant. As a consequence, in no updraft conditions the rate of change of the total energy $\dot{E}\approx 0$. In turn, if there is a significant variation of the total energy, then the energy rate will be significantly away from zero thus indicating the energy increase $\dot{E} \gg 0$ due to an updraft or decrease $\dot{E} \ll 0$ due to the downward air flow; note, that the inertial speed does not change so rapidly when meeting the convective vertical flows. In fact, the total energy management just presented is widely used in manned aviation being implemented in the so-called total energy compensating (TEK) variometers, see for example \cite{PitLab:2013:Online}.
 
 All the components of equation (\ref{eq:totenergyrate}) are readily available in onboard autopilot. Both equations in (\ref{eq:totenergyrate}) are included into one Kalman filter along with the inertial and barometric sensors outputs. The resulting energy rate solution provides another precise indication of the updraft event. A comparison of the outputs of both approaches with the output  of the TEK variometer $\dot{h}_{TEK}$ is presented next in Figure.\ref{fig:ThermalDetection}.
 
@@ -154,7 +134,7 @@ The outcomes of the total energy estimator in (\ref{eq:totenergyrate}) are used 
 
 \subsection{Guidance in Thermal Centering Mode}
 \label{subsec:ThermGuidance}
-When a thermal updraft is detected the glider needs to perform an automatic maneuver to enable staying in the thermal with the objective of increasing the glider's potential energy through a rapid increase of the height. The theoretical development of the thermaling guidance law has been recently reported in \cite{AKlass_JGCD:2012}). The most recent experimental results and findings that motivate further refinement of the solution were discusses in \cite{AKlass_CDC:2012}. This development was recently modified to include explicitly the sign of the turn rate command that is defined by the filtered value of the body measured roll rate $\hat{p}$; it was observed in a number of flights that entering the thermal induces the $p$ rate that rolls the wings away from the thermal thus suggesting the turn in an opposite direction. The resulting thermaling guidance law implemented onboard of real glider enabled successful latching and effective exploitation of the thermal.
+When a thermal updraft is detected the glider needs to perform an automatic maneuver to enable staying in the thermal with the objective of increasing the glider's potential energy through a rapid increase of the height. The theoretical development of the thermaling guidance law has been recently reported in \cite{AKlass_JGCD:2012}). The most recent experimental results and findings that motivate further refinement of the solution were discusses in \cite{AKlass_CDC:2012}. This development was recently modified to include explicitly the sign of the turn rate command that is defined by the estimate of the body roll rate $\hat{p}$; it was observed in a number of flights that entering the thermal induces the $p$ rate that rolls the wings away from the thermal, thus suggesting the turn in an opposite direction. The resulting thermaling guidance law implemented onboard of real glider enabled successful latching and effective exploitation of the thermal.
 
 The thermal centering guidance law that produces a turn rate command $\dot{\psi}_{c}$ to the autopilot is based on the feedback control law that takes into account the desire to get closer to the updraft (defined by the $\rho_d$) where its intensity (the vertical speed) is the highest, while balancing the turn rate and the turn-induced sink rate by a measure proportional to the rate of change of the total energy increase (defined by the $\ddot{E}$ in (\ref{eq:totenergyrate})), see the geometry of the guidance task in Figure.\ref{fig:ThermaG} and the resulting guidance law in (\ref{eq:GuidanceLaw}):
 \begin{eqnarray}
@@ -173,9 +153,7 @@ For the feasibility of theoretical development the thermal center is assumed sta
     && \omega=\omega_p \cdot e^{-[\frac{(x-x_0)^2+(y-y_0)^2}{2\sigma^2}]},
     \label{eq:GaussUpdraft}
 \end{eqnarray}
-where $x_0, y_o$ represent the unknown coordinates of the center of updraft,
-$x, y$ represent the coordinates of the glider, $\omega_p$ is the peak intensity of the updraft,
-and $\sigma$ define the geometry of the symmetric updraft (in general case $\sigma_x \neq \sigma_y$). For a stationary updraft modeled by Gaussian distribution function with $\sigma>0,~\omega_p>0$ and the glider with $V>0, \rho_d>0$ it is proven that the feedback guidance law in (\ref{eq:GuidanceLaw}) is locally asymptotically stable with an equilibrium at $(\eta, \rho-\rho_d)=(0,0)$ and a region of attraction $\Omega=\{(\eta, \rho-\rho_d): \vert \rho-\rho_d \vert \leq \beta,  \vert \eta \vert \leq \alpha \}, $ where $\beta < \rho_d, \alpha< \pi/2$, for any
+where $x, y$ represent the coordinates of the glider, $x_0, y_o$ represent the unknown coordinates of the center of updraft, $\omega_p$ is the peak intensity of the updraft,and $\sigma$ define the geometry of the symmetric updraft (in general case $\sigma_x \neq \sigma_y$). For a stationary updraft modeled by Gaussian distribution function with $\sigma>0,~\omega_p>0$ and the glider with $V>0, \rho_d>0$ it is proven that the feedback guidance law in (\ref{eq:GuidanceLaw}) is locally asymptotically stable with an equilibrium at $(\eta, \rho-\rho_d)=(0,0)$ and a region of attraction $\Omega=\{(\eta, \rho-\rho_d): \vert \rho-\rho_d \vert \leq \beta,  \vert \eta \vert \leq \alpha \}, $ where $\beta < \rho_d, \alpha< \pi/2$, for any
 \begin{eqnarray}
     && k_1 > \tan \alpha \frac{\sigma^2}{\omega_p(\rho_d-\beta)^2} e^(\frac{-(\rho_d+\beta)^2}{2\sigma^2} )\nonumber
     \label{eq:GuidanceGain}
@@ -186,8 +164,6 @@ The physical meaning of the guidance law (\ref{eq:GuidanceLaw}) is to increase t
 \subsection{Identification of the Updraft Geometry}
 \label{subsec:UpdraftID}
 As described above, the thermal intensity model adopted for the stability analysis of the thermal centering guidance law is the 2-dimensional Gaussian distribution (\ref{eq:GaussUpdraft}). Although its effective application was successfully demonstrated, it is realized, that the thermals geometry and their motion is more complex: it does not only move but also bends, see \cite{Reichmann:1978} and the experimental result in  Figure.\ref{fig:ThermaShape} obtained by a single glider persistently staying in an updraft, see \cite{AKlass_JGCD:2012}.  It can be argued whether Gaussian function is a good representation of a thermal or not. However, even if a Gaussian distribution does not encompass all the features of an actual updraft, most sources seem to agree that it does capture many of the basic characteristics of a real thermal, i.e., being strongest at the core, with a rounded shape and gradual decrease in strength towards the edges; see, for example, \cite{Wharington:1998} and \cite{Pagen:1992}. At the end, the ultimate goal of the updraft identification is to develop a georeferenced map of thermals in the area to enable intelligent mission planning with an account of free energy resources.
-
-% In an exemplary mission with the goal defined by the waypoints in the area of operation the task of finding an optimal route for multiple traveling salesman to visit all waypoints can be solved by weighting the edges of the underlying graph according to the proximity to the free energy sources in the area%
 
 %%%%%%%%%%
 \begin{figure}[thpb]
@@ -200,11 +176,16 @@ As described above, the thermal intensity model adopted for the stability analys
 
 \section{Cooperative Algorithms}
 \label{sec:CoopAlgs}
-Our initial approach to estimation of thermal geometry  ($2D$ coordinates of the center vs. the glider altitude) by utilizing the measurements of single glider in thermaling mode was based on the nonlinear filter with the ''bearings only measurements'' and the kinematics presented in Figure.\ref{fig:ThermaG}. In this formulation the bearing to the center was assumed to be constantly at $\pi/2$ ($\eta=0$)  toward the center of the turn with $\dot{\psi}$ and the speed over the ground $V$ being kinematically related through the distance to the instantaneous center of turning motion $\rho$; the solution was similar to the development in  \cite{Dobrokhodov:2008}. When entering a strong updraft without switching the direction of commanded turn ($sign(\hat{p})$ in ( \ref{eq:GuidanceLaw})) the filter performance was reasonable, resulting in a converging solution in about 2 full orbits and precision of the thermal center estimation of $~75m$; the experimental setup unfortunately does not allow for true data of the thermal, while the simulation data is not a representative metric for the comparison. Although this solution might be sufficient for application in the cooperative navigation of multiple gliders as an initial guess, the design of the filter does not naturally allow for effective fusion of measurements provided by multiple data-sharing gliders; even two gliders in the same thermal at different altitudes would require serious modification of the filter.
+Our initial approach to the estimation of thermals ($2D$ coordinates of the center vs. the glider altitude) by utilizing the measurements of single glider in soaring mode was based on two classical nonlinear filtering approaches: first - the EKF  filter utilized the ''bearings only measurements``, and second - the kinematic relation $\dot{\psi}=\frac{V}{\rho}$ between the speed over ground $V$ and the turn rate $\dot{\psi}$, see Figure.\ref{fig:ThermaG}. In both formulations the bearing to the updraft center was assumed to be constant at $\pi/2$ ($\eta=0$)  with respect to the direction of flight defined toward the center of the turn; the solution was similar to the development in \cite{Dobrokhodov:2008}. When entering a strong updraft with well-defined direction of commanded turn ($sign(\hat{p})$ in ( \ref{eq:GuidanceLaw})) the filter performance was reasonable, resulting in a converging solution in about 2 full orbits and precision of the thermal center estimation of $~75m$; the experimental setup unfortunately does not allow for true data of the thermal, while the simulation data is not a representative metric for the comparison. Although this solution might be sufficient for application in the cooperative navigation of multiple gliders as an initial guess, the design of the filter does not naturally allow for effective fusion of measurements provided by multiple data-sharing gliders; even two gliders in the same thermal at different altitudes would require serious modification of either of the filters.
 
 \subsection{Bayesian Mapping of Thermals}
 \label{subsec:BayesianMapping}
-To increase efficiency of online implementation the solution should integrate not only the knowledge gained by multiple gliders but also the prior meteorological observations (see \cite{Pennycuick:1998}, \cite{Hindman:2007}) that might be available for the envisioned area of operation. Such a data can be conveniently interpreted as a map of probability of encountering thermal activity with respect to the geographic latitude and longitude coordinates of area of operation, see an example in Figure.\ref{fig:HeatMap}   .
+To increase the efficiency of online implementation the solution should integrate not only the
+knowledge gained by multiple gliders, but also the prior meteorological observations
+(see \cite{Pennycuick:1998}, \cite{Hindman:2007}), which might be available for the
+envisioned area of operation. Such data can be conveniently interpreted as a map of probability
+of convective thermal activity with respect to the geographic latitude and longitude coordinates
+of the area of operation, see a conceptual example in Figure.\ref{fig:HeatMap}.
 %%%%%%%%%%
 \begin{figure}[thpb]
   \centering
@@ -214,35 +195,82 @@ To increase efficiency of online implementation the solution should integrate no
 \end{figure}
 %%%%%%%%%%
 
-Therefore, as a first step toward cooperative identification and mapping of thermals over an extended area with an account of prior methodological observation, the probabilistic Bayesian approach was adopted, see details of the approach in \cite{Bergman:1999}.
+Therefore, as a first step toward cooperative identification and mapping of thermals over an extended area with an account of prior methodological observation, the probabilistic recursive Bayesian approach was adopted, see details of the approach in \cite{Bergman:1999}.
 
-Consider a task where $N$ gliders cooperatively estimate the velocity $f_k=f(x_k,y_k,z_k,k)$ of flow field  at  the inertial coordinates $x_k,y_k,z_k$  of $k$-th glider, $k=1...N$. Assume that the onboard instrumentation enables measuring the lateral and vertical components of the airflow. The objective of the task is to estimate $f$ by cooperatively using noisy observations of the flow. 
+Consider a task where $N$ gliders cooperatively estimate the velocity $f_k=f(x_k,y_k,z_k,k)$ of flow field  at  the inertial coordinates $x_k,y_k,z_k$  of $k$-th glider, $k=1...N$. Assume that the onboard instrumentation enables measuring the lateral and vertical components of the airflow. The airflow of interest is modeled and parameterized by a set of parameters to be identified;  see for example the updraft model in ( \ref{eq:GaussUpdraft}) with unknown parameters $\omega_p$, $\sigma$, $x_0$, $y_0$. The objective of the task is to estimate $f$ by cooperatively using noisy observations of the flow.
 
-Let $X(t)$ be a state vector that encapsulates the convective flow velocity $f_k$ estimated at each point of the discretized space at time $t$, $s_k(t)$ denote the noisy measurement of vehicle $k$ at time $t$, and $S_k(t)=\{s_k(0),...,s_k(t)\}$ define the set of measurements up to current time $t$. Assume that $s_k(t)$ of each vehicle at location $x_k,y_k,z_k$ is corrupted by gaussian noise such that $s_k(t)=f_k(x_k,y_k,z_k)+\mu_{h,k}+\mu_{v,k}$, with $\mu_{h,k}\sim N(0,\sigma^2_h)$ and $\mu_{v,k}\sim N(0,\sigma^2_v)$.
+Let $X(t)=(\omega_p, \sigma, x_0, y_0)$ be a state vector that encapsulates the unknown parameters of the convective flow velocity $f_k$ that is estimated at each point of the discretized space at time $t$, $s_k(t)$ denote the noisy measurement of vehicle $k$ at time $t$, and $S_k(t)=\{s_k(0),...,s_k(t)\}$ define the set of samples up to the current time $t$. Assume that $s_k(t)$ of each vehicle at location $x_k,y_k,z_k$ is corrupted by Gaussian noise such that $s_k(t)=f_k(x_k,y_k,z_k)+\mu_{h,k}+\mu_{v,k}$, with $\mu_{h,k}\sim N(0,\sigma^2_h)$ and $\mu_{v,k}\sim N(0,\sigma^2_v)$ being white noise components in horizontal and vertical directions.
 
 Then the conditional probability of the state $X(t)$ given the set of measurements $S_k(t)$ of $k$-th glider is
 \begin{eqnarray}
-    && P(X(t)\vert S_k(t))=\beta \cdot P(s_k(t) \vert X)\cdot P(X(t) \vert S_k(t-1)),
+    && P(X(t)\vert S_k(t))=\beta \cdot P(s_k(t) \vert X)P(X(t) \vert S_k(t-1)),
     \label{eq:BayesProb}
 \end{eqnarray}
-where $\beta$ is the normalization coefficient chosen to guarantee that $P(X(t)\vert S(t))$ at every instance of $t$ has a unity integral over the state-space $X$.  The $P(s_k(t) \vert X)$ is the likelihood function represented by the conditional probability of the measurement $s_k(t)$ given the state $X=f_k$, and the $P(X(t) \vert S_k(t-1))$ is the prior probability distribution that represent any prior knowledge or intelligence about the most likely location of thermals. In our development $P(X(t) \vert S_k(t-1))$ is what encapsulates the probability ''heat map``, see Figure.\ref{fig:HeatMap}; in a verification scenario when ''true thermals`` are distributed according to the chosen ''heat map`` and the prior is initialized uniformly the recursive algorithm in (\ref{eq:BayesProb}) converges   to the ''true heat map'' asymptotically.
+where $\beta$ is the normalization coefficient chosen to guarantee that $P(X(t)\vert S_k(t))$ at every instance of $t$ has a unity integral over the state-space $X$.  The $P(s_k(t) \vert X)$ is the likelihood function represented by the conditional probability of the measurement $s_k(t)$ given the state $X=f_k$, and the $P(X(t) \vert S_k(t-1))$ is the prior probability distribution that represents any prior knowledge or intelligence about the most likely location and intensity of thermals. In our development $P(X(t) \vert S_k(t-1))$ is what encapsulates the probability ''heat map``, see Figure.\ref{fig:HeatMap}; in a verification scenario when ''true thermals`` are distributed according to the chosen ''heat map`` and the prior is initialized uniformly the recursive algorithm in (\ref{eq:BayesProb}) converges   to the ''true heat map'' asymptotically.
 
 Finally, let each point of state $X$ in the state-space be represented by the multi-variate Gaussian likelihood function:
 \begin{eqnarray*}
-    && P(s_k(t)\vert X)=\frac{1}{[2\pi diag(\mu^2_h,\mu^2_v)]^\frac{1}{2}}  exp( \frac{-[f_k(X)-s_k(t)]}{\sum [f_k(X)-s_k(t)] }),
-    \label{eq:BayesProb}
+    && P(s_k(t)\vert X)=\frac{1}{[2\pi \Delta]^\frac{1}{2}}  exp( \frac{-[f_k(X)-s_k(t)]}{\sum [f_k(X)-s_k(t)] }),
+    \label{eq:BayesLikeLH}
 \end{eqnarray*}
-Assuming that measurements are taken at each time step and the gliders cooperatively share the data, the conditional probability density of the state $X(t)$ is updated through the motion of the fleet of gliders ($x_k,y_k,z_k$) as
+where $\Delta=diag(\mu^2_h,\mu^2_v)$. Assuming that measurements are taken at each time step and the gliders cooperatively share the data, the conditional probability density of the state $X(t)$ is updated through the natural motion of the fleet of gliders sampling the airflow at ($x_k,y_k,z_k$) as
 \begin{eqnarray*}
-    && P(X(t)\vert S(t))=\beta \cdot \prod P(s_k(t) \vert X)\cdot P(X(t) \vert S(t-1)),
+    && P(X(t)\vert S(t))=\beta \cdot \prod_{k=1}^N P(s_k(t) \vert X)\cdot P(X(t) \vert S(t-1)),
     \label{eq:CondProb}
 \end{eqnarray*}
-where $S(t-1)=\{ S_1(t),...,S_N(t)\} $includes measurements from all $N$ gliders in the fleet for all times up to current time $t$. Now it is clear that the points of the parameter space corresponding to the maximum of the posterior probability density $X(t)=max P(X(t) \vert S(t))$ provide the best estimate (maximum likelihood) of the convective flow field parameters.
+where $S(t-1)=\{ S_1(t),...,S_N(t)\} $includes the measurements from all $N$ gliders in the fleet for all times up to current time $t$. Now it is clear that the points of the parameter space corresponding to the maximum of the posterior probability density $X(t)=max P(X(t) \vert S(t))$ provide the best estimate (maximum likelihood) of the convective flow field parameters.
 
-\section{System Integration Environment}
-\label{sec:SysIntegration}
+An example of the recursive Bayesian algorithm for the case of three simulated gliders flying
+cooperatively and estimating parameters of the same updraft is presented in Figure.\ref{fig:SimPDF}, see details of the simulation setup in the following section \ref{sec:SimEnv}. In the demonstrated result the prior probability is initialized by a uniform probability density function that is defined as an inverse of the area of operation.
+
+%%%%% Need to change this figure %%%%%
+\begin{figure}[thpb]
+  \centering
+  \includegraphics[scale=0.8]{Figures/pdf.eps}
+  \caption{Estimated location of the maximum strength of an updraft.}
+  \label{fig:SimPDF}
+\end{figure}
+%%%%%%%%%%
+
+\section{Simulation Environment}
+\label{sec:SimEnv}
+To facilitate convenient design and verification of the designed algorithms the project also developed a realistic simulation environment that is based on tight integration of MatLab/Simulink capabilities with the high-fidelity flight dynamics and atmospheric effects of the Condor soaring simulator, see \cite{Condor:2013:Online}. Besides providing a wide nomenclature of gliders, the software is capable of integrating the cooperative behaviors of human pilots that is essential to our project; the collaboration is enabled by sharing the states of gliders over the network. Since the goal is to enable autonomous soaring and exclude the manual pilot command, the standard software was patched with a an API (windows service) that enabled reading of all states of the glider in a Simulink model and sending of the control surface commands from the cooperative soaring algorithms implemented by the MatLab/Simulink models. The architecture of the software in the loop (SIL) setup that integrates Condor with MatLab/Simulink is presented in Figure.\ref{fig:SIL}
 
 %%%%%%%%%%
+\begin{figure}[thpb]
+  \centering
+  \includegraphics[scale=0.35]{Figures/SIL.eps}
+  \caption{Integration of Simulink and Condor capabilities in high-fidelity SIL environment.}
+  \label{fig:SIL}
+\end{figure}
+%%%%%%%%%%
+
+%%%%% If this section on the API is used then include Dmitrij as a coauthor %%%%%%
+%Condor API is the utility that enables the read telemetry and write commands functionality in the SIL environment. Condor API is implemented as a Windows Service and uses .NET Framework 4.0. Condor Soaring Simulator (Condor.exe) sends telemetry to Condor API Windows Service; CondorAPI listens for telemetry on CondorEndpoint. Then Condor API reads additional parameters from Condor process, adds those parameters to telemetry and sends to external endpoint (MatLab/Simulink). Also Condor API service listens for commands (elevator,rudder,ailerons,airbreaks) on CommandsEndpoint and executes them by writing to condor process memory.
+%
+%In a configuration where Condor software and the Simulink model are running on the same computer all endpoints can be configured in a single config file as follows:
+%\begin{itemize}{\leftmargin=0em \itemindent=0em}
+%  \item[] $<$HostSettings$>$
+%    \begin{itemize}
+%        \item[] $<$CondorEndpoint host="127.0.0.1"port="278"$/>$
+%        \item[] $<$ExternalEndpoint host="127.0.0.1"port="279"$/>$
+%        \item[] $<$CommandsEndpoint host="127.0.0.1"port="280"$/>$
+%    \end{itemize}
+%  \item[] $< /$HostSettings$>$
+%\end{itemize}
+%
+%%%%%%%%%%%
+%\begin{figure}[thpb]
+%  \centering
+%  \includegraphics[scale=0.3]{Figures/API.eps}
+%  \caption{Condor API architecture.}
+%  \label{fig:API}
+%\end{figure}
+%%%%%%%%%%%
+
+As an illustration of the achieved capabilities the following Figure.\ref{fig:CoopFlightPaths} represents the cooperative flight of three gliders in a simplified scenario. The task is to find a single updraft in a bounded area and to converge to the same thermal by utilizing all the algorithms discussed above; the statement mimics the setup and the objectives of our first cooperative flight test of two gliders reported earlier in \cite{AKlass_JGCD:2012}. The gliders start their flight simultaneously at the same altitude and initially spend some time in exploring and searching for thermals. When glider $\#2$ finds the updraft and shares the information about the estimated center of the thermal the other two gliders arrive to the same thermal and successfully gain height all together.
+
+%%%% Need to change this figure as it does not show the initial search %%%%%%
 \begin{figure}[thpb]
   \centering
   \includegraphics[scale=0.45]{Figures/paths_cooperative_flight.eps}
@@ -250,29 +278,32 @@ where $S(t-1)=\{ S_1(t),...,S_N(t)\} $includes measurements from all $N$ gliders
   \label{fig:CoopFlightPaths}
 \end{figure}
 %%%%%%%%%%
+Time history of the altitude of three cooperative gliders is presented next in Figure.\ref{fig:CoopFlightHeight}. The result clearly demonstrated the benefits and significant potential of collaborative strategies in harvesting the convective updraft energy from the environment.
 
 %%%%%%%%%%
 \begin{figure}[thpb]
   \centering
   \includegraphics[scale=0.45]{Figures/Coop_gain_altitude.eps}
-  \caption{An example of cooperative flight of three gliders; cooperative gain of altitude.}
+  \caption{An example of cooperative flight of three gliders; cooperative gain of altitude is the metric used here to evaluate the efficiency of developed strategies.}
   \label{fig:CoopFlightHeight}
 \end{figure}
 %%%%%%%%%%
 
 \section{Future plans}
 \label{sec:Future}
+The future plans include the development in two primary directions. First is the design of novel distributed approaches for effective environment sensing and energy harvesting along with the cooperative mission management and execution algorithms. We envision that in an exemplary mission with the goal defined by the waypoints in the area of operation, the task of finding an optimal route for multiple ''traveling salesman`` to visit all waypoints can be solved by weighting the edges of the underlying graph according to the proximity to the free energy sources in the area.
 
+Second is to develop new hardware platform with high efficiency flexible solar panels integrated into the skin of the glider wings and the corresponding monitoring and the energy management algorithms. The task is underway with expected first flight of a single solar powered platform to be performed in February 2014.
 
 \section{Conclusion}
 
 A conclusion section is not required. Although a conclusion may review the main points of the paper, do not replicate the abstract as the conclusion. A conclusion might elaborate on the importance of the work or suggest applications and extensions.
 
-\begin{ack}                               % Place acknowledgements
-Partially supported by the Roman Senate.  % here.
+\begin{ack}                               % Place acknowledgements here
+The project has been supported by a number of sponsors including the NPS Consortium for Robotics and Unmanned Systems Education and Research (grant $\#$), the Army Research Lab (grant $\#$), and the "The Multidisciplinary Studies Support for USMC Expeditionary Energy Office" program. Besides these funding sources the authors would like to acknowledge the contribution of graduate students Andrew Streenan and Joshua Weiss for providing results of their final project and contributing to the extensive simulation research.
 \end{ack}
 
-\bibliographystyle{ifacconf}        % Include this if you use bibtex
+%\bibliographystyle{ifacconf-harvard}        % Include this if you use bibtex
 \bibliography{ifacconf}           % and a bib file to produce the
 
 
