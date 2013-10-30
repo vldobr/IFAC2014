@@ -8,21 +8,21 @@ load('glider2_states.mat')
 load('glider3_states.mat')
 format long
 
-% Plot altitude variation
+%% Plot altitude variation
 figure1 = figure('Color',[1 1 1]);
 init_time = glider1_states(173+30000,1);
-plot(glider1_states(173+30000:77677,1)-(init_time),glider1_states(173+30000:77677,3),'k','LineWidth',1.5)
+plot(glider2_states(2608+30000:79975,1)-(init_time),glider2_states(2608+30000:79975,3),'k','LineWidth',1.5)
 hold on
-plot(glider2_states(2608+30000:79975,1)-(init_time),glider2_states(2608+30000:79975,3),'g','LineWidth',1.5)
+plot(glider1_states(173+30000:77677,1)-(init_time),glider1_states(173+30000:77677,3),'g','LineWidth',1.5)
 plot(glider3_states(1002+30000:78512,1)-(init_time),glider3_states(1002+30000:78512,3),'r','LineWidth',1.5)
-xlabel('Time (sec)')
-ylabel('Altitude (m)')
-title('Gain in altitude')
+xlabel('Time, sec')
+ylabel('Altitude, m')
+%title('Gain in altitude')
 legend('Glider 1','Glider 2','Glider 3',0)
-axis([0 500 1400 2600])
+axis([0 470 1400 2600])
 grid on
 
-% Plot paths and thermal
+%% Plot paths and thermal
 figure2 = figure('Color',[1 1 1]);
 
 % Plot thermal
@@ -36,8 +36,8 @@ surf(X,Y,Z,'FaceAlpha',0.2,'EdgeColor','none','FaceColor',[1 0.4 0]);
 view(26,36)
 hold on
 % Plot paths
-plot3(glider1_states(173+30000:77677,39),glider1_states(173+30000:77677,38),glider1_states(173+30000:77677,3),'k')
-plot3(glider2_states(2608+30000:79975,39),glider2_states(2608+30000:79975,38),glider2_states(2608+30000:79975,3),'g')
+plot3(glider2_states(173+30000:77677,39),glider2_states(173+30000:77677,38),glider2_states(173+30000:77677,3),'k')
+plot3(glider1_states(2608+30000:79975,39),glider1_states(2608+30000:79975,38),glider1_states(2608+30000:79975,3),'g')
 plot3(glider3_states(1002+30000:78512,39),glider3_states(1002+30000:78512,38),glider3_states(1002+30000:78512,3),'r')
 
 xlabel('Longitude (deg)')
