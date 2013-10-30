@@ -31,9 +31,6 @@ ny = 50;
 dx = xlen/nx;
 dy = ylen/ny;
 
-% Establish some axes properties
-axis([ xstart xfinal ystart yfinal 0 0.1])
-axis equal
 
 % Create grid to compare
 lon_vector = xstart:dx:xfinal;
@@ -70,17 +67,11 @@ end
 
 
 % Manipulate axes properties
-a2 = gca;
-set(a2,'FontSize',12)
-set(gca,'YTick',[])
-% set(gca,'YTickLabel',{'15.05';'15.1';'15.15'})
-set(gca,'XTick',[])
-% set(gca,'XTickLabel',{'46.44';'46.46';'46.48';'46.50';'46.52';'46.54';'46.56'})
-% xlabel('Longitude, deg','FontSize',12)
-% ylabel('Latitude, deg','FontSize',12)
-zlabel('Bayesian probability','FontSize',12)
-% title('Paths in cooperative flight')
-% leg = legend('Thermal','Glider 1','Glider 2','Glider 3',1);
-% set(leg,'FontSize',12)
-% legend('boxoff')
+set(gca,'YTick',[0:51/2:51],'YTickLabel',{'15.05';'15.1';'15.15'})
+set(gca,'XTick',[0:51/6:51],'XTickLabel',{'46.44';'46.46';'46.48';'46.50';'46.52';'46.54';'46.56'})
+set(gca,'FontSize',12)
+axis([ 0 nx+1 0 ny+1 0 0.15])
+xlabel('Latitude, deg','FontSize',12)
+ylabel('Longitude, deg','FontSize',12)
+zlabel('Probability','FontSize',12)
 
