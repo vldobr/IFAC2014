@@ -24,40 +24,44 @@
 
 \begin{frontmatter}
 
-\title{Cooperative Autonomy of Multiple Solar-Powered Thermaling Gliders \thanksref{footnoteinfo}}
+\title{Cooperative Autonomy of Multiple Solar-Powered Thermaling Gliders
+\thanksref{footnoteinfo}}
 
-\thanks[footnoteinfo]{The project has been supported over the last 3 years by a number of sponsors
-including the NPS Consortium for Robotics and Unmanned Systems Education and Research, the Army
-Research Lab, and the "The Multidisciplinary Studies Support for USMC Expeditionary Energy Office"
-program.}
+\thanks[footnoteinfo]{The project has been supported over the last 3 years by a number of
+sponsors including the NPS Consortium for Robotics and Unmanned Systems
+Education and Research, the Army Research Lab, and the "The Multidisciplinary
+Studies Support for USMC Expeditionary Energy Office" program.}
 
 \author[First]{Nahum Camacho,}
 \author[Second]{Vladimir N. Dobrokhodov, Kevin D. Jones,}
 %\author[Third]{Isaac I. Kaminer}
 
-\address[First]{Graduate student at the Department  of Mechanical and Aerospace Engineering, Naval
+\address[First]{Graduate student at the Department  of Mechanical and Aerospace Engineering,
+Naval
 Postgraduate School, Monterey, CA 93943 USA (e-mail: ncamacho@nps.edu)}
 \address[Second]{Research Associate Professors at the Department  of Mechanical and Aerospace
-Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (e-mail: {vndobrok, kdjones}@nps.edu)}
+Engineering, Naval Postgraduate School, Monterey, CA 93943 USA (e-mail: {vndobrok,
+kdjones}@nps.edu)}
 %\address[Third]{Professor at the Department  of Mechanical and Aerospace Engineering, Naval
 %Postgraduate School, Monterey, CA 93943 USA (e-mail: kaminer@nps.edu)}
 
 
 \begin{keyword}                           % Five to ten keywords, chosen from the IFAC
-cooperative control; solar energy; convective thermals energy; autonomous glider.
+cooperative control; solar energy; convective air energy; autonomous soaring;
+UAV.
 \end{keyword}                             % keyword list or with the
                                           % help of the Automatica
                                           % keyword wizard
 
 
 \begin{abstract}                          % Abstract of not more than 250 words.
-In this paper a review of the multidisciplinary systematic approach to the
-the design of a fleet of cooperative gliders capable of extended endurance
-operation is presented. The flock of autonomous gliders is able to harvest
-energy from the environment, both through photo-voltaic energy generation
-and through exploitation of natural convective lift in the surrounding air,
-and act cooperatively to meet mission requirements and to share knowledge
-of the local environment. The paper begins with a brief overview of the
+This paper presents a review of the multidisciplinary approach to the
+design of a fleet of cooperative gliders capable of extended endurance
+operation. The flock of autonomous gliders is able to harvest energy from
+the environment, both through photo-voltaic energy generation and through
+exploitation of natural convective lift in the surrounding air, and act
+cooperatively to meet mission requirements and to share knowledge of the
+local environment. The paper begins with a brief overview of the
 total-energy approach required for such a feat, along with a short
 description of key system components and the principal technologies. This
 is followed by details of the evolution of a previously-developed
@@ -135,54 +139,60 @@ simultaneously meeting mission objectives.
 %of 100, results in the loss of 1\% of your sensing capability and very little monetary
 %loss, compared to the single large asset where any loss is a total loss.
 
-One of the most critical limiting factors impacting effective
-collaborative autonomy today is the lack of range and endurance that are
-typical in most of the existing autonomous aircraft; see a comprehensive
-review in \cite{NAC:2005}.
+One of the most critical limiting factors impacting effective collaborative
+autonomy today is the lack of range and endurance that are typical in most of
+the existing autonomous aircraft; see a comprehensive review in
+\cite{NAC:2005}.
 %
-%Numerous futuristic ideas and concepts will not be implemented in real life solely due to this reason.
-%Until $R\&D$ community realizes that the energy onboard (of either a single or a flock of
-%agents) and the mission objectives are equally important metrics of the mission
-%management (planning and execution), and finds a way of solving this challenge, there
-%will not be revolutionary advances made in the area of persistent intelligent
+%Numerous futuristic ideas and concepts will not be implemented in real life
+%solely due to this reason. Until $R\&D$ community realizes that the energy
+%onboard (of either a single or a flock of agents) and the mission objectives
+%are equally important metrics of the mission management (planning and
+%execution), and finds a way of solving this challenge, there will not be
+%revolutionary advances made in the area of persistent intelligent
 %collaborative autonomy.
 %
 Despite almost two decades of significant advances in low-power and
 high-performance microelectronics development including CPUs, sensors,
 actuators, and communication circuits~\cite{Tong:1995}, \cite{Singh:2010},
-the only task addressed was to lower the power consumption of autonomous
-machines and therefore to reduce the pace of energy expenditures. On the
-other hand, the progress of energy renewable technologies is lagging behind.
-Since the loss of energy is unavoidable due to the limited efficiency of
-energy conversion, storage, and transmission, the mission duration will
-always be limited, see an intuitive discussion in Appendix B of
-~\cite{NAC:2005}. However, implementing novel approaches for the cooperative
-mission planning and execution, along with the optimal energy management
-(harvesting and storage) can not only further reduce the rate of loss of
-limited onboard energy, but can also result in energy increase during the
+the only task addressed was to lower the power consumption and to reduce the
+pace of energy expenditures. In turn, the progress in energy renewable
+technologies has also been advancing fast, especially in the flight-relevant
+areas of solar photovoltaics (\cite{Hamakawa:2004}) and electro-chemical
+battery technologies, see \cite{Tarascon:2001}. Yet, the balance of energy
+use and the regenerated energy income has not been met. Since the loss of
+energy is unavoidable due to the limited efficiency of energy conversion,
+storage, and transmission, the traditional mission duration will always be
+limited. However, coupling these existing advances with convective air
+(thermal) soaring capabilities and novel approaches in the cooperative
+mission planning and execution can not only further reduce the rate of loss
+of onboard energy, but can also result in energy increase during the
 autonomous mission; this capability is not readily available today in any of
 the available technologies, see~\cite{Siciliano:2008}, \cite{Martinez:2008},
 and \cite{Nonami:2013}.
 
-%Despite the complexity of the energy-management task, the practical solutions of the
-%extended range and duration flight do exist in nature. Millions of years of evolution
-%enable a number of families of birds for very long duration flights. While the
-%fundamentals of flight are the same, the effective energy management principles during
-%the flight do differ. One of the most extraordinary birds capable of the long duration
-%flight is the bar-tailed godwit, a large, streamlined shorebird, that performs a non-stop
-%across the ocean flight, see\cite{USGS:2007}, of more than eight days over a distance of
-%7,200 miles; the distance equivalent of making a round-trip flight between New York and
-%Paris without ever touching down. Remarkably, some birds can remain aloft for years at a
-%time; the swift, for example, spends nearly its entire life in the air while landing only
-%to breed. Along with many other animals (for example dolphins, whales), swifts evolved to
-%be able to put one side of their brain to sleep at a time, so that they can sleep in the
-%air while not actually being unconscious, see~\cite{Lapierre:2007}. What is common among
-%these examples is not only the evolved capability of the high efficiency flight, but also
-%the unique ability to manage energy that is implemented by both the optimal energy
-%expenditures and energy harvesting.
-
-%Another example is the albatross that can fly around the world with little or no flapping
-%of their wings, see~\cite{Richardson:2011}.
+%Despite the complexity of the energy-management task, the practical solutions
+%of the extended range and duration flight do exist in nature. Millions of
+%years of evolution enable a number of families of birds for very long
+%duration flights. While the fundamentals of flight are the same, the
+%effective energy management principles during the flight do differ. One of
+%the most extraordinary birds capable of the long duration flight is the
+%bar-tailed godwit, a large, streamlined shorebird, that performs a non-stop
+%across the ocean flight, see\cite{USGS:2007}, of more than eight days over a
+%distance of 7,200 miles; the distance equivalent of making a round-trip
+%flight between New York and Paris without ever touching down. Remarkably,
+%some birds can remain aloft for years at a time; the swift, for example,
+%spends nearly its entire life in the air while landing only to breed. Along
+%with many other animals (for example dolphins, whales), swifts evolved to be
+%able to put one side of their brain to sleep at a time, so that they can
+%sleep in the air while not actually being unconscious,
+%see~\cite{Lapierre:2007}. What is common among these examples is not only the
+%evolved capability of the high efficiency flight, but also the unique ability
+%to manage energy that is implemented by both the optimal energy expenditures
+%and energy harvesting.
+%
+%Another example is the albatross that can fly around the world with little or
+%no flapping of their wings, see~\cite{Richardson:2011}.
 
 Considering the state of the art in aerial robotics (algorithmic support,
 instrumentation, size weight and power constraints), it is our belief that
@@ -208,9 +218,10 @@ even during the nighttime. The combination of harvesting and storage is the
 ultimate solution for the "eternal`` flight.
 
 %%%Isaac%%%
-% Energy storage devices. What is the metric of measuring the efficiency of batteries. Energy density?
-% Give a clear picture of the trend in energy density or other metric over the next 10-20 years to better
-% motivate the research in cooperative energy harvesting and storage technologies.
+%Energy storage devices. What is the metric of measuring the efficiency of
+%batteries. Energy density? Give a clear picture of the trend in energy
+%density or other metric over the next 10-20 years to better motivate the
+%research in cooperative energy harvesting and storage technologies.
 
 Therefore, it is envisioned that enhancing mission performance can be
 achieved by implementing the energy harvesting-storage and collaboration
@@ -253,41 +264,42 @@ autonomy.
 %      multiple agents) defined by the rate of total energy expenditure.
 %\end{itemize}
 %\end{itemize}
+The remainder of the paper briefly outlines the core ideas implemented to
+date in autonomous thermaling. Therefore, the section \ref{sec:IndAlgs}
+describes the ''individual gliders`` algorithms. The following section
+\ref{sec:CoopAlgs} outlines the development of the collaborative autonomy
+algorithms. Section \ref{sec:SimEnv} provides details of the developed
+high-fidelity simulation environment used to verify the algorithms.
 
-Since the number of involved algorithms and technologies is significant, the
-remainder of the paper briefly outlines the core ideas implemented to date in
-autonomous thermaling, both the high-fidelity simulation and the real onboard
-hardware environments. Therefore, the section \ref{sec:IndAlgs} describes the
-''individual gliders`` algorithms. The following section \ref{sec:CoopAlgs}
-outlines the development of the collaborative autonomy algorithms. Section
-\ref{sec:SimEnv} provides details of the developed high-fidelity simulation
-environment used for verification and validation of the algorithms. The paper
-ends with a brief outline of the future development steps.
+%The paper ends with a brief outline of the future development steps.
 
 \section{ Algorithms of Individual Gliders}
 \label{sec:IndAlgs}
 \squeezeup
 
-The algorithms of individual glider are primarily responsible for the
-sustainable flight of a partially uncertain aircraft and exploration and
-sharing of knowledge about the environment. The algorithms run online and
-enable identification of the inherent flight dynamics of the glider which are
-in turn used to detect the thermal updrafts. When flying in the updraft, the
-guidance algorithm is engaged to enable the maximum energy harvesting
-efficiency of the updraft's free energy, and on the other hand estimates the
-updraft geometry and motion, that are used to georeference the updraft and
-share its utility properties (strength) across the network of collaborative
-gliders. Besides the collaborative mission objective and an initial mission
-plan, the georeferenced map represents the formalized knowledge used in the
-collaborative mission replanning phase. While in autonomous soaring mode, the
-electrical management system that consists of solar PV panels, batteries and
-the maximum peak power energy tracking (MPPT) unit, supports the avionics and
-recharges the batteries keeping them evenly balanced. At any given time each
-individual platform can be either in a mission-induced search or in a soaring
-modes. While the soaring mode is primarily defined by the energy gain
-objective, the mission-induced search mode is driven by the algorithm that
-combines the goals of the distributed mission and the need to search for
-energy sources in the environment.
+This section discusses key components necessary for a successful glider
+flight. The algorithms run online and enable \emph{identification of the
+flight dynamics} of the glider which are in turn used to \emph{detect the
+thermal updrafts}. When flying in the updraft, the \emph{guidance algorithm}
+is engaged to enable the maximum energy harvesting efficiency of the
+updraft's free energy, and on the other hand \emph{estimates the updraft
+geometry and motion}, that are used to georeference the updraft and share its
+utility properties (strength) across the network of collaborative gliders.
+%
+%Besides the collaborative mission objective and an initial mission plan, the
+%georeferenced map represents the formalized knowledge used in the
+%collaborative mission replanning phase.
+%
+While in autonomous soaring mode, the \emph{electrical management} system
+that consists of solar PV panels, batteries and the maximum peak power energy
+tracking (MPPT) unit, supports the avionics and recharges the batteries
+keeping them evenly balanced.
+
+%At any given time each individual platform can be either in a mission-induced
+%search or in a soaring modes. While the soaring mode is primarily defined by
+%the energy gain objective, the mission-induced search mode is driven by the
+%algorithm that combines the goals of the distributed mission and the need to
+%search for energy sources in the environment.
 %
 %Development of these onboard components that enable optimal balancing of
 %energy gain and mission objectives is the most promising direction of the
@@ -309,39 +321,41 @@ presents the most significant uncertainty, and thus poses the challenge for
 the overall system design. Not only basic physical properties of all
 components vary significantly, but also the same properties depend on the
 mode of operation (e.g. discharge rate) and environmental parameters(e.g.
-temperature). Thus, the objective of the electrical system design is to
-characterize mathematically the solar-powered energy generation, storage, and
-the energy expenditure system, so that the particular uncertain parameters
-could be identified on the ground and during the flight of a particular
-glider platform. The need for online identification arises as the properties
-of the system are expected to change over time.
+temperature). Thus, before the electrical system is integrated onboard it is
+necessary to characterize mathematically the solar-powered energy generation,
+storage, and the energy expenditure system, so that the particular uncertain
+parameters could be identified on the ground and during the flight of a
+particular glider platform. The need for online identification arises as the
+properties of the system are expected to change over time.
 
 As an example, the following data represent the results of the discharge
 experiment performed with 2 different types of batteries at different
 discharge rates; the experiment utilized the Lithium polymer (LiPo) and the
 Lithium-Ion (LiIon) packs. Figure.\ref{fig:Batt_v_vs_t} illustrates how
 voltage drops over the discharge cycle, a feature that is convenient for
-estimating remaining energy in the battery pack. Figure.\ref{fig:Batt_e_vs_t}
-illustrates how much energy can be extracted from the same sample batteries
-at different discharge rates. During the experiment, the discharge cycles
-were halted when the pack voltage reached 3.2 V/cell or 12.8 V for the pack.
-The measured useful pack energy and energy-density are shown in
-Table~\ref{Batt_performance}.
-
+estimating remaining energy in the battery pack.
 %%%%%%%%%%%%%%%%
-\begin{figure}[thpb]
+\begin{figure}[thbp]
   \centering
-  \includegraphics[scale=0.33]{Figures/V_versus_T.eps}
-  \caption{Pack voltage as a function of normalized discharge time for 2 different chemistries of the
-  battery packs at different discharge rates.}
+  \includegraphics[width=6cm]{Figures/V_versus_T_mod.eps}
+  \caption{Pack voltage as a function of normalized discharge time for
+  2 different chemistries of the   battery packs at different discharge rates.}
   \label{fig:Batt_v_vs_t}
 \end{figure}
 %%%%%%%%%%%%%%%%
-\begin{figure}[thpb]
+
+Figure.\ref{fig:Batt_e_vs_t} illustrates how much energy can be extracted
+from the same sample batteries at different discharge rates. During the
+experiment, the discharge cycles were halted when the pack voltage reached
+3.2 V/cell or 12.8 V for the pack. The measured useful pack energy and
+energy-density are shown in Table~\ref{Batt_performance}.
+%%%%%%%%%%%%%%%%
+\begin{figure}[thbp]
   \centering
-  \includegraphics[scale=0.33]{Figures/Energy_v_time.eps}
-  \caption{Energy output as a function of normalized discharge time for different discharge rates; at 1C
-  rate the discharge current will discharge the entire battery in 1 hour.}
+  \includegraphics[width=6cm]{Figures/Energy_v_time_mod.eps}
+  \caption{Energy output as a function of normalized discharge time for
+  different discharge rates; at 1C rate the discharge current discharges
+  the battery in 1 hour.}
   \label{fig:Batt_e_vs_t}
 \end{figure}
 %%%%%%%%%%%%%%%%
@@ -385,7 +399,7 @@ conformal with only subtle fine-texture differences.
 %change over time; for example the batteries capacity changes with the number
 %of discharge cycles.
 
-Addressing this challenge, the projects builds a generalized prototype of the
+Addressing this challenge, the projects built a generalized prototype of the
 onboard system that consists of the semi-rigid research-grade
 mono-crystalline Silicon cells with an advertised efficiency of 22.5$\%$,
 MPPT unit, rechargeable batteries with balancing circuitry, and the load
@@ -399,7 +413,8 @@ in Figure.~\ref{fig:Solar_arch}.
   \centering
   \includegraphics[scale=0.325]{Figures/Solar.eps}
   \caption{Laboratory prototype of the solar-driven electrical management system; the setup is
-  instrumented with a set of voltage and current sensors at key points to allow for the system identification.}
+  instrumented with a set of voltage and current sensors at key points to allow for the system
+  identification.}
   \label{fig:Solar_arch}
 \end{figure}
 %%%%%%%%%%%%%%%%
@@ -425,8 +440,8 @@ platform. The system identification phase of this work is under way.
 \begin{figure}[thpb]
   \centering
   \includegraphics[scale=0.61]{Figures/MultiDay_energy.eps}
-  \caption{Results of the multi-day experiment with the laboratory prototype
-  installed in a fixed well-exposed to sun location.}
+  \caption{Results of the multi-day experiment with the prototype
+  installed in a fixed location.}
   \label{fig:MultiDay_enrg}
 \end{figure}
 %%%%%%%%%%%%%%%%
@@ -439,11 +454,16 @@ platform. The system identification phase of this work is under way.
 %current glider is outfitted with research-grade mono-crystalline Silicon
 %cells with an advertised efficiency of 22.5$\%$.
 %
-%The cells are semi-rigid - they don't qualify as flexible, but they can very carefully be bent to conform to the airfoil surface over the majority of the wing. Ideally, as much of the 
-%aircraft surface as possible should be covered by the array, but it must be done in such a way that it does not disturb the boundary layer. While the system may gain energy through the
-%array, it won't help if the aircraft loses that same energy through increased viscous drag or loss of lift. Therefore, the cells are built into the wing surface during initial composite
-%lay-up of the wing, such that they are essentially conformal, with only subtle fine-texture differences. A small section of wing with embedded cells is shown in
-%Fig.~\ref{fig:wing_sample}.
+%The cells are semi-rigid - they don't qualify as flexible, but they can very
+%carefully be bent to conform to the airfoil surface over the majority of the
+%wing. Ideally, as much of the aircraft surface as possible should be covered
+%by the array, but it must be done in such a way that it does not disturb the
+%boundary layer. While the system may gain energy through the array, it won't
+%help if the aircraft loses that same energy through increased viscous drag or
+%loss of lift. Therefore, the cells are built into the wing surface during
+%initial composite lay-up of the wing, such that they are essentially
+%conformal, with only subtle fine-texture differences. A small section of wing
+%with embedded cells is shown in Fig.~\ref{fig:wing_sample}.
 %
 %\begin{figure}[thpb]
 %  \centering
@@ -451,45 +471,83 @@ platform. The system identification phase of this work is under way.
 %  \caption{Sample wing section with conformal, embedded cells.}
 %  \label{fig:wing_sample}
 %\end{figure}
+
+%In the current generation of the aircraft, a small solar array has been
+%included in order to identify aerodynamic and structural issues that might
+%arise. For example, the solar cells get quite hot while the aircraft is at
+%rest on the ground. Will this heat be sufficient to damage the wing structure
+%by softening the epoxy resin used in the composites, or delaminate the
+%protective film around the cells? When the wing flexes in flight, will this
+%damage the semi-rigid cells or break them loose from the wing? The current
+%array includes 18 cells for an array area of 0.28 m$^2$. With the estimates
+%for efficiency, this should provide on the order of 440 Wh in a 24-hour
+%period in June, or roughly 50 W at mid day.
 %
-%%In the current generation of the aircraft, a small solar array has been included in order to identify aerodynamic and structural issues that might arise. For example, the solar cells get
-%quite hot while the aircraft is at rest on the ground. Will this heat be sufficient to damage the wing structure by softening the epoxy resin used in the composites, or delaminate the
-%protective film around the cells? When the wing flexes in flight, will this damage the semi-rigid cells or break them loose from the wing? The current array includes 18 cells for an array
-%area of 0.28 m$^2$. With the estimates for efficiency, this should provide on the order of 440 Wh in a 24-hour period in June, or roughly 50 W at mid day.
-%%
-%Photovoltaic cells operate with variable output voltage and current which is dependent on the available radiation and the load impedance. In order to maximize power output, circuitry is
-%required to actively adjust the load impedance to drive the product of voltage and current (power) to a peak. This device is called a Maximum Peak Power Tracker, or MPPT. The MPPT circuit
-%uses switching circuitry which is typically combined with a buck or boost converter to yield a regulated DC voltage output. There is an efficiency associated with the MPPT, but it is
-%typically quite high, typically better than 99 percent.
+%Photovoltaic cells operate with variable output voltage and current which is
+%dependent on the available radiation and the load impedance. In order to
+%maximize power output, circuitry is required to actively adjust the load
+%impedance to drive the product of voltage and current (power) to a peak. This
+%device is called a Maximum Peak Power Tracker, or MPPT. The MPPT circuit uses
+%switching circuitry which is typically combined with a buck or boost
+%converter to yield a regulated DC voltage output. There is an efficiency
+%associated with the MPPT, but it is typically quite high, typically better
+%than 99 percent.
 %
-%The power coming from the MPPT is split and is fed into a charge controller for the batteries and to the load (avionics, propulsion, payload). If the power coming from the MPPT is greater
-%than the load, it is used to charge the batteries, storing potential energy for later use. If the load is greater than the power coming from the MPPT then it taps into the batteries,
+%The power coming from the MPPT is split and is fed into a charge controller
+%for the batteries and to the load (avionics, propulsion, payload). If the
+%power coming from the MPPT is greater than the load, it is used to charge the
+%batteries, storing potential energy for later use. If the load is greater
+%than the power coming from the MPPT then it taps into the batteries,
 %depleting stored potential energy.
-%
-%Battery selection is the next challenge. Typically Lithium-chemistry batteries have the highest \emph{energy-density} for commercially available rechargeable batteries, but there is an
-%enormous variation from type to type. Most suitable cell technologies fall into two categories, the \emph{can}-type cells usually found in laptops, and the foil-wrapped flat cells
-%typically found in cell phones and other compact electronics. The can-type cells are usually referred to as Lithium-Ion or LiIon batteries, and the most common form-factor is the 18650
-%cell, which is nominally 18 mm in diameter and 65 mm long. These cells typically cannot support high discharge rates. Most are caped at a 1C continuous discharge rate, where the 1C rating
-%means that the cell would be depleted in one hour. This equates to a low \emph{power-density}. This limitation will likely not be a concern, as the batteries are intended to be used
-%through the night, with average discharge rates of less than 0.1C. Depending on the pack size, this is a potential limitation when the motor is used, as it is a short-term, but very high
-%load.
-%
-%The flat foil-wrapped battery type is usually referred to as Lithium polymer or LiPo. These are commonly used in cell phones and other compact devices as well as the radio control
-%aircraft hobby. Unlike the LiIon cells, the power-density of LiPo cells can be extremely high. Many in the hobby industry claim continuous discharge rates of 70C with bursts of up to 140C.
-%This equates to draining the battery in less than one minute. Unfortunately, there is an inverse relationship between energy-density and power-density in these cells. In order to achieve
-%the high discharge rates, the cells need more copper to carry the current, and the cells must be larger and heavier.
-%
-%Analyzing manufacturer specification for the LiIon cells, energy densities in excess of 200 Wh/kg are frequently listed, whereas for the lower discharge-rate LiPos the highest is on the
-%order of 190 Wh/kg. Samples of both cell types were tested in current project. The LiIon cells had an advertised capacity of 3 Ah, and an energy density on the order of 220 Wh/kg. The LiPo
-%cells had an advertised capacity of 2 Ah, and an energy density of just over 190 Wh/kg. Experiments were set up to test the cells under typical loads. Twelve LiIon cells were formed into a
-%pack of 4 cells in series (4S) and 3 cells in parallel (3P), to make a 4S3P pack with a nominal voltage of 14.8 V and capacity of 9 Ah. Sixteen LiPo cells were formed into a 4S4P pack with
-%nominal 14.8 V and 8 Ah capacity.
-%
-%Due to internal cell resistance, the usable energy in the packs is a function of discharge rate. The LiPo pack was tested at two discharge rates, 0.21C and 2.51C, with voltage and current
-%logged from start to finish. The LiIon pack cannot support the higher discharge rate, but was tested at a lower 0.17C rate. Results of the discharge tests are shown in
-%Figs.~\ref{fig:batt_v_vs_t} and \ref{fig:batt_e_vs_t}, plotting voltage and energy-use as functions of normalized discharge time, respectively. As with most batteries, voltage slowly drops
-%over the discharge cycle, a feature that is convenient for estimating remaining energy in the pack. The voltage also drops as a function of load, which is a result of the internal cell
-%resistance and Ohm's law.
+
+%Battery selection is the next challenge. Typically Lithium-chemistry
+%batteries have the highest \emph{energy-density} for commercially available
+%rechargeable batteries, but there is an enormous variation from type to type.
+%Most suitable cell technologies fall into two categories, the \emph{can}-type
+%cells usually found in laptops, and the foil-wrapped flat cells typically
+%found in cell phones and other compact electronics. The can-type cells are
+%usually referred to as Lithium-Ion or LiIon batteries, and the most common
+%form-factor is the 18650 cell, which is nominally 18 mm in diameter and 65 mm
+%long. These cells typically cannot support high discharge rates. Most are
+%caped at a 1C continuous discharge rate, where the 1C rating means that the
+%cell would be depleted in one hour. This equates to a low
+%\emph{power-density}. This limitation will likely not be a concern, as the
+%batteries are intended to be used through the night, with average discharge
+%rates of less than 0.1C. Depending on the pack size, this is a potential
+%limitation when the motor is used, as it is a short-term, but very high load.
+
+%The flat foil-wrapped battery type is usually referred to as Lithium polymer
+%or LiPo. These are commonly used in cell phones and other compact devices as
+%well as the radio control aircraft hobby. Unlike the LiIon cells, the
+%power-density of LiPo cells can be extremely high. Many in the hobby industry
+%claim continuous discharge rates of 70C with bursts of up to 140C. This
+%equates to draining the battery in less than one minute. Unfortunately, there
+%is an inverse relationship between energy-density and power-density in these
+%cells. In order to achieve the high discharge rates, the cells need more
+%copper to carry the current, and the cells must be larger and heavier.
+
+%Analyzing manufacturer specification for the LiIon cells, energy densities in
+%excess of 200 Wh/kg are frequently listed, whereas for the lower
+%discharge-rate LiPos the highest is on the order of 190 Wh/kg. Samples of
+%both cell types were tested in current project. The LiIon cells had an
+%advertised capacity of 3 Ah, and an energy density on the order of 220 Wh/kg.
+%The LiPo cells had an advertised capacity of 2 Ah, and an energy density of
+%just over 190 Wh/kg. Experiments were set up to test the cells under typical
+%loads. Twelve LiIon cells were formed into a pack of 4 cells in series (4S)
+%and 3 cells in parallel (3P), to make a 4S3P pack with a nominal voltage of
+%14.8 V and capacity of 9 Ah. Sixteen LiPo cells were formed into a 4S4P pack
+%with nominal 14.8 V and 8 Ah capacity.
+
+%Due to internal cell resistance, the usable energy in the packs is a function
+%of discharge rate. The LiPo pack was tested at two discharge rates, 0.21C and
+%2.51C, with voltage and current logged from start to finish. The LiIon pack
+%cannot support the higher discharge rate, but was tested at a lower 0.17C
+%rate. Results of the discharge tests are shown in Figs.~\ref{fig:batt_v_vs_t}
+%and \ref{fig:batt_e_vs_t}, plotting voltage and energy-use as functions of
+%normalized discharge time, respectively. As with most batteries, voltage
+%slowly drops over the discharge cycle, a feature that is convenient for
+%estimating remaining energy in the pack. The voltage also drops as a function
+%of load, which is a result of the internal cell resistance and Ohm's law.
 %
 %\begin{figure}
 %  \centering
@@ -505,9 +563,12 @@ platform. The system identification phase of this work is under way.
 %  \label{fig:batt_e_vs_t}
 %\end{figure}
 %
-%The discharge cycles were halted when the pack voltage reached 3.2 V/cell or 12.8 V for the pack. For the LiPo pack this is considered to be the lowest, safe voltage for the cells, The
-%LiIon packs can typically be safely drained to a lower voltage, although it is apparent from Fig.~\ref{fig:batt_v_vs_t} that the voltage has already dropped off the cliff, and there is
-%very little actual energy left in the pack. The measured useful pack energy and energy-density are shown in Table~\ref{batt_performance}.
+%The discharge cycles were halted when the pack voltage reached 3.2 V/cell or 12.8 V for the pack.
+%For the LiPo pack this is considered to be the lowest, safe voltage for the cells, The
+%LiIon packs can typically be safely drained to a lower voltage, although it is apparent from
+%Fig.~\ref{fig:batt_v_vs_t} that the voltage has already dropped off the cliff, and there is
+%very little actual energy left in the pack. The measured useful pack energy and energy-density
+%are shown in Table~\ref{batt_performance}.
 %\begin{table}
 %  \caption{Measured battery performance}
 %  \centering
@@ -521,62 +582,84 @@ platform. The system identification phase of this work is under way.
 %  \label{batt_performance}
 %\end{table}
 %
-%The sensitivity to drain rate is clear. Also clear is the fact that advertised energy and energy-density might not be achievable in a practical application. While the LiIon cells would
-%appear to be far superior based on manufacturers' specifications, experiments would tend to suggest that LiPo batteries are superior for this project.
+%The sensitivity to drain rate is clear. Also clear is the fact that advertised energy and
+%energy-density might not be achievable in a practical application. While the LiIon cells would
+%appear to be far superior based on manufacturers' specifications, experiments would tend to
+%suggest that LiPo batteries are superior for this project.
 %
-%Battery capacity is driven by the need to survive the night with no photovoltaic energy input. At a minimum the battery must power the avionics and payload components that are in use.
-%Thermal activity will diminish at night, although the same algorithm that exploits thermal lift during the day may be used to minimize sink during the night. If there are pockets of air
-%that sink, there must be pockets of air that rise. The lift may be weak, but better than no lift at all. When the lift is insufficient to maintain altitude, the motor must be used to
+%Battery capacity is driven by the need to survive the night with no photovoltaic energy input. At
+%a minimum the battery must power the avionics and payload components that are in use.
+%Thermal activity will diminish at night, although the same algorithm that exploits thermal lift
+%during the day may be used to minimize sink during the night. If there are pockets of air
+%that sink, there must be pockets of air that rise. The lift may be weak, but better than no lift
+%at all. When the lift is insufficient to maintain altitude, the motor must be used to
 %regain it.
 %
-%Use of the motor for propulsion introduces additional efficiency considerations. The motor is a sensorless brushless motor with electronic speed control. Motor efficiencies are quite high
-%at nominal power settings. All brushless motors have internal resistance and a parameter called $I_0$ that represents the no-load current at a specific voltage. These two terms dictate the
-%efficiency of the motor over its useful power spectrum. With no load they will draw power from the system that is roughly $I_0*V$ and at an efficiency of zero. As the mechanical load is
-%increased, the efficiency rapidly increases to some peak value. While the motor might have a nominal efficiency of better than 90 percent at its rated power, at a much lower power the
-%efficiency can be very low, perhaps below 50 percent. This becomes critical when the motor is used for propulsion. The current airframe at nominal weight requires on the order of 40 $W$ to
-%sustain cruise flight, but the motor is rated for up to 1000 $W$. At full throttle with the included gear drive and propeller it draws on the order of 400 $W$ with an estimated total
-%efficiency in excess of 85 percent, but at 40 $W$ the system efficiency is down around 10 percent. This is a clear indication that when the motor is used, it should be used at a high power
-%setting, not to sustain cruise flight, but to actively gain altitude, using elevation as energy storage. The intermittent high power draw from the propulsion will reduce the battery
+%Use of the motor for propulsion introduces additional efficiency considerations. The motor is a
+%sensorless brushless motor with electronic speed control. Motor efficiencies are quite high
+%at nominal power settings. All brushless motors have internal resistance and a parameter called
+%$I_0$ that represents the no-load current at a specific voltage. These two terms dictate the
+%efficiency of the motor over its useful power spectrum. With no load they will draw power from
+%the system that is roughly $I_0*V$ and at an efficiency of zero. As the mechanical load is
+%increased, the efficiency rapidly increases to some peak value. While the motor might have a
+%nominal efficiency of better than 90 percent at its rated power, at a much lower power the
+%efficiency can be very low, perhaps below 50 percent. This becomes critical when the motor is
+%used for propulsion. The current airframe at nominal weight requires on the order of 40 $W$ to
+%sustain cruise flight, but the motor is rated for up to 1000 $W$. At full throttle with the
+%included gear drive and propeller it draws on the order of 400 $W$ with an estimated total
+%efficiency in excess of 85 percent, but at 40 $W$ the system efficiency is down around 10
+%percent. This is a clear indication that when the motor is used, it should be used at a high
+%power
+%setting, not to sustain cruise flight, but to actively gain altitude, using elevation as energy
+%storage. The intermittent high power draw from the propulsion will reduce the battery
 %efficiency somewhat, but this is much more subtle than the motor efficiency curve.
 
 \subsection{Glider Identification and Updraft Detection}
 \label{subsec:SysID}
 \squeezeup
 
-There is a number of prior efforts devoted to the thermal soaring flight. First
-demonstrated by human pilots in 1900s (see \cite{Simons:1998}) the idea of soaring in
-convective air became feasible for onboard autonomous implementation only in the 1990s,
-see \cite{Wharington:1998}. While enabling the desired functionality by primarily
-mimicking the birds flight and indeed achieving significant extended flight capabilities
-(see \cite{Edwards:2008}, \cite{Allen:2006} and \cite{Allen:2007}), most of the
-algorithms used heuristics in the identification of the updraft strength, its potential
-utility in energy gain, and the decision of when and how to enter the updraft. The reason
-for employing heuristic approaches is obvious, since both the strength of the updraft and
-its efficiency are both subject to significant uncertainties and are hard to formalize.
+There is a number of prior efforts devoted to the thermal soaring flight.
+First demonstrated by human pilots in 1900s (see \cite{Simons:1998}) the idea
+of soaring in convective air became feasible for onboard autonomous
+implementation only in the 1990s, see \cite{Wharington:1998}. While enabling
+the desired functionality by primarily mimicking the birds flight and indeed
+achieving significant extended flight capabilities (see \cite{Edwards:2008},
+\cite{Allen:2006} and \cite{Allen:2007}), most of the algorithms used
+heuristics in the identification of the updraft strength, its potential
+utility in energy gain, and the decision of when and how to enter the
+updraft. The reason for employing heuristic approaches is obvious, since both
+the strength of the updraft and its efficiency are both subject to
+significant uncertainties and are hard to formalize.
 %First, they result from the uncertain flight characteristics of the specific glider no
 %matter how well the airframe is modeled and flight tested. ; significant advances in
 %material and structures sciences produce novel airframes that are strong and flexible on
 %one hand, and therefore aerodynamically uncertain when bend and twisted on the other
 %hand.
-Next, when a glider moves through unsteady air the estimation of the updraft strength and
-geometry, which are critical utility parameters of the updraft, significantly lacks of
-spatial content in noisy onboard measurements. Thus, it takes significant time before the
-updraft utility is identified and the guidance algorithm is engaged.
+Next, when a glider moves through unsteady air the estimation of the updraft
+strength and geometry, which are critical utility parameters of the updraft,
+significantly lacks of spatial content in noisy onboard measurements. Thus,
+it takes significant time before the updraft utility is identified and the
+guidance algorithm is engaged.
 %
 %It is worth noting, that when controlled by the thermal centering guidance law the
 %estimation algorithm partially regains the spatial data in horizontal direction.
+%
+%The approach used in our development shifts the focus from heuristics toward
+%the online estimation of the glider flight dynamics and the parameterized
+%model of the convective updraft.
 
-The approach used in our development shifts the focus from heuristics toward the online
-estimation of the glider flight dynamics and the parameterized model of the convective
-updraft. The algorithm of detecting a thermal is based on combining two complementary
-approaches. The first approach utilizes the inherent sink rate polar, and the second one
-is based on the total energy of the system. Moreover, as an effective method of rapid
-identification of $3D$ energy profile of a thermal updraft, we utilize multiple
-collaborative platforms that simultaneously sample the same updraft in $3D$ and share the
-spatially-rich data to speedup the estimation process.
+The algorithm of detecting a thermal is based on two complementary
+approaches. The first approach utilizes the inherent sink rate polar, and the
+second one is based on the total energy of the system. However, conceptually
+they are similar as they compare the natural metrics of the system with the
+same metrics actually measured in flight.
 
-%however conceptually they are similar as they compare the natural metrics of the system
-%with the same actually measured characteristics of the glider in flight.
+%Moreover, as an effective method of rapid identification of $3D$ energy
+%profile of a thermal updraft, we utilize multiple collaborative platforms
+%that simultaneously sample the same updraft in $3D$ and share the
+%spatially-rich data to speedup the estimation process.
+
+
 
 %\emph{The sink rate polar} is the curve of the vertical speed plotted versus the true air
 %speed (TAS). Every glider has a very specific sink polar as it reflects the glider
@@ -605,44 +688,53 @@ spatially-rich data to speedup the estimation process.
 %the flight data  of ASW-27 acquired in high-fidelity simulation provided by the Condor
 %software (\cite{Condor:2013:Online}), see details in Section.\ref{sec:SimEnv}.
 
-\emph{Characterization of the sink polar} - the function of vertical sink rate versus the
-true airspeed (TAS) of an aircraft - of a particular glider can be practically achieved
-in extensive experimentation. However, flight-experimentation in real-world environment
-can hardly provide ideally controlled conditions. In the developed approach, the
-estimates of the sink-polar were first made by post-processing a collection of
-experimental flight results obtained in low-wind, low-lift conditions, see
-\cite{AKlass_JGCD:2012}. Sink polars are roughly quadratic in nature, and a least-squares
-approach yields suitable coefficients based on the historical data. Further in flight, a
-recursive linear least square (see \cite{Astrom:1995}) estimator is used in real-time to
-account for specific variation in the platform and atmospheric conditions at that moment.
-An example of accuracy of this approach is presented below in Figure.\ref{fig:SinkPolar}
-for a full-scale ASW-27 glider; the result was obtained using the Condor simulator
-(\cite{Condor:2013:Online}) and ''true`` data of \cite{Boermans:1994}, see more details
-in sec.\ref{sec:SimEnv}.
+\emph{Characterization of the sink polar} - the function of vertical sink
+rate versus the true airspeed (TAS) of an aircraft - of a particular glider
+can be practically achieved in extensive experimentation. However,
+flight-experimentation in real-world environment can hardly provide ideally
+controlled conditions. In the developed approach, the estimates of the
+sink-polar were first made by post-processing a collection of experimental
+flight results obtained in low-wind, low-lift conditions, see
+\cite{AKlass_JGCD:2012}. Sink polars are roughly quadratic in nature, and a
+least-squares approach yields suitable coefficients based on the historical
+data. Further in flight, a recursive linear least square (see
+\cite{Astrom:1995}) estimator is used in real-time to account for specific
+variation in the platform and atmospheric conditions at that moment. An
+example of accuracy of this approach is presented below in
+Figure.\ref{fig:SinkPolar} for a full-scale ASW-27 glider; the result was
+obtained using the Condor simulator (\cite{Condor:2013:Online}) and ''true``
+data of \cite{Boermans:1994}, see more details in sec.\ref{sec:SimEnv}. The
+detection of a thermal based on the sink polar is based on comparison of the
+currently measured sink rate with the sink rate predicted by the polar for a
+given TAS measurements; if the measured sink rate is smaller then predicted
+then there is a thermal.
 %%%%%%%%%%%%%%%%
 \begin{figure}[thpb]
   \centering
-  \includegraphics[scale=0.52]{Figures/Condor_Boermans_comparison.eps}
-  \caption{Identifying the inherent sink polar: both the sink rate and the TAS are directly measured
-  by the onboard sensors. Minimum sink rate $V_s min$ and the optimal crusing speed $V_{cc}$
-  corresponding to the maximum glide ratio ( typical for the ''cross-country`` flight) are
+  \includegraphics[scale=0.48]{Figures/Condor_Boermans_comparison_mod.eps}
+  \caption{Identifying the inherent sink polar: both the sink rate and the
+  TAS are directly measured by the onboard sensors. Minimum sink rate
+  $V_s min$ and the optimal crusing speed $V_{cc}$  corresponding to
+  the maximum glide ratio ( typical for the ''cross-country`` flight) are
   presented.}
   \label{fig:SinkPolar}
 \end{figure}
 %%%%%%%%%%%%%%%%
-The analytical representation of the sink polar significantly contributes not only to the
-identification of thermal updrafts, but also to the mission planning of a specific
-glider, see \cite{Piggott:1997} and \cite{FAA:2011}. In particular, the polar defines the
-minimum sink rate $V_{s}min$ and the corresponding TAS command for the autopilot to
-follow. While $V_{s}min$ may be too close to the stall speed $V_{stall}$ and should be
-avoided ($V_{stall} \approx V_{s}min$), the effective speed commanded in thermaling mode
-$V_{th}$ may be slightly higher. The polar also defines the optimal TAS command  $V_{cc}$
-for the maximum glide ratio flight that is used by the navigation task in planning for
-the maximum range ''cross-country`` segment; the tangent line from the origin defines
-$V_{cc}$. While the sink polar should be ideally obtained in no-wind environment, its
-application to the known wind conditions is also straightforward and allows for the
-calculation of the distances to be traveled in cross-country flight, see more details in
-\cite{Piggott:1997} and \cite{FAA:2011}.
+The analytical representation of the sink polar significantly contributes not
+only to the identification of thermal updrafts, but also to the mission
+planning of a specific glider, see \cite{Piggott:1997} and \cite{FAA:2011}.
+In particular, the polar defines the minimum sink rate $V_{s}min$ and the
+corresponding TAS command for the autopilot to follow. While $V_{s}min$ may
+be too close to the stall speed $V_{stall}$ and should be avoided ($V_{stall}
+\approx V_{s}min$), the effective speed commanded in thermaling mode $V_{th}$
+may be slightly higher. The polar also defines the optimal TAS command
+$V_{cc}$ for the maximum glide ratio flight that is used by the navigation
+task in planning for the maximum range ''cross-country`` segment; the tangent
+line from the origin defines $V_{cc}$. While the sink polar should be ideally
+obtained in no-wind environment, its application to the known wind conditions
+is also straightforward and allows for the calculation of the distances to be
+traveled in cross-country flight, see more details in \cite{Piggott:1997} and
+\cite{FAA:2011}.
 
 \emph{The total energy} approach is also widely used in human piloted soaring flight. It
 is based on the concept that the mechanical energy $E_{tot}$ of the soaring glider
@@ -677,23 +769,24 @@ total energy management just presented is widely used in manned aviation being
 implemented in the so-called total energy compensating (TEK) variometer, see for example
 \cite{PitLab:2013:Online}.
 
-All the components of equation (\ref{eq:totenergyrate}) are available in onboard
-autopilot. Both equations in (\ref{eq:totenergyrate}) are included into one Kalman filter
-along with the inertial and barometric sensors outputs. The resulting energy rate-based
-solution provides another precise indication of the updraft event. A comparison of the
-outputs of both approaches with the output  of the TEK variometer $\dot{h}_{TEK}$ is
+All the components of equation (\ref{eq:totenergyrate}) are available in
+onboard autopilot. Both equations in (\ref{eq:totenergyrate}) are included
+into one Kalman filter along with the inertial and barometric sensors
+outputs. The resulting energy rate-based solution provides another accurate
+indication of the updraft event. A comparison of the output of the total
+energy approach with the output of the TEK variometer $\dot{h}_{TEK}$ is
 presented next in Figure.\ref{fig:ThermalDetection}.
 %%%%%%%%%%%%%%%%
 \begin{figure}[thpb]
   \centering
   \includegraphics[scale=0.44]{Figures/TEK_Bank.eps}
-  \caption{Comparison of two approaches to the detection of thermal updrafts in mathematical model
-  using Condor flight simulator, see~\cite{Condor:2013:Online}. }
+  \caption{Energy-based detection of updrafts; the data is simulated
+  by the~\cite{Condor:2013:Online} software, see sec.\ref{sec:SimEnv}.}
   \label{fig:ThermalDetection}
 \end{figure}
 %%%%%%%%%%%%%%%%
-%The outcomes of the total energy estimator in (\ref{eq:totenergyrate}) are used in the guidance law
-%implementation that is presented next.
+%The outcomes of the total energy estimator in (\ref{eq:totenergyrate}) are used in the guidance
+%law implementation that is presented next.
 
 \subsection{Guidance in Thermal Centering Mode}
 \label{subsec:ThermGuidance}
@@ -723,14 +816,15 @@ law in (\ref{eq:GuidanceLaw}):
     && \dot{\psi}_{c}=-sign(\phi) \cdot (\frac{V}{\rho_d}-k_1 \cdot \ddot{E}),
     \label{eq:GuidanceLaw}
 \end{eqnarray}
-where $\rho$ and $\rho_d$ are the current distance and the desired orbital radius around
-the center of the thermal updraft, $\phi$ is the roll angle induced by the updraft, and
-$k_1$ is the feedback gain defined by the stability and performance requirements.
+where $\rho$ and $\rho_d$ are the current distance and the desired orbital
+radius around the center of the thermal updraft, $\phi$ is the roll angle
+induced by the updraft, and $k_1$ is the feedback gain determined by the
+stability and performance requirements.
 \begin{figure}[thpb]
   \centering
   \includegraphics[scale=0.3]{Figures/ThermalG.eps}
-  \caption{Kinematics of guidance around a thermal updraft; the desired orbit is represented by the
-  red dashed line defined by $\rho_d$.}
+  \caption{Kinematics of guidance around a stationary thermal updraft;
+  the desired orbit is represented by the red dashed line defined by $\rho_d$.}
   \label{fig:ThermaG}
 \end{figure}
 For the feasibility of theoretical development the thermal center is assumed stationary
@@ -797,9 +891,9 @@ control laws.
 %\begin{figure}[thpb]
 %  \centering
 %  \includegraphics[scale=0.3]{Figures/BendedThermal.eps}
-%  \caption{The experimentally obtained shape illustrates complex geometry of an updraft; color coding
-%  represents the rate of change of the total energy (\ref{eq:totenergyrate}) of a glider guided by
-%  the control law in (\ref{eq:GuidanceLaw}).}
+%  \caption{The experimentally obtained shape illustrates complex geometry of an updraft; color
+%coding represents the rate of change of the total energy (\ref{eq:totenergyrate}) of a glider guided
+%by  the control law in (\ref{eq:GuidanceLaw}).}
 %  \label{fig:ThermaShape}
 %\end{figure}
 %%%%%%%%%%%
@@ -808,17 +902,18 @@ control laws.
 \label{sec:CoopAlgs}
 \squeezeup
 
-The initial approach to the estimation of thermals ($2D$ coordinates of the center vs.
-the glider altitude) by utilizing the measurements of single glider in soaring mode was
-based on two classical nonlinear filtering techniques: first - the nonlinear Kalman
-filter with the ''bearings only measurements``, and second - the kinematic relation
-$\dot{\psi}=\frac{V}{\rho}$ between the speed over ground $V$ and the turn rate
-$\dot{\psi}$, see Figure.\ref{fig:ThermaG}. In both formulations the bearing to the
-updraft center was assumed to be constant at $\pi/2$ ($\eta=0$) with respect to the
-direction of turn being defined toward the center of the updraft. When entering a strong
-updraft, the performance of either filter was slow but reasonable, resulting in a
-converging solution in about 2 full orbits and precision of the thermal center estimation
-of $~75m$.
+The initial approach to the estimation of thermals ($2D$ coordinates of the
+center vs. the glider altitude) by utilizing the measurements of single
+glider in soaring mode was based on two classical nonlinear filtering
+techniques: first - the nonlinear Kalman filter with the ''bearings only
+measurements``, and second - the kinematic relation $\dot{\rho}=-V_g\cdot
+sin(\eta)$ between the speed over ground $V_g$ and the ''navigation error``
+$\eta$, see Figure.\ref{fig:ThermaG}. In both formulations the bearing to the
+updraft center was assumed to be constant at $\pi/2$ ($\lambda-\psi=\pi/2$)
+with respect to the direction of turning flight; the turn is defined toward
+the center of the updraft. When entering a strong updraft, the performance of
+either filter was slow but reasonable, resulting in a converging solution in
+about 2 full orbits and precision of the thermal center estimation of $~75m$.
 %the experimental setup unfortunately does not allow for true data of the
 %thermal, while the simulation data is not a representative metric for the comparison.
 %
@@ -832,113 +927,119 @@ of $~75m$.
 \label{subsec:BayesianMapping}
 \squeezeup
 
-To further increase the efficiency of updraft estimation the solution should integrate
-the knowledge gained by multiple gliders and the prior meteorological observations (see
-\cite{Pennycuick:1998}, \cite{Hindman:2007}), which might be available for the area of
-operation. The latter data can be conveniently interpreted as a map of probability
-density of convective air activity with respect to the geographic latitude and longitude,
-see a conceptual example in Figure.\ref{fig:HeatMap}.
+To further improve the efficiency of updraft estimation the solution should
+integrate the knowledge gained by multiple gliders and the prior
+meteorological observations (see \cite{Pennycuick:1998},
+\cite{Hindman:2007}), which might be available for the area of operation. The
+latter data can be conveniently interpreted as a map of probability density
+of convective air activity with respect to the geographic latitude and
+longitude, see a conceptual example in Figure.\ref{fig:HeatMap}.
 %%%%%%%%%%
 \begin{figure}[thpb]
   \centering
-  \includegraphics[scale=0.35]{Figures/ProbabilityThermal.eps}
+  \includegraphics[scale=0.3]{Figures/ProbabilityThermal.eps}
   \caption{''Heat map`` of probability of finding a thermal over an area of operation.}
   \label{fig:HeatMap}
 \end{figure}
 %%%%%%%%%%
-
 As a first step toward cooperative identification and mapping of convective thermals over
 extended areas with an account of prior methodological observation, the probabilistic
 recursive Bayesian approach was adopted, see details of the approach in
 \cite{Bergman:1999}.
 
 Consider a task where $N$ gliders cooperatively estimate the velocity
-$f_k=f(x_k,y_k,z_k,k)$ of flow field  at  the inertial coordinates $x_k,y_k,z_k$  of
-$k$-th glider, $k=1...N$. Assume that the onboard instrumentation enables measuring the
-lateral and vertical components of the airflow. The convective airflow of interest is
-captured by a given parametric model with unknown characteristics; see the vertical
-updraft model in ( \ref{eq:GaussUpdraft}) with unknown parameters $\omega_p$, $\sigma$,
-$x_0$, $y_0$. The objective of the task is to estimate $f$ by cooperatively using noisy
-observations of the airflow.
+$f_k=f(x_k,y_k,z_k)$ of flow field at the inertial coordinates $x_k,y_k,z_k$
+of $k$-th glider, $k=1...N$. Assume that the onboard instrumentation enables
+measuring the lateral and vertical components of the airflow. The convective
+airflow of interest is captured by a given parametric model with unknown
+characteristics; see, for example, the vertical updraft model in
+(\ref{eq:GaussUpdraft}) with unknown parameters $\omega_p$, $\sigma$, $x_0$,
+$y_0$. The objective of the task is to estimate $f$ by using noisy
+observations of the airflow provided by cooperative gliders.
 
-Let $X(t)=(\omega_p, \sigma, x_0, y_0)$ be a state vector that encapsulates the unknown
-parameters of the convective flow velocity $f_k$ that is estimated at each point of the
-discretized space at time $t$, $s_k(t)$ denote the noisy measurement of vehicle $k$ at
-time $t$, and $S_k(t)=\{s_k(0),...,s_k(t)\}$ define the set of samples up to the current
-time $t$. Assume that $s_k(t)$ of each vehicle at location $x_k,y_k,z_k$ is corrupted by
-Gaussian noise such that $s_k(t)=f_k(x_k,y_k,z_k)+\mu_{h,k}+\mu_{v,k}$, with
-$\mu_{h,k}\sim N(0,\sigma^2_h)$ and $\mu_{v,k}\sim N(0,\sigma^2_v)$ being white noise
+Let $X(t)=(\omega_p, \sigma, x_0, y_0)$ be a state vector that encapsulates
+the unknown parameters of the convective flow velocity $f_k$ that is
+estimated at each point of the discretized space at time $t$, $s_k(t)$ denote
+the noisy measurement of vehicle $k$ at time $t$, and
+$S_k(t)=\{s_k(0),...,s_k(t)\}$ define the set of samples up to the current
+time $t$. Assume that $s_k(t)$ of each vehicle at location $x_k,y_k,z_k$ is
+corrupted by Gaussian noise such that
+$s_k(t)=f_k(x_k,y_k,z_k)+\mu_{h,k}+\mu_{v,k}$, with $\mu_{h,k}\sim
+N(0,\sigma^2_h)$ and $\mu_{v,k}\sim N(0,\sigma^2_v)$ being white noise
 components in the lateral and vertical directions.
 
-Then, the conditional probability of the state $X(t)$ given the set of measurements
-$S_k(t)$ of $k$-th glider is
+Then, the conditional probability of the state $X(t)$ given the set of
+measurements $S_k(t)$ of $k$-th glider is
 \begin{eqnarray}
     && p(X(t)\vert S_k(t))=\beta \cdot p(s_k(t) \vert X)\cdot p(X(t) \vert S_k(t-1)),
     \label{eq:BayesProb}
 \end{eqnarray}
-where $\beta$ is the normalization coefficient chosen to guarantee that $p(X(t)\vert
-S_k(t))$ at every instance of $t$ has a unity integral over the state-space $X$.  The
-$p(s_k(t) \vert X)$ is the likelihood function represented by the conditional probability
-of the measurement $s_k(t)$ given the state $X=f_k$, and the $p(X(t) \vert S_k(t-1))$ is
-the prior probability distribution that represents any prior knowledge or intelligence
-about the most likely location and intensity of thermals. In our development $p(X(t)
+where $\beta$ is the normalization coefficient chosen to guarantee that
+$p(X(t)\vert S_k(t))$ at every instance of $t$ has a unity integral over the
+state-space $X$.  The $p(s_k(t) \vert X)$ is the likelihood function
+represented by the conditional probability of the measurement $s_k(t)$ given
+the state $X=f_k$, and the $p(X(t) \vert S_k(t-1))$ is the prior probability
+distribution that represents any given knowledge or intelligence about the
+most likely location and intensity of thermals. In our development $p(X(t)
 \vert S_k(t-1))$ is what encapsulates the probability ''heat map``, see
-Figure.\ref{fig:HeatMap}.
+conceptual Figure.\ref{fig:HeatMap}.
 
-Finally, let each point of state $X$ in the state-space be represented by the multi-variate Gaussian
-likelihood function:
+Finally, let each point of state $X$ in the state-space be represented by the
+multi-variate Gaussian likelihood function:
 \begin{eqnarray*}
     && p(s_k(t)\vert X)=\frac{1}{[2\pi \Delta]^\frac{1}{2}}  exp( \frac{-[f_k(X)-s_k(t)]}{\sum
     [f_k(X)-s_k(t)] }),
     \label{eq:BayesLikeLH}
 \end{eqnarray*}
-where $\Delta=diag(\mu^2_h,\mu^2_v)$. Assuming that measurements are taken at each time step and the
-gliders cooperatively share the data, the conditional probability density of the state $X(t)$ is
-updated through the natural motion of the fleet of gliders sampling the airflow at ($x_k,y_k,z_k$) as
-\begin{eqnarray*}
+where $\Delta=diag(\mu^2_h,\mu^2_v)$. Assuming that measurements are taken at
+each time step and the gliders cooperatively share the data, the conditional
+probability density of the state $X(t)$ is updated through the natural motion
+of the fleet of gliders sampling the airflow at ($x_k,y_k,z_k$) as
+\begin{eqnarray}
     && p(X(t)\vert S(t))=\beta \cdot \prod_{k=1}^N p(s_k(t) \vert X)\cdot p(X(t) \vert S(t-1)),
-    \label{eq:CondProb}
-\end{eqnarray*}
-where $S(t-1)$includes the measurements from all $N$ gliders in the fleet. Now it is
-clear that the points of the parameter space corresponding to the maximum of the
-posterior probability density $X(t)=max p(X(t) \vert S(t))$ provide the maximum
-likelihood of the convective flow field parameters.
+    \label{eq:PostProb}
+\end{eqnarray}
+where $S(t-1)$includes the measurements from all $N$ gliders in the fleet.
+Now it is clear that the points of the parameter space corresponding to the
+maximum of the posterior probability density $X(t)=\max p(X(t) \vert S(t))$
+provide the maximum likelihood of the convective flow field parameters.
 %
 %In a verification scenario when ''true thermals`` are distributed according to the known
 %''heat map`` and the prior is initialized uniformly, the recursive algorithm in
 %(\ref{eq:BayesProb}) should converges   to the ''true heat map'' asymptotically.
 
-An example of the recursive Bayesian algorithm for the case of three
-simulated gliders cooperatively flying and estimating parameters of the same
-updraft is presented in Figure.\ref{fig:SimPDF}.
+An example of the recursive algorithm (\ref{eq:PostProb}) for the case of
+three simulated gliders cooperatively flying and estimating parameters of a
+single updraft in a given area modelled by (\ref{eq:GaussUpdraft}) is
+presented in Figure.\ref{fig:SimPDF}.
 %%%%%%%%%%
 \begin{figure}[thpb]
   \centering
-  \includegraphics[scale=0.525]{Figures/Mapping_thermals.eps}
-  \caption{Estimated location of an updraft obtained onboard of glider $\#1$ from the cooperative sampling of
-  environment.}
+  \includegraphics[scale=0.51]{Figures/Mapping_thermals.eps}
+  \caption{Estimation of an updraft obtained onboard of glider $\#1$ from
+  the cooperative sampling of environment.}
   \label{fig:SimPDF}
 \end{figure}
 %%%%%%%%%%
 \begin{figure}[thpb]
   \centering
-  \includegraphics[scale=0.45]{Figures/paths_cooperative_flight.eps}
-  \caption{An example of cooperative flight of three gliders; starting at different locations they
-  all converge to the same updraft when glider $\#1$ finds it and shares its estimated location.}
+  \includegraphics[scale=0.41]{Figures/paths_cooperative_flight.eps}
+  \caption{Cooperative flight of three gliders; starting at different locations
+  they all converge to the same updraft when glider $\#1$ finds it and
+  shares its estimated location.}
   \label{fig:CoopFlightPaths}
 \end{figure}
 %%%%%%%%%%
-The task is to find a single updraft in a bounded area and to converge to the
-same thermal by utilizing all the algorithms discussed above; the task mimics
-the setup and the objectives of our first cooperative flight test of two
-gliders reported earlier in \cite{AKlass_JGCD:2012}. In the demonstrated
+The task is to find the updraft in a bounded area and to converge to the same
+thermal by utilizing the detection algorithms discussed above; the task
+mimics the setup and the objectives of our first cooperative flight test of
+two gliders reported earlier in \cite{AKlass_JGCD:2012}. In the demonstrated
 result the prior probability density is initialized by a uniform function
-that is defined as an inverse of the area of operation. The result
-corresponds to the progression of the probability density function estimated
-onboard of glider $\#1$ along its flight path, see the corresponding
-cooperative trajectories of gliders $\#2$ and $\#3$ in
-Figure.\ref{fig:CoopFlightPaths}, see more details on the simulation setup in
-section \ref{sec:SimEnv}.
+over the entire area of operation. The result corresponds to the progression
+of the probability density function estimated onboard of glider $\#1$ along
+its flight path, see the corresponding cooperative trajectories of gliders
+$\#2$ and $\#3$ in Figure.\ref{fig:CoopFlightPaths}, see more details on the
+simulation setup in section \ref{sec:SimEnv}.
 
 \section{Simulation Environment}
 \label{sec:SimEnv}
@@ -963,19 +1064,25 @@ of the software in the loop setup is presented in Figure.\ref{fig:SIL}.
 %%%%%%%%%%
 \begin{figure}[thpb]
   \centering
-  \includegraphics[scale=0.315]{Figures/SIL.eps}
+  \includegraphics[scale=0.3]{Figures/SIL.eps}
   \caption{Integration of Simulink and Condor capabilities.}
   \label{fig:SIL}
 \end{figure}
 %%%%%%%%%%
 
 %%%%% If this section on the API is used then include Dmitrij as a coauthor %%%%%%
-%Condor API is the utility that enables the read telemetry and write commands functionality in the SIL environment. Condor API is implemented as a Windows Service and uses .NET Framework 
-%4.0. Condor Soaring Simulator (Condor.exe) sends telemetry to Condor API Windows Service; CondorAPI listens for telemetry on CondorEndpoint. Then Condor API reads additional parameters
-%from Condor process, adds those parameters to telemetry and sends to external endpoint (MatLab/Simulink). Also Condor API service listens for commands (elevator,rudder,ailerons,airbreaks)
-%on CommandsEndpoint and executes them by writing to condor process memory.
+%Condor API is the utility that enables the read telemetry and write commands
+%functionality in the SIL environment. Condor API is implemented as a Windows
+%Service and uses .NET Framework 4.0. Condor Soaring Simulator (Condor.exe)
+%sends telemetry to Condor API Windows Service; CondorAPI listens for
+%telemetry on CondorEndpoint. Then Condor API reads additional parameters from
+%Condor process, adds those parameters to telemetry and sends to external
+%endpoint (MatLab/Simulink). Also Condor API service listens for commands
+%(elevator,rudder,ailerons,airbreaks) on CommandsEndpoint and executes them by
+%writing to condor process memory.
 %
-%In a configuration where Condor software and the Simulink model are running on the same computer all endpoints can be configured in a single config file as follows:
+%In a configuration where Condor software and the Simulink model are running on the same computer
+%all endpoints can be configured in a single config file as follows:
 %\begin{itemize}{\leftmargin=0em \itemindent=0em}
 %  \item[] $<$HostSettings$>$
 %    \begin{itemize}
@@ -995,61 +1102,67 @@ of the software in the loop setup is presented in Figure.\ref{fig:SIL}.
 %\end{figure}
 %%%%%%%%%%%
 
-As an illustration of the achieved capabilities, Figure.\ref{fig:CoopFlightPaths}
-represents the cooperative flight of three gliders in a simplified scenario introduced
-above. The gliders start their flight simultaneously at the same altitude and initially
-spend some time in search for thermals. When glider $\#1$ detects an updraft utilizing
-the sink polar and the TEK approaches ( see sec.\ref{subsec:SysID}) and shares the
-information about the thermal, the other two gliders arrive to the same thermal and
-successfully gain height all together. Time history of the altitude of three cooperative
-gliders is presented next in Figure.\ref{fig:CoopFlightHeight}. The result clearly
-demonstrates the benefits and significant potential of collaborative strategies in
-harvesting the convective updraft energy from the environment.
+As an illustration of the achieved capabilities,
+Figure.\ref{fig:CoopFlightPaths} represents the cooperative flight of three
+gliders in a simplified scenario introduced above. The gliders start their
+flight simultaneously at the same altitude, and initially spend some time in
+search for thermals. When glider $\#1$ detects an updraft utilizing either of
+the thermal detection approaches ( see sec.\ref{subsec:SysID}), and shares
+the information about the thermal, the other two gliders arrive to the same
+thermal and successfully gain height all together. Time history of the
+altitude of three cooperative gliders is presented next in
+Figure.\ref{fig:CoopFlightHeight}. The result clearly demonstrates the
+benefits and significant potential of collaborative strategies in harvesting
+the convective updraft energy from the environment.
 
 %%%%%%%%%%
 \begin{figure}[thpb]
   \centering
-  \includegraphics[scale=0.45]{Figures/Coop_gain_altitude.eps}
-  \caption{An example of cooperative flight of three gliders; cooperative gain of altitude is the
-  metric used here to evaluate the efficiency of developed strategies.}
+  \includegraphics[scale=0.4]{Figures/Coop_gain_altitude.eps}
+  \caption{An example of cooperative flight of three gliders.}
   \label{fig:CoopFlightHeight}
 \end{figure}
 %%%%%%%%%%
 
-\section{Future work}
-\label{sec:Future}
-\squeezeup
+%\section{Future work}
+%\label{sec:Future}
+%The future plans include the development in two primary
+%directions. First is the design of novel distributed approaches for effective
+%environment sensing and energy harvesting along with the cooperative mission
+%management and execution algorithms. We envision that in a typical mission
+%with the goal defined by the waypoints in the area of operation, the task of
+%finding an optimal route for multiple ''traveling salesman`` to visit all
+%waypoints can be solved by weighting the edges of the underlying graph
+%according to the proximity to the free energy sources in the area. Second is
+%to develop new hardware platform with high efficiency flexible solar panels
+%integrated into the skin of the glider wings and the corresponding monitoring
+%and the energy management algorithms. The task is underway with expected
+%first flight of a single solar powered platform to be performed in February
+%2014.
 
-The future plans include the development in two primary directions. First is
-the design of novel distributed approaches for effective environment sensing
-and energy harvesting along with the cooperative mission management and
-execution algorithms. We envision that in a typical mission with the goal
-defined by the waypoints in the area of operation, the task of finding an
-optimal route for multiple ''traveling salesman`` to visit all waypoints can
-be solved by weighting the edges of the underlying graph according to the
-proximity to the free energy sources in the area. Second is to develop new
-hardware platform with high efficiency flexible solar panels integrated into
-the skin of the glider wings and the corresponding monitoring and the energy
-management algorithms. The task is underway with expected first flight of a
-single solar powered platform to be performed in February 2014.
-
-%\section{Conclusion}
-%
+\section{Conclusion}
 %A conclusion section is not required. Although a conclusion may review the
 %main points of the paper, do not replicate the abstract as the conclusion. A
 %conclusion might elaborate on the importance of the work or suggest
 %applications and extensions.
+The paper presents the initial development of cooperative convective thermal
+and solar energy harvesting capability integrated onboard of multiple
+gliders. The discussion details the key technologies required to integrate
+the energy harvesting into a cooperative mission planning and execution
+environment. The key technologies include the online characterization of the
+electrical (PV solar and batteries) management system, glider properties
+identification, convective thermals detection, and the collaborative
+environment sensing by utilizing recursive Bayesian estimation.
 
-\begin{ack}                               % Place acknowledgements here
-%The project has been supported by a number of sponsors including the NPS
-%Consortium for Robotics and Unmanned Systems Education and Research, the Army
-%Research Lab, and the "The Multidisciplinary Studies Support for USMC
-%Expeditionary Energy Office" program.
-Besides the funding sources acknowledged above, the authors would like to
-mention the contribution of graduate students Andrew Streenan and Joshua
-Weiss for providing results of their final project and contributing to the
-extensive simulation research.
-\end{ack}
+%\begin{ack}                              % Place acknowledgements here
+%%The project has been supported by a number of sponsors including the NPS
+%%Consortium for Robotics and Unmanned Systems Education and Research, the Army
+%%Research Lab, and the "The Multidisciplinary Studies Support for USMC
+%%Expeditionary Energy Office" program.
+%The authors would like to mention the contribution of graduate students
+%Andrew Streenan and Joshua Weiss for providing results of their final project
+%and contributing to the extensive simulation research.
+%\end{ack}
 
 %\bibliographystyle{ifacconf-harvard}        % Include this if you use bibtex
 \bibliography{ifacconf}           % and a bib file to produce the
