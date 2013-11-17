@@ -949,27 +949,21 @@ recursive Bayesian approach was adopted, see details of the approach in
 
 Consider a task where $N$ gliders cooperatively estimate the velocity
 $f_k=f(x_k,y_k,z_k)$ of flow field at the inertial coordinates $x_k,y_k,z_k$
-of $k$-th glider, $k=1...N$. Assume that the onboard instrumentation enables
-measuring the lateral and vertical components of the airflow. The convective
+of $k$-th glider, $k=1...N$. Assume that the onboard instrumentation enables measuring the lateral and vertical components of the airflow. The convective
 airflow of interest is captured by a given parametric model with unknown
 characteristics; see, for example, the vertical updraft model in
 (\ref{eq:GaussUpdraft}) with unknown parameters $\omega_p$, $\sigma$, $x_0$,
-$y_0$. The objective of the task is to estimate $f$ by using noisy
-observations of the airflow provided by cooperative gliders.
+$y_0$. The objective of the task is to estimate $f$ by using noisy observations of the airflow provided by cooperative gliders.
 
 Let $X(t)=(\omega_p, \sigma, x_0, y_0)$ be a state vector that encapsulates
 the unknown parameters of the convective flow velocity $f_k$ that is
 estimated at each point of the discretized space at time $t$, $s_k(t)$ denote
 the noisy measurement of vehicle $k$ at time $t$, and
-$S_k(t)=\{s_k(0),...,s_k(t)\}$ define the set of samples up to the current
-time $t$. Assume that $s_k(t)$ of each vehicle at location $x_k,y_k,z_k$ is
-corrupted by Gaussian noise such that
-$s_k(t)=f_k(x_k,y_k,z_k)+\mu_{h,k}+\mu_{v,k}$, with $\mu_{h,k}\sim
-N(0,\sigma^2_h)$ and $\mu_{v,k}\sim N(0,\sigma^2_v)$ being white noise
-components in the lateral and vertical directions.
+$S_k(t)=\{s_k(0),...,s_k(t)\}$ define the set of samples up to the current time $t$. Assume that $s_k(t)$ of each vehicle at location $x_k,y_k,z_k$ is
+corrupted by Gaussian noise such that $s_k(t)=f_k(x_k,y_k,z_k)+\mu_{h,k}+\mu_{v,k}$, with $\mu_{h,k}\sim N(0,\sigma^2_h)$ and $\mu_{v,k}\sim N(0,\sigma^2_v)$ being white noise components in the lateral and vertical directions.
 
 Then, the conditional probability of the state $X(t)$ given the set of
-measurements $S_k(t)$ of $k$-th glider is
+measurements $S_k(t)$ of $k$-th glider alone is
 \begin{eqnarray}
     && p(X(t)\vert S_k(t))=\beta \cdot p(s_k(t) \vert X)\cdot p(X(t) \vert S_k(t-1)),
     \label{eq:BayesProb}
@@ -978,31 +972,24 @@ where $\beta$ is the normalization coefficient chosen to guarantee that
 $p(X(t)\vert S_k(t))$ at every instance of $t$ has a unity integral over the
 state-space $X$.  The $p(s_k(t) \vert X)$ is the likelihood function
 represented by the conditional probability of the measurement $s_k(t)$ given
-the state $X=f_k$, and the $p(X(t) \vert S_k(t-1))$ is the prior probability
-distribution that represents any given knowledge or intelligence about the
-most likely location and intensity of thermals. In our development $p(X(t)
-\vert S_k(t-1))$ is what encapsulates the probability ''heat map``, see
-conceptual Figure.\ref{fig:HeatMap}.
+the state $X$, and the $p(X(t) \vert S_k(t-1)$ is the prior probability
+distribution that represents any given knowledge or intelligence about the most likely location and intensity of thermals. In our development $p(X(t) \vert S_k(0)$ is what encapsulates the probability ''heat map`` at the very first step, see Figure.\ref{fig:HeatMap}.
 
 Finally, let each point of state $X$ in the state-space be represented by the
 multi-variate Gaussian likelihood function:
 \begin{eqnarray*}
-    && p(s_k(t)\vert X)=\frac{1}{[2\pi \Delta]^\frac{1}{2}}  exp( \frac{-[f_k(X)-s_k(t)]}{\sum
+    && p(s_k(t)\vert X)=\frac{1}{[2\pi \Delta]^\frac{1}{2}}  exp( \frac{-[f_k(X)-s_k(t)]}{2 \sum
     [f_k(X)-s_k(t)] }),
     \label{eq:BayesLikeLH}
 \end{eqnarray*}
-where $\Delta=diag(\mu^2_h,\mu^2_v)$. Assuming that measurements are taken at
-each time step and the gliders cooperatively share the data, the conditional
-probability density of the state $X(t)$ is updated through the natural motion
-of the fleet of gliders sampling the airflow at ($x_k,y_k,z_k$) as
+where $\Delta=diag(\mu^2_h,\mu^2_v)$. Assuming that measurements are synchronously taken at each time step and the gliders cooperatively share the data, the conditional probability density of the state $X(t)$ is updated through the natural motion of the fleet of gliders sampling the airflow at ($x_k,y_k,z_k$) as
 \begin{eqnarray}
     && p(X(t)\vert S(t))=\beta \cdot \prod_{k=1}^N p(s_k(t) \vert X)\cdot p(X(t) \vert S(t-1)),
     \label{eq:PostProb}
 \end{eqnarray}
 where $S(t-1)$includes the measurements from all $N$ gliders in the fleet.
 Now it is clear that the points of the parameter space corresponding to the
-maximum of the posterior probability density $X(t)=\max p(X(t) \vert S(t))$
-provide the maximum likelihood of the convective flow field parameters.
+maximum of the posterior probability density $X(t)=\max p(X(t) \vert S(t))$ provide the maximum likelihood of the convective flow field parameters.
 %
 %In a verification scenario when ''true thermals`` are distributed according to the known
 %''heat map`` and the prior is initialized uniformly, the recursive algorithm in
@@ -1010,8 +997,7 @@ provide the maximum likelihood of the convective flow field parameters.
 
 An example of the recursive algorithm (\ref{eq:PostProb}) for the case of
 three simulated gliders cooperatively flying and estimating parameters of a
-single updraft in a given area modelled by (\ref{eq:GaussUpdraft}) is
-presented in Figure.\ref{fig:SimPDF}.
+single updraft in a given area modeled by (\ref{eq:GaussUpdraft}) is presented in Figure.\ref{fig:SimPDF}.
 %%%%%%%%%%
 \begin{figure}[thpb]
   \centering
@@ -1118,7 +1104,7 @@ the convective updraft energy from the environment.
 %%%%%%%%%%
 \begin{figure}[thpb]
   \centering
-  \includegraphics[scale=0.4]{Figures/Coop_gain_altitude.eps}
+  \includegraphics[scale=0.39]{Figures/Coop_gain_altitude.eps}
   \caption{An example of cooperative flight of three gliders.}
   \label{fig:CoopFlightHeight}
 \end{figure}
@@ -1145,13 +1131,13 @@ the convective updraft energy from the environment.
 %main points of the paper, do not replicate the abstract as the conclusion. A
 %conclusion might elaborate on the importance of the work or suggest
 %applications and extensions.
-The paper presents the initial development of cooperative convective thermal
+The paper presents the initial development of  convective thermal
 and solar energy harvesting capability integrated onboard of multiple
-gliders. The discussion details the key technologies required to integrate
+cooperative gliders. The discussion details the key technologies required to integrate
 the energy harvesting into a cooperative mission planning and execution
 environment. The key technologies include the online characterization of the
-electrical (PV solar and batteries) management system, glider properties
-identification, convective thermals detection, and the collaborative
+electrical (PV solar and batteries) management system, glider properties,
+convective thermals detection, and the collaborative
 environment sensing by utilizing recursive Bayesian estimation.
 
 %\begin{ack}                              % Place acknowledgements here
