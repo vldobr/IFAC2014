@@ -36,7 +36,7 @@ Studies Support for USMC Expeditionary Energy Office" program.}
 \author[Second]{Vladimir N. Dobrokhodov, Kevin D. Jones,}
 %\author[Third]{Isaac I. Kaminer}
 
-\address[First]{Graduate student at the Department  of Mechanical and Aerospace Engineering,
+\address[First]{Graduate student at the Department of Mechanical and Aerospace Engineering,
 Naval
 Postgraduate School, Monterey, CA 93943 USA (e-mail: ncamacho@nps.edu)}
 \address[Second]{Research Associate Professors at the Department  of Mechanical and Aerospace
@@ -624,7 +624,7 @@ of soaring in convective air became feasible for onboard autonomous
 implementation only in the 1990s, see \cite{Wharington:1998}. While enabling
 the desired functionality by primarily mimicking the birds flight and indeed
 achieving significant extended flight capabilities (see \cite{Edwards:2008},
-\cite{Allen:2006} and \cite{Allen:2007}), most of the algorithms used
+\cite{Allen:2006}, and \cite{Allen:2007}), most of the algorithms used
 heuristics in the identification of the updraft strength, its potential
 utility in energy gain, and the decision of when and how to enter the
 updraft. The reason for employing heuristic approaches is obvious, since both
@@ -697,17 +697,18 @@ sink-polar were first made by post-processing a collection of experimental
 flight results obtained in low-wind, low-lift conditions, see
 \cite{AKlass_JGCD:2012}. Sink polars are roughly quadratic in nature, and a
 least-squares approach yields suitable coefficients based on the historical
-data. Further in flight, a recursive linear least square (see
-\cite{Astrom:1995}) estimator is used in real-time to account for specific
-variation in the platform and atmospheric conditions at that moment. An
-example of accuracy of this approach is presented below in
-Figure.\ref{fig:SinkPolar} for a full-scale ASW-27 glider; the result was
-obtained using the Condor simulator (\cite{Condor:2013:Online}) and ''true``
-data of \cite{Boermans:1994}, see more details in sec.\ref{sec:SimEnv}. The
-detection of a thermal based on the sink polar is based on comparison of the
-currently measured sink rate with the sink rate predicted by the polar for a
-given TAS measurements; if the measured sink rate is smaller then predicted
-then there is a thermal.
+data. Further in flight, a recursive linear least square estimator is used in
+real-time to account for specific variation in the platform and atmospheric
+conditions at that moment. An example of accuracy of this approach is
+presented below in Figure.\ref{fig:SinkPolar} for a full-scale ASW-27 glider;
+the result was obtained using the Condor simulator
+(\cite{Condor:2013:Online}) and ''true`` data of \cite{Boermans:1994}, see
+more details in sec.\ref{sec:SimEnv}. The detection of a thermal and
+estimation of its intensity that contributes to the recursive identification
+of its parameters (see sec.\ref{subsec:BayesianMapping}) are based on
+comparison of the currently measured sink rate with the sink rate predicted
+by the polar for a measured TAS; if the measured sink rate is smaller, then
+predicted then there is a thermal.
 %%%%%%%%%%%%%%%%
 \begin{figure}[thpb]
   \centering
@@ -720,32 +721,33 @@ then there is a thermal.
   \label{fig:SinkPolar}
 \end{figure}
 %%%%%%%%%%%%%%%%
-The analytical representation of the sink polar significantly contributes not
-only to the identification of thermal updrafts, but also to the mission
-planning of a specific glider, see \cite{Piggott:1997} and \cite{FAA:2011}.
-In particular, the polar defines the minimum sink rate $V_{s}min$ and the
-corresponding TAS command for the autopilot to follow. While $V_{s}min$ may
-be too close to the stall speed $V_{stall}$ and should be avoided ($V_{stall}
-\approx V_{s}min$), the effective speed commanded in thermaling mode $V_{th}$
-may be slightly higher. The polar also defines the optimal TAS command
-$V_{cc}$ for the maximum glide ratio flight that is used by the navigation
-task in planning for the maximum range ''cross-country`` segment; the tangent
-line from the origin defines $V_{cc}$. While the sink polar should be ideally
-obtained in no-wind environment, its application to the known wind conditions
-is also straightforward and allows for the calculation of the distances to be
+The analytical representation of the sink polar contributes not only to the
+identification of thermal updrafts, but also to the mission planning of a
+specific glider, see \cite{Piggott:1997} and \cite{FAA:2011}. In particular,
+the polar defines the minimum sink rate $V_{s}min$ and the corresponding TAS
+command for the autopilot to follow. While $V_{s}min$ may be too close to the
+stall speed $V_{stall}$ and should be avoided ($V_{stall} \approx V_{s}min$),
+the effective speed commanded in thermaling mode $V_{th}$ may be slightly
+higher. The polar also defines the optimal TAS command $V_{cc}$ for the
+maximum glide ratio flight that is used by the navigation task in planning
+for the maximum range ''cross-country`` segment; the tangent line from the
+origin defines $V_{cc}$. While the sink polar should be ideally obtained in
+no-wind environment, its application to the known wind conditions is also
+straightforward and allows for the calculation of the distances to be
 traveled in cross-country flight, see more details in \cite{Piggott:1997} and
 \cite{FAA:2011}.
 
-\emph{The total energy} approach is also widely used in human piloted soaring flight. It
-is based on the concept that the mechanical energy $E_{tot}$ of the soaring glider
-combines the potential energy, $E_p=mgh$, and kinetic energy, $E_k=\frac{m\cdot V^2}{2}$,
-of the airframe minus the ''leakage`` of the energy due to the work of the parasitic and
-induced aerodynamic drag, $E_{D}$. For an ''aerodynamically clean`` glider with an
-objective to minimize the total energy loss, the control commands of its autopilot will
-necessarily result in mild variations of the angle of attack, thus leading to the
-relatively constant parasitic drag and $\dot{E}_{D}\approx0$. Consequently, for the total
-energy and its rate of change over sufficiently long time intervals one can consider the
-following:
+\emph{The total energy} approach is also widely used in human piloted soaring
+flight. It is based on the concept that the mechanical energy $E_{tot}$ of
+the soaring glider combines the potential energy, $E_p=mgh$, and kinetic
+energy, $E_k=\frac{m\cdot V^2}{2}$, of the airframe minus the ''leakage`` of
+the energy due to the work of the parasitic and induced aerodynamic drag,
+$E_{D}$. For an ''aerodynamically clean`` glider with an objective to
+minimize the total energy loss, the control commands of its autopilot will
+necessarily result in mild variations of the angle of attack, thus leading to
+the relatively constant parasitic drag and $\dot{E}_{D}\approx0$.
+Consequently, for the total energy and its rate of change over sufficiently
+long time intervals one can consider the following:
 %Therefore, for efficient airframes the value of total energy remains nearly constant over
 %long periods of time with its rate of change close to zero, $\dot{E}_{tot}\approx0$, if
 %there is no propulsion or external energy injected. To be more precise, it is
@@ -757,16 +759,18 @@ following:
     \ddot{V}}{g} + \ddot{h},
     \label{eq:totenergyrate}
 \end{eqnarray}
-where $m$ is the mass of the airframe, $g$ is the gravitational constant, $E$ is the
-normalized total mechanical energy of the system (also called the specific energy), $h$
-is the height, and $V$ is the inertial speed. Therefore, the longitudinal long period
-oscillations represent the natural tradeoff of kinetic and potential energy while their
-sum remains nearly constant. As a consequence, in no updraft conditions the rate of
-change of the total energy $\dot{E}\approx 0$. Therefore, if there is a significant
-variation of the total energy, then the energy rate will be significantly away from zero
-thus indicating the energy variation due to updraft or downdraft airflow. In fact, the
-total energy management just presented is widely used in manned aviation being
-implemented in the so-called total energy compensating (TEK) variometer, see for example
+where $m$ is the mass of the airframe, $g$ is the gravitational constant, $E$
+is the normalized total mechanical energy of the system (also called the
+specific energy), $h$ is the height, and $V$ is the inertial speed.
+Therefore, the longitudinal long period oscillations represent the natural
+tradeoff of kinetic and potential energy while their sum remains nearly
+constant. As a consequence, in no updraft conditions the rate of change of
+the total energy $\dot{E}\approx 0$. Therefore, if there is a significant
+variation of the total energy, then the energy rate will be significantly
+away from zero thus indicating the energy variation due to updraft or
+downdraft airflow. In fact, the total energy management just presented is
+widely used in manned aviation being implemented in the so-called total
+energy compensating (TEK) variometer, see for example
 \cite{PitLab:2013:Online}.
 
 All the components of equation (\ref{eq:totenergyrate}) are available in
@@ -792,34 +796,38 @@ presented next in Figure.\ref{fig:ThermalDetection}.
 \label{subsec:ThermGuidance}
 \squeezeup
 
-When a thermal updraft is detected the glider needs to automatically maneuver to enable
-staying in the thermal with the objective of increasing the glider's potential energy
-through a rapid increase of the height. The theoretical development of the thermaling
-guidance law has been recently reported in \cite{AKlass_JGCD:2012}). The most recent
-experimental results and findings that motivate further refinement of the solution were
-discussed in \cite{AKlass_CDC:2012}. This development was recently modified to include
-explicitly the sign of the turn rate command that is defined by the estimate of the body
-roll angle $\phi$; it was observed in a number of flights that entering the thermal
-induces the motion that rolls the wings away from the thermal, thus suggesting the turn
-in an opposite direction. The resulting thermaling guidance law implemented onboard of
-real glider enabled successful latching and effective exploitation of the thermal.
+When a thermal updraft is detected the glider needs to automatically maneuver
+to enable staying in the thermal with the objective of increasing the
+glider's potential energy through a rapid increase of the height. The
+theoretical development of the thermaling guidance law has been recently
+reported in \cite{AKlass_JGCD:2012}). The most recent experimental results
+and findings that motivate further refinement of the solution were discussed
+in \cite{AKlass_CDC:2012}. This development was recently modified to include
+explicitly the sign of the turn rate command that is defined by the estimate
+of the body roll angle $\phi$; it was observed in a number of flights that
+entering the thermal induces the motion that rolls the wings away from the
+thermal (see Figure.\ref{fig:ThermalDetection}), thus suggesting the turn in
+opposite direction.
+%The resulting thermaling guidance law implemented onboard
+%of real glider enabled successful latching and effective exploitation of the
+%thermal.
 
-The thermal centering guidance law produces a turn rate command $\dot{\psi}_{c}$ to the
-autopilot, and is based on the feedback control law that takes into account the desire to
-get closer to the updraft center (defined by the $\rho_d$), where its intensity (the
-positive vertical speed) is the highest. On the other hand, the control balances the
-height increase and the turn-induced sink by a measure proportional to the rate of
-increase of the total energy (defined by the $\ddot{E}$ in (\ref{eq:totenergyrate})), see
-the geometry of the guidance task in Figure.\ref{fig:ThermaG} and the resulting guidance
-law in (\ref{eq:GuidanceLaw}):
+The thermal centering guidance law produces a turn rate command
+$\dot{\psi}_{c}$ to the autopilot, and is based on the feedback control law
+that takes into account the desire to get closer to the updraft center
+(defined by the $\rho_d$), where its intensity (the positive vertical speed)
+is the highest. On the other hand, the control balances the height increase
+and the turn-induced sink by a measure proportional to the rate of increase
+of the total energy (defined by the $\ddot{E}$ in (\ref{eq:totenergyrate})),
+see the geometry of the guidance task in Figure.\ref{fig:ThermaG} and the
+resulting guidance law in (\ref{eq:GuidanceLaw}):
 \begin{eqnarray}
-    && \dot{\psi}_{c}=-sign(\phi) \cdot (\frac{V}{\rho_d}-k_1 \cdot \ddot{E}),
+    && \dot{\psi}_{c}=\frac{V}{\rho_d}-k_1 \cdot \ddot{E},
     \label{eq:GuidanceLaw}
 \end{eqnarray}
 where $\rho$ and $\rho_d$ are the current distance and the desired orbital
-radius around the center of the thermal updraft, $\phi$ is the roll angle
-induced by the updraft, and $k_1$ is the feedback gain determined by the
-stability and performance requirements.
+radius around the center of the thermal updraft, and $k_1$ is the feedback
+gain determined by the stability and performance requirements.
 \begin{figure}[thpb]
   \centering
   \includegraphics[scale=0.3]{Figures/ThermalG.eps}
@@ -827,39 +835,42 @@ stability and performance requirements.
   the desired orbit is represented by the red dashed line defined by $\rho_d$.}
   \label{fig:ThermaG}
 \end{figure}
-For the feasibility of theoretical development the thermal center is assumed stationary
-with its position unknown. The desired distance ($\rho_d$) toward the center at this
-point is not defined, however for the stability of the control law it is assumed to be
-away from zero. The best value of $\rho_d$ is initially assigned based on statistical
-observations of the glider performance and the shapes of updrafts in the area. Later on,
-when collaborative gliders contribute to the identification of the updraft geometry this
-value is updated, thus resulting in a feedback that improves the collaborative efficiency
-of utilizing the free energy of the updraft. For the stability analysis of the thermaling
-guidance law it is assumed that the intensity of the updraft can be represented by the
-Gaussian distribution function of the form:
+For the feasibility of theoretical development the thermal center is assumed
+stationary with its position unknown. The desired distance ($\rho_d$) toward
+the center at this point is not defined, however for the stability of the
+control law it is assumed to be away from zero. The best value of $\rho_d$ is
+initially assigned based on statistical observations of the glider
+performance and the shapes of updrafts in the area. Later on, when
+collaborative gliders contribute to the identification of the updraft
+geometry this value is updated, thus resulting in a feedback that improves
+the collaborative efficiency of utilizing the free energy of the updraft. For
+the stability analysis of the thermaling guidance law it is assumed that the
+intensity of the updraft can be represented by the Gaussian distribution
+function of the form:
 \begin{eqnarray}
     && \omega=\omega_p \cdot e^{-[\frac{(x-x_0)^2+(y-y_0)^2}{2\sigma^2}]},
     \label{eq:GaussUpdraft}
 \end{eqnarray}
-where $x, y$ represent the coordinates of the glider, $x_0, y_o$ represent the unknown
-coordinates of the center of updraft, $\omega_p$ is the peak intensity of the updraft,and
-$\sigma$ defines the geometry of the symmetric updraft (in general case $\sigma_x \neq
-\sigma_y$). For a stationary updraft modeled by Gaussian distribution function with
-$\sigma>0,~\omega_p>0$ and the glider with $V>0, \rho_d>0$, it is proven that the
-feedback guidance law in (\ref{eq:GuidanceLaw}) is locally asymptotically stable with an
-equilibrium at $(\eta, \rho-\rho_d)=(0,0)$ and a region of attraction $\Omega=\{(\eta,
-\rho-\rho_d): \vert \rho-\rho_d \vert \leq \beta,  \vert \eta \vert \leq \alpha \}, $
-where $\beta < \rho_d, \alpha< \pi/2$, for any
+where $x, y$ represent the coordinates of the glider, $x_0, y_o$ represent
+the unknown coordinates of the center of updraft, $\omega_p$ is the peak
+intensity of the updraft,and $\sigma$ defines the geometry of the symmetric
+updraft (in general case $\sigma_x \neq \sigma_y$). For a stationary updraft
+modeled by Gaussian distribution function with $\sigma>0,~\omega_p>0$ and the
+glider with $V>0, \rho_d>0$, it is proven that the feedback guidance law in
+(\ref{eq:GuidanceLaw}) is locally asymptotically stable with an equilibrium
+at $(\eta, \rho-\rho_d)=(0,0)$ and a region of attraction $\Omega=\{(\eta,
+\rho-\rho_d): \vert \rho-\rho_d \vert \leq \beta,  \vert \eta \vert \leq
+\alpha \}, $ where $\beta < \rho_d, \alpha< \pi/2$, for any
 \begin{eqnarray}
     && k_1 > \tan \alpha \frac{\sigma^2}{\omega_p(\rho_d-\beta)^2}
     e^(\frac{-(\rho_d+\beta)^2}{2\sigma^2} ).\nonumber
     \label{eq:GuidanceGain}
 \end{eqnarray}
 
-The physical meaning of the guidance law (\ref{eq:GuidanceLaw}) is to increase the
-commanded turn rate until the rate of climb in the latched updraft is compensated by the
-sink resulted from the steep banking; most traditional autopilots implement bank-to-turn
-control laws.
+The physical meaning of the guidance law (\ref{eq:GuidanceLaw}) is to
+increase the commanded turn rate until the rate of climb in the latched
+updraft is compensated by the sink resulted from the steep banking; most
+traditional autopilots implement bank-to-turn control laws.
 
 %%%%%% need to illustrate (place a figure) how the sink polar
 %%%%%% shifts down with an increase of a bank angle %%
@@ -942,28 +953,35 @@ longitude, see a conceptual example in Figure.\ref{fig:HeatMap}.
   \label{fig:HeatMap}
 \end{figure}
 %%%%%%%%%%
-As a first step toward cooperative identification and mapping of convective thermals over
-extended areas with an account of prior methodological observation, the probabilistic
-recursive Bayesian approach was adopted, see details of the approach in
-\cite{Bergman:1999}.
+As a first step toward cooperative identification and mapping of convective
+thermals over extended areas with an account of prior methodological
+observation, the probabilistic recursive Bayesian approach was adopted, see
+details of the approach in \cite{Bergman:1999}.
 
 Consider a task where $N$ gliders cooperatively estimate the velocity
 $f_k=f(x_k,y_k,z_k)$ of flow field at the inertial coordinates $x_k,y_k,z_k$
-of $k$-th glider, $k=1...N$. Assume that the onboard instrumentation enables measuring the lateral and vertical components of the airflow. The convective
+of $k$-th glider, $k=1...N$. Assume that the onboard instrumentation enables
+measuring the lateral and vertical components of the airflow. The convective
 airflow of interest is captured by a given parametric model with unknown
 characteristics; see, for example, the vertical updraft model in
 (\ref{eq:GaussUpdraft}) with unknown parameters $\omega_p$, $\sigma$, $x_0$,
-$y_0$. The objective of the task is to estimate $f$ by using noisy observations of the airflow provided by cooperative gliders.
+$y_0$. The objective of the task is to estimate $f$ by using noisy
+observations of the airflow provided by cooperative gliders.
 
 Let $X(t)=(\omega_p, \sigma, x_0, y_0)$ be a state vector that encapsulates
-the unknown parameters of the convective flow velocity $f_k$ that is
-estimated at each point of the discretized space at time $t$, $s_k(t)$ denote
-the noisy measurement of vehicle $k$ at time $t$, and
-$S_k(t)=\{s_k(0),...,s_k(t)\}$ define the set of samples up to the current time $t$. Assume that $s_k(t)$ of each vehicle at location $x_k,y_k,z_k$ is
-corrupted by Gaussian noise such that $s_k(t)=f_k(x_k,y_k,z_k)+\mu_{h,k}+\mu_{v,k}$, with $\mu_{h,k}\sim N(0,\sigma^2_h)$ and $\mu_{v,k}\sim N(0,\sigma^2_v)$ being white noise components in the lateral and vertical directions.
+the unknown constant parameters of the convective flow velocity $f_k$ that is
+estimated at each point of the discretized space at discrete time instance
+$t$, $s_k(t)$ denote the noisy measurement of vehicle $k$ at time $t$, and
+$S_k(t)=\{s_k(0),...,s_k(t)\}$ define the set of samples up to the current
+time $t$. Assume that $s_k(t)$ of each vehicle at location $x_k,y_k,z_k$ is
+corrupted by Gaussian noise such that
+$s_k(t)=f_k(x_k,y_k,z_k)+\mu_{h,k}+\mu_{v,k}$, with $\mu_{h,k}\sim
+N(0,\sigma^2_h)$ and $\mu_{v,k}\sim N(0,\sigma^2_v)$ being white noise
+components in the lateral and vertical directions.
 
-Then, the conditional probability of the state $X(t)$ given the set of
-measurements $S_k(t)$ of $k$-th glider alone is
+Then in discrete settings where $t-1$ refers to the previous time step, the
+conditional probability of the state $X(t)$ given the set of measurements
+$S_k(t)$ of $k$-th glider alone is
 \begin{eqnarray}
     && p(X(t)\vert S_k(t))=\beta \cdot p(s_k(t) \vert X)\cdot p(X(t) \vert S_k(t-1)),
     \label{eq:BayesProb}
@@ -973,7 +991,10 @@ $p(X(t)\vert S_k(t))$ at every instance of $t$ has a unity integral over the
 state-space $X$.  The $p(s_k(t) \vert X)$ is the likelihood function
 represented by the conditional probability of the measurement $s_k(t)$ given
 the state $X$, and the $p(X(t) \vert S_k(t-1)$ is the prior probability
-distribution that represents any given knowledge or intelligence about the most likely location and intensity of thermals. In our development $p(X(t) \vert S_k(0)$ is what encapsulates the probability ''heat map`` at the very first step, see Figure.\ref{fig:HeatMap}.
+distribution that represents any given knowledge or intelligence about the
+most likely location and intensity of thermals. In our development $p(X(t)
+\vert S_k(0)$ is what encapsulates the probability ''heat map`` at the very
+first step, see Figure.\ref{fig:HeatMap}.
 
 Finally, let each point of state $X$ in the state-space be represented by the
 multi-variate Gaussian likelihood function:
@@ -982,14 +1003,19 @@ multi-variate Gaussian likelihood function:
     [f_k(X)-s_k(t)] }),
     \label{eq:BayesLikeLH}
 \end{eqnarray*}
-where $\Delta=diag(\mu^2_h,\mu^2_v)$. Assuming that measurements are synchronously taken at each time step and the gliders cooperatively share the data, the conditional probability density of the state $X(t)$ is updated through the natural motion of the fleet of gliders sampling the airflow at ($x_k,y_k,z_k$) as
+where $\Delta=diag(\mu^2_h,\mu^2_v)$. Assuming that measurements are
+synchronously taken at each time step and the gliders cooperatively share the
+data, the conditional probability density of the state $X(t)$ is updated
+through the natural motion of the fleet of gliders sampling the airflow at
+($x_k,y_k,z_k$) as
 \begin{eqnarray}
     && p(X(t)\vert S(t))=\beta \cdot \prod_{k=1}^N p(s_k(t) \vert X)\cdot p(X(t) \vert S(t-1)),
     \label{eq:PostProb}
 \end{eqnarray}
 where $S(t-1)$includes the measurements from all $N$ gliders in the fleet.
 Now it is clear that the points of the parameter space corresponding to the
-maximum of the posterior probability density $X(t)=\max p(X(t) \vert S(t))$ provide the maximum likelihood of the convective flow field parameters.
+maximum of the posterior probability density $X(t)=\max p(X(t) \vert S(t))$
+provide the maximum likelihood of the convective flow field parameters.
 %
 %In a verification scenario when ''true thermals`` are distributed according to the known
 %''heat map`` and the prior is initialized uniformly, the recursive algorithm in
@@ -997,7 +1023,9 @@ maximum of the posterior probability density $X(t)=\max p(X(t) \vert S(t))$ prov
 
 An example of the recursive algorithm (\ref{eq:PostProb}) for the case of
 three simulated gliders cooperatively flying and estimating parameters of a
-single updraft in a given area modeled by (\ref{eq:GaussUpdraft}) is presented in Figure.\ref{fig:SimPDF}; note, there is no horizontal component of airflow in the model.
+single updraft in a given area modeled by (\ref{eq:GaussUpdraft}) is
+presented in Figure.\ref{fig:SimPDF}; note, there is no horizontal component
+of airflow in the model.
 %%%%%%%%%%
 \begin{figure}[thpb]
   \centering
