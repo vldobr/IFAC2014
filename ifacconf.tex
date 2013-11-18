@@ -29,7 +29,7 @@
 
 \thanks[footnoteinfo]{The project has been supported over the last 3 years by a number of
 sponsors including the NPS Consortium for Robotics and Unmanned Systems
-Education and Research, the Army Research Lab, and the "The Multidisciplinary
+Education and Research, the Army Research Lab, and "The Multidisciplinary
 Studies Support for USMC Expeditionary Energy Office" program.}
 
 \author[First]{Nahum Camacho,}
@@ -154,11 +154,11 @@ the existing autonomous aircraft; see a comprehensive review in
 %
 Despite almost two decades of significant advances in low-power and
 high-performance microelectronics development including CPUs, sensors,
-actuators, and communication circuits~\cite{Tong:1995}, \cite{Singh:2010},
+actuators, and communication circuits (see~\cite{Tong:1995}, \cite{Singh:2010}),
 the only task addressed was to lower the power consumption and to reduce the
 pace of energy expenditures. In turn, the progress in energy renewable
 technologies has also been advancing fast, especially in the flight-relevant
-areas of solar photovoltaics (\cite{Hamakawa:2004}) and electro-chemical
+areas of solar photovoltaics (PV) (\cite{Hamakawa:2004}) and electro-chemical
 battery technologies, see \cite{Tarascon:2001}. Yet, the balance of energy
 use and the regenerated energy income has not been met. Since the loss of
 energy is unavoidable due to the limited efficiency of energy conversion,
@@ -309,7 +309,7 @@ keeping them evenly balanced.
 \label{subsec:Electric} \squeezeup
 
 The project considers two sources of energy input into the system:
-photovoltaic (PV) and atmospheric convection, and typically two methods of
+photovoltaic and atmospheric convection, and typically two methods of
 energy storage; potential energy stored chemically in batteries and potential
 energy stored via altitude. This section describes the electrical half of
 that system; electricity harvesting through PV conversion and energy storage
@@ -328,9 +328,8 @@ parameters could be identified on the ground and during the flight of a
 particular glider platform. The need for online identification arises as the
 properties of the system are expected to change over time.
 
-As an example, the following data represent the results of the discharge
-experiment performed with 2 different types of batteries at different
-discharge rates; the experiment utilized the Lithium polymer (LiPo) and the
+As an example of variation of system parameters, the following data represent
+the results of the discharge experiment performed with 2 different types of batteries at different discharge rates; the experiment utilized the Lithium polymer (LiPo) and the
 Lithium-Ion (LiIon) packs. Figure.\ref{fig:Batt_v_vs_t} illustrates how
 voltage drops over the discharge cycle, a feature that is convenient for
 estimating remaining energy in the battery pack.
@@ -381,7 +380,7 @@ superior for onboard integration.
 A number of other uncertainties and design considerations still need to be
 identified and formalized. Among them are the structural integrity of the
 wings and the PV cells under the flex load in flight, dissipation of heat
-induced by the dark surface of solar panels and its effect of the structural
+induced by the dark surface of solar panels and its effect on the structural
 integrity,  performance of the MPPT unit under the variable exposure of the
 PV cells to the sun, stability of the battery chemistry under variable
 temperature, losses in the mechanical gear system and the propulsion motors
@@ -419,9 +418,9 @@ in Figure.~\ref{fig:Solar_arch}.
 \end{figure}
 %%%%%%%%%%%%%%%%
 
-An example of multi-day experiment focusing on acquiring data for precise
+An example of multi-day experiment focused on precise
 characterization of the system is presented next in
-Figure.\ref{fig:MultiDay_enrg}. The data represents the time history of
+Figure.\ref{fig:MultiDay_enrg}. The data illustrates the time history of
 electrical energy input from the PV array, the dynamics of the batteries
 charge and discharge under the constant load, and the estimated losses of
 energy due to the wiring, data acquisition sensors and adverse uncertainties.
@@ -431,7 +430,7 @@ differential equations, while the solar input is closely represented by the
 gain that is directly proportional to the angle of incidence toward the sun.
 Although not representing all the envisioned flight conditions, the result
 still allows to recognize the key functions that can be used to formally
-describe the states of the key system components and the total electrical
+describe the states of the system components and the total electrical
 energy balance. When the result is further enhanced with the feedback from
 the flight dynamics and the operational environment, it can be used to
 precisely characterize the range and endurance of a particular glider
@@ -689,7 +688,7 @@ same metrics actually measured in flight.
 %software (\cite{Condor:2013:Online}), see details in Section.\ref{sec:SimEnv}.
 
 \emph{Characterization of the sink polar} - the function of vertical sink
-rate versus the true airspeed (TAS) of an aircraft - of a particular glider
+rate versus the true airspeed (TAS) - of a particular glider
 can be practically achieved in extensive experimentation. However,
 flight-experimentation in real-world environment can hardly provide ideally
 controlled conditions. In the developed approach, the estimates of the
@@ -707,8 +706,8 @@ more details in sec.\ref{sec:SimEnv}. The detection of a thermal and
 estimation of its intensity, that contributes to the recursive identification
 of its parameters (see sec.\ref{subsec:BayesianMapping}), are based on
 comparison of the currently measured sink rate with the sink rate predicted
-by the polar for a measured TAS; if the measured sink rate is smaller, then
-predicted then there is a thermal.
+by the polar for a measured TAS; if the measured sink rate is smaller than
+predicted, then there is a thermal.
 %%%%%%%%%%%%%%%%
 \begin{figure}[thpb]
   \centering
@@ -726,7 +725,7 @@ identification of thermal updrafts, but also to the mission planning of a
 specific glider, see \cite{Piggott:1997} and \cite{FAA:2011}. In particular,
 the polar defines the minimum sink rate $V_{s}min$ and the corresponding TAS
 command for the autopilot to follow. While $V_{s}min$ may be too close to the
-stall speed $V_{stall}$ and should be avoided ($V_{stall} \approx V_{s}min$),
+stall speed $V_{stall} \approx V_{s}min$ and should be avoided,
 the effective speed commanded in thermaling mode $V_{th}$ may be slightly
 higher. The polar also defines the optimal TAS command $V_{cc}$ for the
 maximum glide ratio flight that is used by the navigation task in planning
@@ -992,7 +991,7 @@ state-space $X$.  The $p(s_k(t) \vert X)$ is the likelihood function
 represented by the conditional probability of the measurement $s_k(t)$ given
 the state $X$, and the $p(X(t) \vert S_k(t-1)$ is the prior probability
 distribution that represents any given knowledge or intelligence about the
-most likely location and intensity of thermals. In our development $p(X(t)
+most likely location and intensity of thermals. In our development $p(X(0)
 \vert S_k(0)$ is what encapsulates the probability ''heat map`` at the very
 first step, see Figure.\ref{fig:HeatMap}.
 
@@ -1023,7 +1022,7 @@ provide the maximum likelihood of the convective flow field parameters.
 
 An example of the recursive algorithm (\ref{eq:PostProb}) for the case of
 three simulated gliders cooperatively flying and estimating parameters of a
-single updraft in a given area modeled by (\ref{eq:GaussUpdraft}) is
+single stationary updraft in a given area modeled by (\ref{eq:GaussUpdraft}) is
 presented in Figure.\ref{fig:SimPDF}; note, there is no horizontal component
 of airflow in the model.
 %%%%%%%%%%
@@ -1060,7 +1059,7 @@ simulation setup in section \ref{sec:SimEnv}.
 \squeezeup
 
 To facilitate convenient design and verification of the designed algorithms
-the project also develops a realistic simulation environment that is based on
+the project developt a realistic simulation environment that is based on
 tight integration of MatLab/Simulink (\cite{MATLAB:2013}) capabilities with
 the high-fidelity flight dynamics and atmospheric effects of the Condor
 soaring simulator, see \cite{Condor:2013:Online}. Besides providing a wide
