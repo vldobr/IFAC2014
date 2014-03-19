@@ -1,0 +1,122 @@
+Reviewer 1 of IFAC WC 2014 submission 2048
+
+The results are not convincing enough please improve your
+paper the details see in the reviews. 
+
+Reviewer 2 of IFAC WC 2014 submission 2048
+
+Comments to the author
+======================
+
+The paper is written well but needs figures that will be
+readable in print form.  In most cases some of the details
+are not large enough to make out.  Some terminology should
+be clarified for the reader, such as sink polar.
+
+The paper assembles various techniques and data that could
+be used to evaluate collaboration between multiple sail
+planes in soaring.  Most of the techniques are existing in
+the literature, such as the Kalman filtering of the data,
+the nature of the thermal convection, and the capabilities
+of the batteries.  It appears that batteries are actually
+tested with solar panels in a stationary experiment.  The
+remainder of the work is in simulation using a simulation
+package called Condor.	The behavior of the aircraft and
+the environment it encounters are provided by Condor, which
+is a well tested and accepted to represent these entities
+reasonably.  Some matters are not explained, such as what
+is electric power doing.  Is it powering the glider some
+time or is it only running the electronics?  The necessity
+of combining the photovoltaic and the convective energy
+sources is touted but the interaction between the two is
+not explained, if there is interaction at all.
+
+Some of the references given are dated, such as the
+reference on electronics packaging, dated 1995.  The last
+20 years has produced many changes.
+
+Unfortunately the conclusions are not presented as to the
+feasibility of indefinite flight, apparently because the
+work has not completed to that extent.	As the authors
+state at the beginning, the paper is a review but also
+presents some new ways of using the reviewed items.
+
+Reviewer 3 of IFAC WC 2014 submission 2048
+
+Comments to the author
+======================
+
+The paper presents the initial development of convective
+thermal and solar energy harvesting capability integrated
+onboard  of  multiple  cooperative  gliders.
+The  discussion details the key technologies required to
+integrate the energy harvesting into a cooperative mission
+planning and execution environment.
+
+The paper reads well and is interesting, but has some
+drawbacks that should be corrected to make it more readable
+
+A) it is too long and details too many aspects of the
+overall system making it confused : the electric energy
+management subsystem (sec. 2.1) can be omitted or
+considerably shortened since I think these details are not
+necessary in a conference paper
+B) Some parts of sec. 2.1 are rather obscure for readers
+that do not have a knowledge of the glider dynamics and
+guidance; e.g., what is the sink rate polar? Along the same
+lines, the results presented in Fig. 5 shall be better
+explained
+C) Section 3 is titled “Cooperative algorithms” but it
+mainly describes the Bayesian mapping of the thermals; the
+cooperative algorithm is very simple ... all the glider go
+where the updraft has been detected; so I suggest to
+shorten this section
+D) The simulation environment, on the contrary, gives a
+very concise presentation of the resulta; this section
+should be enlarged.
+
+One minor comment: the authors refer the figures in the
+text as “Figure.n”, where n is the figure number. Please
+omit the dot and put a space in its place.
+
+
+Reviewer 8 of IFAC WC 2014 submission 2048
+
+Comments to the author
+======================
+
+The paper proposes a multiple cooperative glider system
+which utilises convective thermal and solar energy
+harvesting.   It discusses the key technologies which is
+required to integrate the energy harvesting into a
+cooperative mission planning and execution environment.  
+The discussed key technologies includes the characteristics
+of the electrical (PV solar and batteries) management
+system, detection of convective thermal center, and the
+collaborative sensing.
+
+The results of the section 2.1 (the characteristics of the
+electrical PV solar and battery system) are easily
+predictable.   It merely confirm these properties by the
+experiments.
+
+The updraft detection in the section 2.2 and the guidance
+control to thermal center in the section 2.3 are
+interesting, but not new.
+
+The cooperative algorithm which searches the thermal center
+with multiple glider (main result) is new and useful, but
+the approach is conventional.
+
+Reviewer 11 of IFAC WC 2014 submission 2048
+
+Comments to the author
+======================
+
+The work reported in the paper is quite cutting edge
+however it appears that the work is still in its early
+stages thus the paper does not provide concrete results. I
+do think however that the paper will be greatly improved if
+it provided more literature review as a survey of existing
+methods so as to give context to the approach which is
+proposed

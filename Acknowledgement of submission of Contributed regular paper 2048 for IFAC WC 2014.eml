@@ -1,0 +1,196 @@
+Received: from morgan.nps.edu (205.155.65.62) by HERCULES.ern.nps.edu
+ (172.20.24.111) with Microsoft SMTP Server (TLS) id 14.3.146.0; Mon, 18 Nov
+ 2013 13:52:16 -0800
+X-ASG-Debug-ID: 1384811535-052e773b88264ff0001-Hbxa9w
+Received: from haven.nps.navy.mil (haven.nps.navy.mil [131.120.251.28]) by
+ morgan.nps.edu with ESMTP id VtHECazCTjiCkhSA for <vldobr@nps.navy.mil>; Mon,
+ 18 Nov 2013 13:52:15 -0800 (PST)
+X-Barracuda-Envelope-From: ifac@papercept.net
+X-Barracuda-Apparent-Source-IP: 131.120.251.28
+X-ASG-Whitelist: Client
+Received: from paper1.nmsrv.com (paper1.nmsrv.com [204.187.15.133]) by
+ haven.nps.navy.mil with ESMTP id 9wn8TXYp9mEy0Hhr for <vldobr@nps.navy.mil>;
+ Mon, 18 Nov 2013 13:52:05 -0800 (PST)
+Received: (qmail 3087 invoked from network); 18 Nov 2013 21:52:04 -0000
+X-AntiVirus: Clean
+Received: from localhost (HELO localhost.localdomain) (127.0.0.1)  by
+ paper1.nmsrv.com with SMTP; 18 Nov 2013 21:52:04 -0000
+Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="_----------=_138481152430830"
+Date: Mon, 18 Nov 2013 13:52:04 -0800
+From: <ifac@papercept.net>
+To: <vldobr@nps.navy.mil>, <vldobr@gmail.com>
+CC: <jones@nps.edu>, <ncamacho@nps.edu>
+Subject: Acknowledgement of submission of Contributed regular paper 2048 for IFAC WC 2014
+Reply-To: <ifac@papercept.net>
+X-ASG-Orig-Subj: Acknowledgement of submission of Contributed regular paper 2048 for IFAC WC 2014
+Message-ID: <1384811524.CT5Ek@ifac.papercept.net>
+X-Mailer: MIME::Lite 3.027 (F2.77; T1.29; A2.06; B3.08; Q3.08)
+X-Virus-Scanned: by bsmtpd at nps.navy.mil
+X-Barracuda-Connect: haven.nps.navy.mil[131.120.251.28]
+X-Barracuda-Start-Time: 1384811535
+X-Barracuda-URL: http://205.155.65.62:80/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at nps.edu
+X-Barracuda-BRTS-Status: 1
+Return-Path: ifac@papercept.net
+X-MS-Exchange-Organization-AuthSource: hercules.ern.nps.edu
+X-MS-Exchange-Organization-AuthAs: Anonymous
+MIME-Version: 1.0
+
+--_----------=_138481152430830
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+
+Message from PaperPlaza Conference Manuscript Management System
+
+
+Dear Prof. Vladimir Dobrokhodov
+
+This email is to acknowledge receipt of your submission=20
+
+Cooperative Autonomy of Multiple Solar-Powered Thermaling
+Gliders (Paper ID: 2048, Contributed regular paper)=20
+
+submitted to the 19th IFAC World Congress, (IFAC WC 2014),
+through the Conference Manuscript Management System of IFAC
+WC 2014.
+
+Attached below are pertinent data on your paper for you to
+verify. If there is any error or necessary change to your
+contact data, please update the data at the following site:
+
+
+ http://ifac.papercept.net=20
+
+If this is a proposal for an invited session, please send
+the session code below to the prospective contributors so
+that they can use the code to submit their papers.
+
+If you need to modify title or author list, you will have
+an opportunity to do so when submitting the final version
+for publication in the proceedings. For any correspondence
+regarding this paper, be sure to refer to your paper ID
+(2048) and your PIN.
+
+It is very important to note that "only" the corresponding
+author will be able upload the final paper. If the
+corresponding author needs to be changed, the current
+corresponding author must do so.
+
+Best regards,
+
+Edward Boje, IPC Co-Chair=20
+Xiaohua Xia, IPC Co-Chair
+
+
+Manuscript data
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Submission number: 2048
+Authors or proposers names and PINs:
+      Vladimir Dobrokhodov (15625), Kevin Jones (19035), Nahum
+      Camacho (74547)
+Corresponding author or proposer:
+      Vladimir Dobrokhodov, vldobr@nps.navy.mil, vldobr@gmail.com
+Title:
+      Cooperative Autonomy of Multiple Solar-Powered Thermaling
+      Gliders
+Date submitted: November 18, 2013
+Type of submission: Contributed regular paper
+Status: Received
+Award candidate: None
+Keywords:
+      Flying robots; Perception and sensing; Guidance navigation and
+      control
+Profile:
+      4.3. Mechatronics, Robotics and Components - Robotics
+Abstract:
+      This paper presents a review of the multidisciplinary
+      approach to the design of a fleet of cooperative gliders
+      capable of extended endurance operation. The flock of
+      autonomous gliders is able to harvest energy from the
+      environment, both through photo-voltaic energy generation
+      and through exploitation of natural convective lift in the=20
+      surrounding air, and act cooperatively to meet mission
+      requirements and to share knowledge of the local
+      environment. The paper begins with a brief overview of the
+      total-energy approach required for such a feat, along with
+      a short description of key system components and the
+      principal technologies. This is followed by details of the
+      evolution of a previously-developed architecture that
+      supported autonomous thermaling, to an architecture that
+      considers the total-energy budget in all flight segments,
+      and utilizes the cooperative flight to maximize the
+      cumulative energy capture while simultaneously meeting
+      mission objectives.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+You uploaded the file ifacconf.pdf
+
+Log in at https://ifac.papercept.net/conferences/scripts-n/start.pl using y=
+our PIN 15625 and password to check the status of your submission
+
+You may update or re-upload your submission until the submission deadline N=
+ovember 19, 2013 after logging in with your PIN and password
+
+If you do not have your password then follow the link https://ifac.papercep=
+t.net/conferences/scripts-n/pinwizard.pl to retrieve it
+
+
+
+--_----------=_138481152430830
+Content-Disposition: attachment; filename="IFAC14_Commitment_2048.pdf"
+Content-Transfer-Encoding: base64
+Content-Type: application/pdf; name="IFAC14_Commitment_2048.pdf"
+
+JVBERi0xLjcKJeTjz9IKNSAwIG9iago8PC9MZW5ndGggNiAwIFIvRmlsdGVyL0ZsYXRlRGVjb2Rl
+Pj4Kc3RyZWFtCnicfVbBcts2EL3rK3Z8smYoWZTkWs4tUePWaZK6taY9ND1AJCiiAQEGAKXR3/cB
+ICmbTDvjg0dc7Nt9+/YB3yaL+XJNp8m73eTmIaUN7YrJgnYfJ3dLuksX8zXt8slf1+m9K+nxYXp7
+e/12S39O0821NjKnrVYHw62d/r37gHOzdBnj3zaHxjparmfL+4SWi3Sd0JbVnPzJ3TRN02t9Ugk9
+6waJQ9rCiIyFPDcPS0oXsZLZehMzbnVVCVdx5ejZMcf9f210eoletvV+1o6/iWAlp0JLqU9CHch2
+R0lYYnUtBc9JK3kmp+nqCRUae5UMu9k3jpR2McboWlsm7dW8C+tA352pqaVmuUdyJRBqn5AeiYEk
+7o9nuqoBdhLo2qGyC6XbIagnreeXai1FJriNHeS05+jozbAC32yF70YwSbbZgzEfXGhDNdKgb+aE
+VsTcS+QwnyF85ee356SNOAjFZBIYqJu9FLb0pBl89Y1mWlmRc8PzYQouLT+V+DJi6jHwb/i3RuAc
+mEBB+JOcAVQrTgyyAIIuiKHaLOO1G+eP7DK0qHIb6OzpAtVtw+H3kzZfR0XEabfghsf+4iHUxNzr
+jCchpQ8ZFgERcYZKVQhnJivF0ZN/thBa0tM8i2i/qo9C8bniblxOD13HwgIiJlA0BqkN2QwiUt04
+tbViL/mIEz+gLE5ZqNca+6Abg0la+oL9dBpCQWTiW3RGy2Gm9wpz55ASZvxkWIZgnsRVVapBi7/z
+o+An62HaFEkHMcyFOWJvMs9jG4q55vQSIiT2CxmLt5j9yFSMEwW2ANiPIEpKceAq41+miVcjyug7
+ZYVf/UJIEZbln7bx+SgjGG7Zvky+493wTJvcS8F6FXbJhzmeLoyPZrrV9Rn7UzqvZD+LEZjX3ovC
+K86dZ0OMHLXksNv9uQ+dR8bCnrRaKdkxmIwVBywNFrMFH6ZyhilbcDP8HbqqRi3svqsgTC8By3Aa
+35blyX9xP8ToRhGLrY2Av7hzWPG4tgyNZF4jAq7rhTBSeMfdnH7WJ35EHwBOSESGW+eAvfh99pkg
+XR6oY2rkULlw0WZCF71QgkGH9fG+XSFJaS/tjqwyDi2hkt/AGz120fq94bNow6G23prB9P8t7sU4
+IfR4k2TMk9xLiII9Z8yY88iQAIrh+s3wFbxygE5eITmhqhO03Tm8HKW6UN3etKvLTbv6Icb8IXHf
+VcLQj3pv9NdS5/o4vVtjIIPbOV2s5umGFt0FfeTVHo2km/A+WPXR4Qkya6Nn69t5C/TseYTpgR/V
+hKPLxXrTF9a+XGb3XfxWaxAFQqGz6eouWJ7S1dlP+1Mjnaglx/tDMuP1OnuClvxdBL2biknP0k/S
+32v2dWUvIaCp77UfvO0XuKPCwigetoU+s7Kp8AaqWFbqkPL9bvLb5F85j/IXCmVuZHN0cmVhbQpl
+bmRvYmoKNiAwIG9iagoxMDYxCmVuZG9iagoxMSAwIG9iago8PC9DcmVhdGlvbkRhdGUgKEQ6MjAx
+MzExMTgxMzUyMDQtMDgnMDAnKQovUHJvZHVjZXIgKFBERmxpYitQREkgOC4wLjFwOCBcKFBlcmwg
+NS4xMC4wL0xpbnV4LXg4Nl82NFwpKQo+PgplbmRvYmoKMTUgMCBvYmoKPDwvVHlwZS9DYXRhbG9n
+L1BhZ2VzIDMgMCBSPj4KZW5kb2JqCjIgMCBvYmoKPDwvTGVuZ3RoIDE2IDAgUi9GaWx0ZXIvRmxh
+dGVEZWNvZGUvVHlwZS9PYmpTdG0vTiAxMC9GaXJzdCA2Nz4+CnN0cmVhbQp4nO2XWWvbQBCA3/Ur
+Fvps9j4EoWA7NQ1tSmhMWwh+UG3hCBw7SAqk/74ze8iy4zaH+9BAAhPtMTM7mhl92XDCMs6IFJkl
+zmRcEC6UzRzhMncZl0RoI7OcCCtgVxHpcpUpopjWmSSKS5Nd0YvTCT27KZblKDzG4XFGp+V9Ozs5
+oRf1Zn5ZtoQTRr7SyWbdwuKEExvmgrgwkCTHwXv4AYXpr9vSK9PLu58tTqb1XelXR0VT+p1hXRWr
+86lXOy2beV3dtpsaXiI4rOqmHV8XNWH0cxGHQmv6vVq0181VZjUjR8jR9sI6giK1JlobL87lxBhL
+eM6JlDIIrGmngi7Mo12WbB6TdA766ERDRRnX/jAUK4QXP+dQHTDAuTdkzK/7ACEArwsBeLuo19nF
+ca5U5xvXUxAoyuQ+AHyZLlA4ox9wN8YYQHAfn25r0yXA+8H9ZAdjG22SSAkJNOGJCcACoC4Ww/uP
+fjjrBdIt4Ft0EzTxrxp7IIXY1UsHD1556zNOMDFoFZOapao+qJphXQxWwvE2xgXBpzWtRabQt8q3
+p6MvC3qwn3x7MToWUHUCb5F1RdqT8Kqpsj3pVxLbMHWO74Q98ZmOHdKXXmf8sY3xU+h3xX47P+kz
+gMRgqR6sJ7+MzTL6YT3fLKr1EsiwHq6bKs13QbQlDJ2simUD3KTDZl6uW3glR8fF7ceyWl63xFhL
+URl3BoIzbz0abe6vBgaKMJBCE4HZhRSbmd/9UtyUAWf0rC1W1Xy4Xq5KANdlW958g1TQH9G5cux5
+fByMNqvFAUjK1wNJbF9l1U5neDZJ988g2X06PUhid+ZWH+7efUYiS3AP1l/KyBR3F0ePkamL0xPX
+cdxna/o6/B+RsJclHZ+fnp2Pt8dZjyfQEY51udxhZI+tL2FkCjGR8DAjo78nM9IdyciYsMcYud8A
+Sf4PRv7lT346P3XBIUmMfLC+7baXM1IYwa15PieFA05ChSInOdvn5DvBEGwHccmNOYKXweMBYqrX
+Q8y3a+XbtfLtWvk6r5X5k3DJXA+XmttwreTMCZLn7gAtA9Z2eDng4pEL5gX8Jw+/ajwzXBjH4Bdm
+DdF++rVsNnf1vGzgaL9wXi6qAoPCqc7h8pSL2a7DBpzcgUNOP1WL5op4roLOb03gm0AKZW5kc3Ry
+ZWFtCmVuZG9iagoxNiAwIG9iago4NjEKZW5kb2JqCjE3IDAgb2JqCjw8L0ZpbHRlci9GbGF0ZURl
+Y29kZS9UeXBlL1hSZWYvV1sxIDIgMl0vU2l6ZSAxOC9Sb290IDE1IDAgUi9JbmZvIDExIDAgUi9J
+RFs8Qjg0Rjc2NjE1MDFCNENGODkyNTcxMUZFNUU0OTk1RDQ+PEI4NEY3NjYxNTAxQjRDRjg5MjU3
+MTFGRTVFNDk5NUQ0Pl0vRGVjb2RlUGFybXM8PC9Db2x1bW5zIDUvUHJlZGljdG9yIDEyPj4vTGVu
+Z3RoIDgwICAgICAgICA+PgpzdHJlYW0KeJxVirENgDAQA++dpKCgYxPGomUIClZjEwYAJdLzoYLG
+su8swF1CZvIyE6UeDKILOSOXyEvnbUMv/2aV5z2e1lbSz3op3CKdMbAJHjdAEjYKZW5kc3RyZWFt
+CmVuZG9iagpzdGFydHhyZWYKMjMxMQolJUVPRgo=
+
+--_----------=_138481152430830--
