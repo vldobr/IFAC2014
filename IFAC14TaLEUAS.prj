@@ -3,32 +3,32 @@
 0
 0
 1
-:\My Documents\My Conferencies, Proposals, Reviewed Papers\2014\IROS2014\iros.tex
+ifacconf.tex
 14
-2
+1
 0
 
-:\My Documents\My Conferencies, Proposals, Reviewed Papers\2014\IROS2014\iros.tex
+ifacconf.tex
 TeX
-269496315 0 -1 32926 -1 32927 23 23 762 437 1 1 296 595 728 0 0 0 80 -1 -1 80 1 0 32927 -1  0 -1 0
+269496315 0 1032 27 1032 27 0 0 1244 702 1 1 296 476 -1 -1 0 0 25 0 0 25 1 0 27 1032  0 -1 0
 :\My Documents\My Conferencies, Proposals, Reviewed Papers\2014\IROS2014\iros.bib
 BibTeX
-1049586 0 310 68 310 67 161 161 900 575 0 1 568 238 216 0 0 0 23 0 0 23 1 0 67 310  0 -1 0
+269485042 0 310 68 310 67 161 161 900 575 0 1 568 238 216 0 0 0 23 0 0 23 1 0 67 310  0 -1 0
+:\My Documents\My Conferencies, Proposals, Reviewed Papers\2014\IROS2014\iros.tex
+TeX
+1060859 0 490 112 -1 32927 23 23 762 437 1 1 872 595 728 0 0 0 80 -1 -1 80 1 0 32927 -1  0 -1 0
+:\My Documents\My Conferencies, Proposals, Reviewed Papers\Reviewed Papers\Elsever_2013_CEP\SingleUAVoptimalControl.tex
+TeX:UNIX
+269594619 0 -1 0 -1 0 46 46 777 460 0 1 40 0 -1 -1 0 0 48 -1 -1 48 1 0 0 -1  0 -1 0
 :\My Documents\My Conferencies, Proposals, Reviewed Papers\2014\IROS2014\ieeeconf.cls
 TeX:STY
 1060850 0 0 1 5 64 23 23 762 437 0 0 528 85 -1 -1 0 0 3 0 0 3 1 0 64 5  0 0 0
-ifacconf.tex
-TeX
-1060859 1 -1 61912 -1 61922 0 0 1244 702 1 1 168 306 -1 -1 0 0 24 -1 -1 24 1 0 61922 -1  0 -1 0
 :\My Documents\My Conferencies, Proposals, Reviewed Papers\2014\IROS2014BB\iros_kon.bib
 BibTeX
 269485042 0 0 1 311 2 92 92 863 506 0 1 48 578 -1 -1 0 0 -1 -1 -1 -1 1 0 2 311  0 -1 0
 :\My Documents\My Conferencies, Proposals, Reviewed Papers\2014\IROS2014BB\iros_kon1.tex
 TeX
 269496315 1 -1 14914 -1 15194 69 69 840 483 0 1 168 425 -1 -1 0 0 -1 -1 -1 -1 1 0 15194 -1  0 -1 0
-:\My Documents\My Conferencies, Proposals, Reviewed Papers\2014\IROS_Fedorov\iros_fed.tex
-TeX:UNIX
-1159163 1 -1 16681 -1 15241 92 92 954 506 0 1 40 119 -1 -1 0 0 80 -1 -1 80 1 0 15241 -1  0 -1 0
 :\My Documents\My Conferencies, Proposals, Reviewed Papers\2014\IROS2014\IEEEexample.bib
 BibTeX
 269485042 0 0 1 58 1 138 138 877 552 0 1 40 -4726 -1 -1 0 0 -1 -1 -1 -1 1 0 1 58  0 -1 0
@@ -51,8 +51,7 @@ C:\Users\vldobr\AppData\Local\Temp\movie.tex
 TeX:UNIX
 269594619 0 -1 0 -1 0 92 92 525 506 0 1 40 0 -1 -1 0 0 -1 -1 -1 -1 1 0 0 -1  0 -1 0
 
-*:\My Documents\My Conferencies, Proposals, Reviewed Papers\2014\IROS2014\iros.tex
+*ifacconf.tex
 >
-*IEEEabrv
-*iros
+*ifacconf
 <
