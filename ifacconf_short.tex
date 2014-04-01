@@ -167,9 +167,9 @@ soaring capabilities and novel approaches in the cooperative mission planning
 and execution can not only further reduce the rate of loss of onboard energy,
 but can also result in energy increase during the autonomous mission; this
 capability is not readily available today in any of the available
-technologies, see~\cite{Siciliano:2008}, \cite{Martinez:2008}, and
+technologies, see~\cite{Martinez:2008}, and
 \cite{Nonami:2013}.
-
+%\cite{Siciliano:2008}, 
 %Despite the complexity of the energy-management task, the practical solutions
 %of the extended range and duration flight do exist in nature. Millions of
 %years of evolution enable a number of families of birds for very long
@@ -222,10 +222,12 @@ ultimate solution for the "eternal`` flight.
 %density or other metric over the next 10-20 years to better motivate the
 %research in cooperative energy harvesting and storage technologies.
 
-Therefore, it is envisioned that enhancing mission performance can be
-achieved by implementing the energy harvesting-storage and collaboration
-capabilities onboard of multiple autonomous solar-powered and thermal-soaring
-gliders. Thus, the triplet of (\emph{\textbf{i}}) mission management,
+
+%enhancing mission performance can be
+%achieved by implementing the energy harvesting-storage and collaboration
+%capabilities onboard of multiple autonomous solar-powered and thermal-soaring
+%gliders. Thus, 
+Therefore, it is envisioned that the triplet of (\emph{\textbf{i}}) mission management,
 (\emph{\textbf{ii}}) energy harvesting-storage and (\emph{\textbf{iii}})
 collaboration builds the fundamental architecture of future energy enhanced
 autonomy.
@@ -268,7 +270,7 @@ date in autonomous thermaling. The section \ref{sec:IndAlgs} describes the
 ''individual gliders`` algorithms. The following section \ref{sec:CoopAlgs}
 outlines the development of the collaborative autonomy algorithms. Section
 \ref{sec:SimEnv} provides details of the developed high-fidelity simulation
-environment used to verify the algorithms. \squeezeup
+environment used to verify the algorithms. 
 %The paper ends with a brief outline of the future development steps.
 
 \section{ Algorithms of Individual Gliders}
@@ -377,18 +379,18 @@ properties of the system are expected to change over time.
 %manufacturers' specifications, experiments suggest that LiPo batteries are
 %superior for onboard integration.
 
-A number of other uncertainties and design considerations also need to be
-identified and formalized. Among them are the structural integrity of the
-wings and the PV cells under the flex load in flight, dissipation of heat
-induced by the dark surface of solar panels and its effect on the structural
-integrity,  performance of the MPPT unit under the variable exposure of the
-PV cells to the sun, stability of the battery chemistry under variable
-temperature, losses in the mechanical gear system and the propulsion motors
-at different load, to name a few. Moreover, it is needless to say that
-PV-enhanced system may gain energy, however it won't help if the aircraft
-loses that same energy through increased viscous drag or loss of lift.
-Therefore the cells need to be built into the wing surface such that they are
-conformal with only subtle fine-texture differences.
+%A number of other uncertainties and design considerations also need to be
+%identified and formalized. Among them are the structural integrity of the
+%wings and the PV cells under the flex load in flight, dissipation of heat
+%induced by the dark surface of solar panels and its effect on the structural
+%integrity,  performance of the MPPT unit under the variable exposure of the
+%PV cells to the sun, stability of the battery chemistry under variable
+%temperature, losses in the mechanical gear system and the propulsion motors
+%at different load, to name a few. Moreover, it is needless to say that
+%PV-enhanced system may gain energy, however it won't help if the aircraft
+%loses that same energy through increased viscous drag or loss of lift.
+%Therefore the cells need to be built into the wing surface such that they are
+%conformal with only subtle fine-texture differences.
 %
 %Therefore, the ultimate objective of the electrical system design is to
 %obtain a representable mathematical model of the solar-powered energy
@@ -616,7 +618,6 @@ incidence toward the sun.
 \subsection{Glider Identification and Updraft Detection}
 \label{subsec:SysID}
 \squeezeup
-
 There is a number of prior efforts devoted to the thermal soaring flight.
 First demonstrated by human pilots in 1900s (see \cite{Simons:1998}) the idea
 of soaring in convective air became feasible for onboard autonomous
@@ -634,11 +635,13 @@ significant uncertainties and are hard to formalize.
 %material and structures sciences produce novel airframes that are strong and flexible on
 %one hand, and therefore aerodynamically uncertain when bend and twisted on the other
 %hand.
-Next, when a glider moves through unsteady air the estimation of the updraft
-strength and geometry, which are critical utility parameters of the updraft,
-significantly lacks of spatial content in noisy onboard measurements. Thus,
-it takes significant time before the updraft utility is identified and the
-guidance algorithm is engaged.
+%Next, when a glider moves through unsteady air the estimation of the updraft
+%strength and geometry, which are critical utility parameters of the updraft,
+%significantly lacks of spatial content in noisy onboard measurements. Thus,
+%it takes significant time before the updraft utility is identified and the
+%guidance algorithm is engaged.
+The heuristic nature and the noise in measurements lead to significant time before the updraft  is identified and the guidance algorithm is engaged.
+
 %
 %It is worth noting, that when controlled by the thermal centering guidance law the
 %estimation algorithm partially regains the spatial data in horizontal direction.
@@ -647,11 +650,10 @@ guidance algorithm is engaged.
 %the online estimation of the glider flight dynamics and the parameterized
 %model of the convective updraft.
 
-The algorithm of detecting a thermal is based on two complementary
-approaches. The first approach utilizes the inherent sink rate polar, and the
-second one is based on the total energy of the system. However, conceptually
+To formalize the detection of thermals we develop an algorithm that is based on two complementary approaches. The first approach utilizes the inherent sink rate polar, and the
+second one is based on the total energy of the system. Conceptually
 they are similar as they compare the natural metrics of the system with the
-same metrics actually measured in flight.
+same metrics measured in flight.
 
 %Moreover, as an effective method of rapid identification of $3D$ energy
 %profile of a thermal updraft, we utilize multiple collaborative platforms
@@ -715,31 +717,32 @@ predicted, then there is a thermal.
   \caption{The identification of the inherent sink rate polar.}
   \label{fig:SinkPolar}
 \end{figure}
-%%%%%%%%%%%%%%%%
-The analytical representation of the sink polar contributes not only to the
+%%%%%%%%\cite{Piggott:1997} and%%%%%%%%
+The analytical representation of the sink rate polar contributes not only to the
 identification of thermal updrafts, but also to the mission planning of a
-specific glider, see \cite{Piggott:1997} and \cite{FAA:2011}. In particular,
+specific glider, see ~\cite{FAA:2011}. In particular,
 the polar defines the minimum sink rate $V_{s}min$ and the corresponding TAS
 command for the autopilot to follow. While $V_{s}min$ may be too close to the
 stall speed $V_{stall} \approx V_{s}min$ and should be avoided, the effective
-speed commanded in thermaling mode $V_{th}$ may be slightly higher. The polar
+speed commanded in thermaling mode $V_{th}$ may be higher. The polar
 also defines the optimal TAS command $V_{cc}$ for the maximum glide ratio
 flight that is used by the navigation task in planning for the maximum range
 ''cross-country`` segment; the tangent line from the origin defines $V_{cc}$.
-While the sink polar should be ideally obtained in no-wind environment, its
-application to the known wind conditions is also straightforward and allows
-for the calculation of the distances to be traveled in cross-country flight,
-see more details in \cite{Piggott:1997} and \cite{FAA:2011}.
+%While the sink polar should be ideally obtained in no-wind environment, its
+%application to the known wind conditions is also straightforward and allows
+%for the calculation of the distances to be traveled in cross-country flight,
+%see more details in \cite{Piggott:1997} and \cite{FAA:2011}.
 
 \emph{The total energy} approach is also widely used in human piloted soaring
 flight. It is based on the concept that the mechanical energy $E_{tot}$ of
 the soaring glider combines the potential energy, $E_p=mgh$, and kinetic
 energy, $E_k=\frac{m\cdot V^2}{2}$, of the airframe minus the ''leakage`` of
 the energy due to the work of the parasitic and induced aerodynamic drag,
-$E_{D}$. For an ''aerodynamically clean`` glider with an objective to
-minimize the total energy loss, the control commands of its autopilot will
-necessarily result in mild variations of the angle of attack, thus leading to
-the relatively constant parasitic drag and $\dot{E}_{D}\approx0$.
+$E_{D}$. For an ''aerodynamically clean`` glider the parasitic drag is relatively
+constant  with $\dot{E}_{D}\approx0$.
+%with an objective to
+%minimize the total energy loss, the control commands of its autopilot will
+%necessarily result in mild variations of the angle of attack, thus leading to
 Consequently, for the total energy and its rate of change over sufficiently
 long time intervals one can consider the following:
 %Therefore, for efficient airframes the value of total energy remains nearly constant over
@@ -789,7 +792,6 @@ presented next in Fig.~\ref{fig:ThermalDetection}.
 \subsection{Guidance in Thermal Centering Mode}
 \label{subsec:ThermGuidance}
 \squeezeup
-
 When a thermal updraft is detected the glider needs to automatically maneuver
 to enable staying in the thermal with the objective of increasing the
 glider's potential energy through a rapid increase of the height. The
@@ -864,7 +866,7 @@ at $(\eta, \rho-\rho_d)=(0,0)$ and a region of attraction $\Omega=\{(\eta,
 The physical meaning of the guidance law (\ref{eq:GuidanceLaw}) is to
 increase the commanded turn rate until the rate of climb in the latched
 updraft is compensated by the sink resulted from the steep banking; most
-traditional autopilots implement bank-to-turn control laws. \squeezeup
+traditional autopilots implement bank-to-turn control laws.
 %%%%%% need to illustrate (place a figure) how the sink polar
 %%%%%% shifts down with an increase of a bank angle %%
 %In fact, the sink polar diagram (Fig.~\ref{fig:SinkPolar}) and the discussion
@@ -905,7 +907,6 @@ traditional autopilots implement bank-to-turn control laws. \squeezeup
 \section{Cooperative Thermals Identification }
 \label{sec:CoopAlgs}
 \squeezeup
-
 The initial approach to the estimation of thermals ($2D$ coordinates of the
 center vs. the glider altitude) by utilizing the measurements of single
 glider in soaring mode was based on two classical nonlinear filtering
@@ -918,7 +919,7 @@ with respect to the direction of turning flight; the turn is defined toward
 the center of the updraft. When entering a strong updraft, the performance of
 either filter was slow but reasonable, resulting in a converging solution in
 about 2 full orbits and precision of the thermal center estimation of
-$~75m$.\squeezeup
+$~75m$.
 %the experimental setup unfortunately does not allow for true data of the
 %thermal, while the simulation data is not a representative metric for the comparison.
 %
@@ -936,14 +937,14 @@ To improve the efficiency of updraft estimation the solution should integrate
 the knowledge gained by multiple gliders and the prior meteorological
 observations (see \cite{Pennycuick:1998}, \cite{Hindman:2007}), which might
 be available for the area of operation. The latter data can be conveniently
-interpreted as a map of probability density of convective air activity with
-respect to the geographic latitude and longitude, see a conceptual example in
+interpreted as a probability density map of convective air activity with
+respect to the geographic position, see a conceptual example in
 Fig.~\ref{fig:HeatMap}.
 %%%%%%%%%%
 \begin{figure}[thpb]
   \centering
   \includegraphics[scale=0.3]{Figures/ProbabilityThermal.eps}
-  \caption{''Heat map`` of probability of finding a thermal over an area of operation.}
+  \caption{Probability map of convective air activity.}
   \label{fig:HeatMap}
 \end{figure}
 %%%%%%%%%%
@@ -990,7 +991,7 @@ most likely location and intensity of thermals. In our development $p(X(0)
 \vert S_k(0)$ is what encapsulates the probability ''heat map`` at the very
 first step, see Fig.~\ref{fig:HeatMap}.
 
-Finally, let each point of state $X$ in the state-space be represented by the
+Finally, let each point of state $X$ be represented by the
 multi-variate Gaussian likelihood function:
 \begin{eqnarray*}
     && p(s_k(t)\vert X)=\frac{1}{[2\pi \Delta]^\frac{1}{2}}  exp( \frac{-[f_k(X)-s_k(t)]}{2 \sum
@@ -998,10 +999,10 @@ multi-variate Gaussian likelihood function:
     \label{eq:BayesLikeLH}
 \end{eqnarray*}
 where $\Delta=diag(\mu^2_h,\mu^2_v)$. Assuming that measurements are
-synchronously taken at each time step and the gliders cooperatively share the
+synchronously taken at each time step and the gliders share the
 data, the conditional probability density of the state $X(t)$ is updated
-through the natural motion of the fleet of gliders sampling the airflow at
-($x_k,y_k,z_k$) as
+through the natural motion of the fleet of gliders sampling the airflow as 
+%at ($x_k,y_k,z_k$) as
 \begin{eqnarray}
     && p(X(t)\vert S(t))=\beta \cdot \prod_{k=1}^N p(s_k(t) \vert X)\cdot p(X(t) \vert S(t-1)),
     \label{eq:PostProb}
@@ -1018,14 +1019,13 @@ provide the maximum likelihood of the convective flow field parameters.
 An example of the recursive algorithm (\ref{eq:PostProb}) for the case of
 three simulated gliders cooperatively flying and estimating parameters of a
 single stationary updraft in a given area modeled by (\ref{eq:GaussUpdraft})
-is presented in Fig.~\ref{fig:SimPDF}; note, there is no horizontal component
-of airflow in the model.
+is presented in Fig.~\ref{fig:SimPDF}.
+%; note, there is no horizontal component of airflow in the model.
 %%%%%%%%%%
 \begin{figure}[thpb]
   \centering
   \includegraphics[scale=0.51]{Figures/Mapping_thermals_2.eps}
-  \caption{Evolution of $p(X(t)\vert S(t))$ obtained onboard of glider $\#1$ from
-  the cooperative sampling.}
+  \caption{Evolution of $p(X(t)\vert S(t))$ obtained by glider $\#1$.}
   \label{fig:SimPDF}
 \end{figure}
 %%%%%%%%%%
@@ -1042,10 +1042,10 @@ mimics the setup and the objectives of our first cooperative flight test of
 two gliders reported earlier in \cite{AKlass_JGCD:2012}. In the demonstrated
 result the prior probability density is initialized by a uniform function
 over the entire area of operation. The result illustrates the evolution of
-the probability density function estimated onboard of glider $\#1$ along its
-flight path, see the corresponding cooperative trajectories of gliders $\#2$
-and $\#3$ in Fig.~\ref{fig:CoopFlightPaths}, see more details on the
-simulation setup in section \ref{sec:SimEnv}.\squeezeup
+the probability density function estimated by glider $\#1$ , see the corresponding trajectories of gliders $\#2$
+and $\#3$ in Fig.~\ref{fig:CoopFlightPaths}.
+%, see more details on the
+%simulation setup in section \ref{sec:SimEnv}.\squeezeup
 
 \section{Simulation Environment}
 \label{sec:SimEnv}
@@ -1070,7 +1070,7 @@ Fig.~\ref{fig:SIL}.
 %%%%%%%%%%
 \begin{figure}[thpb]
   \centering
-  \includegraphics[scale=0.3]{Figures/SIL.eps}
+  \includegraphics[scale=0.325]{Figures/SIL.eps}
   \caption{Integration of Simulink and Condor capabilities.}
   \label{fig:SIL}
 \end{figure}
@@ -1117,9 +1117,8 @@ the thermal detection approaches ( see sec.\ref{subsec:SysID}), and shares
 the information about the thermal, the other two gliders arrive to the same
 thermal and successfully gain height. Time history of the altitude of three
 cooperative gliders is presented next in Fig.~\ref{fig:CoopFlightHeight}. The
-result clearly demonstrates the benefits and significant potential of
-collaborative strategies in harvesting the convective updraft energy from the
-environment.\squeezeup
+result demonstrates the benefits of collaborative strategies in harvesting the
+convective updraft energy.
 %%%%%%%%%%
 \begin{figure}[thpb]
   \centering
@@ -1128,6 +1127,7 @@ environment.\squeezeup
   \label{fig:CoopFlightHeight}
 \end{figure}
 %%%%%%%%%%
+\squeezeup
 
 %\section{Future work}
 %\label{sec:Future}
@@ -1152,13 +1152,11 @@ environment.\squeezeup
 %conclusion might elaborate on the importance of the work or suggest
 %applications and extensions.
 The paper presents the development of convective thermal and solar energy
-harvesting capability integrated onboard of multiple cooperative gliders. The
+harvesting capability integrated onboard of multiple gliders. The
 discussion details the key technologies required to integrate the energy
 harvesting into a cooperative mission planning and execution environment. The
-key components include the online characterization of the electrical (PV
-solar and batteries) management system, glider properties, convective
-thermals detection, and the collaborative environment sensing by utilizing
-recursive Bayesian estimation.
+key components include the online characterization of the electrical management system,
+glider properties, convective thermals detection, and the collaborative environment sensing by utilizing Bayesian estimation.
 
 %\begin{ack}                              % Place acknowledgements here
 %%The project has been supported by a number of sponsors including the NPS
