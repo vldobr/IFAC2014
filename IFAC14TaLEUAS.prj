@@ -3,14 +3,17 @@
 0
 0
 1
-ifacconf.tex
-14
+ifacconf_short.tex
+15
 1
 0
 
+ifacconf_short.tex
+TeX
+269496315 0 1130 11 -1 65030 0 0 1244 702 1 1 264 51 -1 -1 0 0 24 -1 -1 24 1 0 65030 -1  0 -1 0
 ifacconf.tex
 TeX
-269496315 0 1032 27 1032 27 0 0 1244 702 1 1 296 476 -1 -1 0 0 25 0 0 25 1 0 27 1032  0 -1 0
+269496315 0 -1 23928 -1 24996 0 0 1244 702 1 1 272 408 -1 -1 0 0 24 -1 -1 24 1 0 24996 -1  0 -1 0
 :\My Documents\My Conferencies, Proposals, Reviewed Papers\2014\IROS2014\iros.bib
 BibTeX
 269485042 0 310 68 310 67 161 161 900 575 0 1 568 238 216 0 0 0 23 0 0 23 1 0 67 310  0 -1 0
@@ -51,7 +54,7 @@ C:\Users\vldobr\AppData\Local\Temp\movie.tex
 TeX:UNIX
 269594619 0 -1 0 -1 0 92 92 525 506 0 1 40 0 -1 -1 0 0 -1 -1 -1 -1 1 0 0 -1  0 -1 0
 
-*ifacconf.tex
+*ifacconf_short.tex
 >
 *ifacconf
 <
