@@ -1,0 +1,91 @@
+Michael J Allen. Updraft model for development of
+autonomous soaring uninhabited air vehicles. In 44th
+AIAA Aerospace Sciences Meeting and Exhibit, 2006.
+
+Michael J Allen and Victor Lin. Guidance and control of
+an autonomous soaring vehicle with flight test results. In
+AIAA Aerospace Sciences Meeting and Exhibit, AIAA
+Paper, volume 867, 2007.
+
+Klas Andersson, Kevin Jones, Vladimir Dobrokhodov, and
+Isaac Kaminer. Thermal highs and pitfall lows-notes on
+the journey to the first cooperative autonomous soaring
+flight. In Decision and Control (CDC), 2012 IEEE 51st
+Annual Conference on, pages 3392–3397. IEEE, 2012a.
+
+Klas Andersson, Isaac Kaminer, Vladimir Dobrokhodov,
+and Venanzio Cichella. Thermal centering control for
+autonomous soaring; stability analysis and flight test
+results. AIAA Journal of Guidance, Control, and Dy-
+namics, 35(3):963–975, 2012b.
+
+Niclas Bergman. Recursive Bayesian Estimation. PhD
+thesis, Department of Electrical Engineering, Link¨oping
+University, Sweden, 1999.
+
+LMM Boermans and A Van Garrel. Design and windtunnel
+test results of a flapped laminar flow airfoil for highperformance
+sailplane applications. In ICAS proceed-
+ings, volume 19, pages 1241–1241. American Institute
+of Aeronautics and Astronautics, AIAA, 1994.
+National Research Council Committee on Autonomous
+Vehicles in Support of Naval Operations. Autonomous
+Vehicles in Support of Naval Operations. The National
+Academies Press, 2005. ISBN 9780309096768. URL
+http://www.nap.edu/.
+
+Condor. The competition soaring simulator, October 2013.
+URL http://www.condorsoaring.com/.
+
+Daniel J Edwards. Implementation details and flight
+test results of an autonomous soaring controller. In
+AIAA Guidance, Navigation and Control Conference
+and Exhibit. North Carolina State University, 2008.
+AIAA 2008-7244.
+
+Federal Aviation Administration FAA. Glider Flying
+Handbook. JL Aviation LLC, 2011.
+
+Yoshihiro Hamakawa. Thin-film solar cells: next gen-
+eration photovoltaics and its applications, volume 13.
+Springer, 2004.
+
+Edward Hindman, Stephen M Saleeby, Olivier Liechti, and
+William R Cotton. A meteorological system for planning
+and analyzing soaring flights in colorado usa. Technical
+Soaring, 31(3):68–82, 2007.
+
+David R Martinez, Robert A Bond, and M Michael Vai.
+High performance embedded computing handbook: A sys-
+tems perspective. CRC Press, 2008.
+
+MATLAB. version 8.2.0.701 (R2013b). The MathWorks
+Inc., Natick, Massachusetts, 2013.
+
+Kenzo Nonami,Muljowidodo Kartidjo, Kwang-Joon Yoon,
+and Agus Budiyono. Autonomous Control Systems
+and Vehicles: Intelligent Unmanned Systems. Springer
+Publishing Company, Incorporated, 2013.
+
+CJ Pennycuick. Field observations of thermals and thermal
+streets, and the theory of cross-country soaring
+flight. Journal of Avian Biology, 29(1):33–43, March
+1998.
+
+PitLab. Skyassistant variometer, October 2013. URL
+http://www.pitlab.com.
+
+Martin Simons and Paul A Schweizer. Sailplanes by
+Schweizer: A History. Crowood Press, 1998.
+
+Gaurav Singh and Sandeep Kumar Shukla. Low Power
+Hardware Synthesis from Concurrent Action-Oriented
+Specifications. Springer, 2010.
+
+J-M Tarascon and Michel Armand. Issues and challenges
+facing rechargeable lithium batteries. Nature, 414(6861):
+359–367, 2001.
+
+John Wharington. Autonomous control of soaring aircraft
+by reinforcement learning. PhD thesis, Royal Melbourne
+Institute of Technology (Australia), 1998.
